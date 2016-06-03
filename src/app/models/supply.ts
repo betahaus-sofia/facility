@@ -1,8 +1,9 @@
+import { Request } from './request';
+
 export class Supply {
   id: string;
   name: string;
   imageUrl: string;
-  number: number;
 
   constructor(supply) {
     for (let key in supply) {

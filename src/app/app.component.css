@@ -9,7 +9,6 @@ body {
 }
 
 button {
-  border: 1px solid #cccccc;
   border-radius: 3px;
   padding: 8px 12px;
   text-transform: uppercase;

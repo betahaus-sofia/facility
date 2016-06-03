@@ -4,22 +4,37 @@
       ".read": true,
       ".write": false,
 
-      // Room
+      // Requests
+      "requests": {
+        ".write": true,
+
+        "$request": {
+          "date": { ".validate": "newData.val() === now" },
+          "$other": { ".validate": false }
+        }
+      },
+
+      // Supplies
+      "supplies": {
+        "$supply": {
+          "name": { ".validate": "newData.isString()" },
+          "imageUrl": { ".validate": "newData.isString()" },
+          "requests": {
+            ".write": true,
+            "$request": { ".validate": "newData.isBoolean()" }
+          },
+
+          "$other": { ".validate": false }
+        }
+      },
+
+      // Rooms
       "rooms": {
         "$room": {
           "name": { ".validate": "newData.isString()" },
-
           "supplies": {
-            "$supply": {
-              "name": { ".validate": "newData.isString()" },
-              "imageUrl": { ".validate": "newData.isString()" },
-              "number": {
-                ".write": true,
-                ".validate": "newData.isNumber()"
-              },
-
-              "$other": { ".validate": false }
-            }
+            ".write": true,
+            "$supply": { ".validate": "newData.isBoolean()" }
           },
 
           "$other": { ".validate": false }

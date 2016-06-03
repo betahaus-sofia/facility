@@ -1,10 +1,11 @@
 import { FORM_DIRECTIVES } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { Room, Supply } from '../services';
+import { Request, Room, Supply } from '../models';
+import { RequestListComponent } from '../request-list';
 
 @Component({
-  directives: [FORM_DIRECTIVES],
+  directives: [FORM_DIRECTIVES, RequestListComponent],
   moduleId: module.id,
   selector: 'app-supply-list',
   styleUrls: ['supply-list.component.css'],
@@ -12,13 +13,24 @@ import { Room, Supply } from '../services';
 })
 export class SupplyListComponent {
   @Input() room: Room;
-  @Input() supplies: Supply[];
+  private supplies: Supply[] = [];
 
-  addToNumber(supply: Supply, additive: number): void {
-    // Optimistically add the number
-    supply.number += additive;
+  ngOnInit() {
+    firebase.database().ref(`rooms/${this.room.id}/supplies`).on('child_added', (roomSupplySnapshot) => {
+      firebase.database().ref(`supplies/${roomSupplySnapshot.key}`).once('value', (supplySnapshot) => {
+        const supply = new Supply(supplySnapshot.val());
+        supply.id = supplySnapshot.key;
+        this.supplies.push(supply);
+      });
+    });
+  }
+
+  addRequestFor(supply: Supply): void {
+    const request = new Request({
+      date: firebase.database.ServerValue.TIMESTAMP
+    });
     
-    // Save changes
-    firebase.database().ref(`rooms/${this.room.id}/supplies/${supply.id}/number`).transaction((n) => n + additive);
+    const newRequestReference = firebase.database().ref('requests').push(request);
+    firebase.database().ref(`supplies/${supply.id}/requests/${newRequestReference.key}`).set(true);
   }
 }
