@@ -13,12 +13,17 @@ import { SupplyListComponent } from '../supply-list';
 })
 export class RoomListComponent {
   private rooms: Room[] = [];
+  private selectedRoom: Room;
 
   ngOnInit() {
     firebase.database().ref('rooms').on('child_added', (snapshot) => {
       var room = new Room(snapshot.val());
       room.id = snapshot.key;
       this.rooms.push(room);
+
+      if (!this.selectedRoom) {
+        this.selectedRoom = room;
+      }
     });
   }
 }

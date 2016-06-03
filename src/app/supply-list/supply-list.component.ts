@@ -13,9 +13,11 @@ import { RequestListComponent } from '../request-list';
 })
 export class SupplyListComponent {
   @Input() room: Room;
-  private supplies: Supply[] = [];
+  private supplies: Supply[];
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.supplies = [];
+
     firebase.database().ref(`rooms/${this.room.id}/supplies`).on('child_added', (roomSupplySnapshot) => {
       firebase.database().ref(`supplies/${roomSupplySnapshot.key}`).once('value', (supplySnapshot) => {
         const supply = new Supply(supplySnapshot.val());

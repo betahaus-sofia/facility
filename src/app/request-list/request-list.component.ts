@@ -13,11 +13,13 @@ import { Request, Room, Supply } from '../models';
 export class RequestListComponent {
   @Input() room: Room;
   @Input() supply: Supply;
-  private requests: Request[] = [];
+  private requests: Request[];
 
   private static requestLimit = 5;
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.requests = [];
+
     firebase.database()
       .ref('requests')
       .orderByChild('room_supply')

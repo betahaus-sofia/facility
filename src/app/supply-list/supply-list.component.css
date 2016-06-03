@@ -1,5 +1,14 @@
+.supply-list {
+  display: flex;
+  justify-content: start;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: 10px -10px;
+}
+
 .supply-list-item {
-  margin: 20px 10px;
+  width: 25%;
+
   transition: opacity ease-in-out 0.4s;
 }
 
@@ -11,8 +20,31 @@
   opacity: 1;
 }
 
+@media (min-width: 961px) and (max-width: 1200px) {
+  .supply-list-item {
+    width: 33%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 960px) {
+  .supply-list-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .supply-list-item {
+    width: 100%;
+  }
+}
+
 .supply-list-item-container {
+  margin: 10px;
+}
+
+.supply-list-item-button {
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .supply-list-item-image {

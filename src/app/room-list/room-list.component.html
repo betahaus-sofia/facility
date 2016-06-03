@@ -1,10 +1,9 @@
 <div class="room-list">
-  <div class="room-list-item ng-animate" *ngFor="let room of rooms">
-    <div class="room-list-item-container">
-      <div class="room-list-item-content">
-        <h3>{{room.name}}</h3>
-        <app-supply-list [room]="room"></app-supply-list>
-      </div>
-    </div>
+  <select class="room-list-select" [(ngModel)]="selectedRoom">
+    <option class="ng-animate" *ngFor="let room of rooms" [ngValue]="room">{{room.name}}</option>
+  </select>
+
+  <div class="room-list-item" *ngIf="selectedRoom">
+    <app-supply-list [room]="selectedRoom"></app-supply-list>
   </div>
 </div>
