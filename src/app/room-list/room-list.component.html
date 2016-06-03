@@ -1,0 +1,10 @@
+<div class="room-list">
+  <div class="room-list-item ng-animate" *ngFor="let room of rooms">
+    <div class="room-list-item-container">
+      <div class="room-list-item-content">
+        <h3>{{room.name}}</h3>
+        <app-supply-list [room]="room" [supplies]="room.supplies"></app-supply-list>
+      </div>
+    </div>
+  </div>
+</div>

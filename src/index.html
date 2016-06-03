@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Betahaus Sofia Office Manager</title>
+    <base href="/">
+    {{content-for 'head'}}
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Service worker support is disabled by default.
+         Install the worker script and uncomment to enable.
+         Only enable service workers in production.
+    <script type="text/javascript">
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/worker.js').catch(function(err) {
+          console.log('Error installing service worker: ', err);
+        });
+      }
+    </script>
+    -->
+
+    <!-- Override -->
+    <!-- http://jaydenseric.com/blog/forget-normalize-or-resets-lay-your-own-css-foundation -->
+    <style>
+      html {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        font: 16px/1 sans-serif;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      blockquote,
+      figure,
+      ol,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      main,
+      li {
+        display: block;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-size: inherit;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      a,
+      button {
+        color: inherit;
+        transition: .3s;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button {
+        overflow: visible;
+        border: 0;
+        font: inherit;
+        -webkit-font-smoothing: inherit;
+        letter-spacing: inherit;
+        background: none;
+        cursor: pointer;
+      }
+
+      ::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+      }
+
+      :focus {
+        outline: 0;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border: 0;
+      }
+    </style>
+
+    <!-- Spinner -->
+    <style>
+      .spinner-view {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -3.6em;
+        margin-left: -3.6em;
+      }
+
+      /* http://projects.lukehaas.me/css-loaders/ */
+      .spinner,
+      .spinner:before,
+      .spinner:after {
+        border-radius: 50%;
+      }
+
+      .spinner:before,
+      .spinner:after {
+        position: absolute;
+        content: '';
+      }
+
+      .spinner:before {
+        width: 5.2em;
+        height: 10.2em;
+        background: #ffffff;
+        border-radius: 10.2em 0 0 10.2em;
+        top: -0.1em;
+        left: -0.1em;
+        -webkit-transform-origin: 5.2em 5.1em;
+        transform-origin: 5.2em 5.1em;
+        -webkit-animation: spin2 2s infinite ease 1.5s;
+        animation: spin2 2s infinite ease 1.5s;
+      }
+
+      .spinner {
+        color: #161617;
+        font-size: 11px;
+        text-indent: -99999em;
+        position: relative;
+        width: 10em;
+        height: 10em;
+        box-shadow: inset 0 0 0 1em;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+
+      .spinner:after {
+        width: 5.2em;
+        height: 10.2em;
+        background: #ffffff;
+        border-radius: 0 10.2em 10.2em 0;
+        top: -0.1em;
+        left: 5.1em;
+        -webkit-transform-origin: 0px 5.1em;
+        transform-origin: 0px 5.1em;
+        -webkit-animation: spin2 2s infinite ease;
+        animation: spin2 2s infinite ease;
+      }
+
+      @-webkit-keyframes spin2 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin2 {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <app>
+      <!-- Spinner displayed before Angular loads -->
+      <div class="spinner-view">
+        <div class="spinner"></div>
+      </div>
+    </app>
+
+    <script src="vendor/es6-shim/es6-shim.js"></script>
+    <script src="vendor/reflect-metadata/Reflect.js"></script>
+    <script src="vendor/systemjs/dist/system.src.js"></script>
+    <script src="vendor/zone.js/dist/zone.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+    <script>
+      System.import('system-config.js').then(function () {
+        System.import('main');
+      }).catch(console.error.bind(console));
+    </script>
+  </body>
+</html>

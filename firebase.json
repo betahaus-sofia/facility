@@ -1,0 +1,41 @@
+{
+  "database": {
+    "rules": {
+      ".read": true,
+      ".write": false,
+
+      // Room
+      "rooms": {
+        "$room": {
+          "name": { ".validate": "newData.isString()" },
+
+          "supplies": {
+            "$supply": {
+              "name": { ".validate": "newData.isString()" },
+              "imageUrl": { ".validate": "newData.isString()" },
+              "number": {
+                ".write": true,
+                ".validate": "newData.isNumber()"
+              },
+
+              "$other": { ".validate": false }
+            }
+          },
+
+          "$other": { ".validate": false }
+        }
+      },
+
+      "$other": { ".validate": false }
+    }
+  },
+  "hosting": {
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

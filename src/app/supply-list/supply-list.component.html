@@ -1,0 +1,16 @@
+<div class="supply-list">
+  <div class="supply-list-item ng-animate" *ngFor="let supply of supplies">
+    <div class="supply-list-item-container" [class.danger]="supply.number <= 0">
+      <div class="supply-list-item-content">
+        <img class="supply-list-item-image" [src]="supply.imageUrl || '/icon.png'" />
+        <h5>{{supply.name}}</h5>
+      </div>
+
+      <div class="supply-list-item-icons">
+        <div class="supply-list-item-icon success" tooltip="Yay!" (click)="addToNumber(supply, 1)">+</div>
+        <h1 class="supply-list-item-number">{{supply.number || 0}}</h1>
+        <div class="supply-list-item-icon danger" tooltip="Doh!" (click)="addToNumber(supply, -1)">-</div>
+      </div>
+    </div>
+  </div>
+</div>
