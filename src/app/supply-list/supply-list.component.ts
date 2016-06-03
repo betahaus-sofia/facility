@@ -27,10 +27,10 @@ export class SupplyListComponent {
 
   addRequestFor(supply: Supply): void {
     const request = new Request({
+      room_supply: `${this.room.id}_${supply.id}`,
       date: firebase.database.ServerValue.TIMESTAMP
     });
-    
-    const newRequestReference = firebase.database().ref('requests').push(request);
-    firebase.database().ref(`supplies/${supply.id}/requests/${newRequestReference.key}`).set(true);
+
+    firebase.database().ref('requests').push(request);
   }
 }

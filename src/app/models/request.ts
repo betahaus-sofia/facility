@@ -1,6 +1,6 @@
 export class Request {
   id: string;
-  supply: string;
+  room_supply: string;
   date: string;
 
   constructor(request) {

@@ -1,7 +1,7 @@
 import { FORM_DIRECTIVES } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { Request, Supply } from '../models';
+import { Request, Room, Supply } from '../models';
 
 @Component({
   directives: [FORM_DIRECTIVES],
@@ -11,20 +11,26 @@ import { Request, Supply } from '../models';
   templateUrl: 'request-list.component.html'
 })
 export class RequestListComponent {
+  @Input() room: Room;
   @Input() supply: Supply;
   private requests: Request[] = [];
 
+  private static requestLimit = 5;
+
   ngOnInit() {
-    firebase.database().ref(`supplies/${this.supply.id}/requests`).on('child_added', (supplyRequestSnapshot) => {
-      firebase.database().ref(`requests/${supplyRequestSnapshot.key}`).once('value', (requestSnapshot) => {
-        const request = new Request(requestSnapshot.val());
-        request.id = requestSnapshot.key;
+    firebase.database()
+      .ref('requests')
+      .orderByChild('room_supply')
+      .equalTo(`${this.room.id}_${this.supply.id}`)
+      .limitToLast(RequestListComponent.requestLimit)
+      .on('child_added', (snapshot) => {
+        const request = new Request(snapshot.val());
+        request.id = snapshot.key;
 
         const timestamp = Math.min(request.date as any, Date.now());
         request.date = moment(timestamp).fromNow();
 
         this.requests.push(request);
       });
-    });
   }
 }
