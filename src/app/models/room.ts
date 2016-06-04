@@ -1,5 +1,3 @@
-import { Supply } from './supply';
-
 export class Room {
   id: string;
   name: string;

@@ -1,5 +1,3 @@
-import { Request } from './request';
-
 export class Supply {
   id: string;
   name: string;

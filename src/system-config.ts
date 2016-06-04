@@ -20,6 +20,7 @@ const barrels: string[] = [
   'app/request-list',
   'app/room-list',
   'app/supply-list',
+  'app/timeago',
   /** @cli-barrel */
 ];
 

@@ -2,10 +2,12 @@ import { FORM_DIRECTIVES } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { Request, Room, Supply } from '../models';
+import { TimeagoPipe } from '../timeago';
 
 @Component({
   directives: [FORM_DIRECTIVES],
   moduleId: module.id,
+  pipes: [TimeagoPipe],
   selector: 'app-request-list',
   styleUrls: ['request-list.component.css'],
   templateUrl: 'request-list.component.html'
@@ -29,8 +31,8 @@ export class RequestListComponent {
         const request = new Request(snapshot.val());
         request.id = snapshot.key;
 
-        const timestamp = Math.min(request.date as any, Date.now());
-        request.date = moment(timestamp).fromNow();
+        // Prevent displaying future dates in case of server time differences
+        request.date = Math.min(request.date as any, Date.now());
 
         this.requests.push(request);
       });

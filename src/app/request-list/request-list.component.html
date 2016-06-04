@@ -1,5 +1,5 @@
 <div class="request-list">
   <div class="request-list-item ng-animate" *ngFor="let request of requests">
-    <h4>Requested {{request.date}}</h4>
+    <h4>Requested {{request.date | timeago}}</h4>
   </div>
 </div>

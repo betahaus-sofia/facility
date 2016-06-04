@@ -1,7 +1,7 @@
 export class Request {
   id: string;
   room_supply: string;
-  date: string;
+  date: number;
 
   constructor(request) {
     for (let key in request) {
