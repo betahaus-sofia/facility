@@ -4,13 +4,24 @@
       ".read": true,
       ".write": false,
 
+      // Messages
+      "messages": {
+        "$room_supply": {
+          "delivered": { ".validate": "newData.val() === now" },
+          "$other": { ".validate": false }
+        }
+      },
+
       // Requests
       "requests": {
         ".write": true,
+        ".indexOn": "room_supply",
 
         "$request": {
           "room_supply": { ".validate": "newData.isString()" },
           "date": { ".validate": "newData.val() === now" },
+          "delivered": { ".validate": "newData.isBoolean()" },
+
           "$other": { ".validate": false }
         }
       },

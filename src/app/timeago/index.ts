@@ -1,1 +1,1 @@
-export { TimeagoPipe } from './timeago.pipe';
+export * from './timeago.pipe';
