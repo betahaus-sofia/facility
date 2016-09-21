@@ -1,23 +1,19 @@
-import { FORM_DIRECTIVES } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Request, Room, Supply } from '../models';
-import { TimeagoImpurePipe } from '../timeago';
 
 @Component({
-  directives: [FORM_DIRECTIVES],
-  moduleId: module.id,
-  pipes: [TimeagoImpurePipe],
   selector: 'app-request-list',
-  styleUrls: ['request-list.component.css'],
-  templateUrl: 'request-list.component.html'
+  styleUrls: ['./request-list.component.css'],
+  templateUrl: './request-list.component.html'
 })
-export class RequestListComponent {
+export class RequestListComponent implements OnChanges {
+  private static requestLimit = 5;
+
   @Input() room: Room;
   @Input() supply: Supply;
-  private requests: Request[];
 
-  private static requestLimit = 5;
+  private requests: Request[];
 
   ngOnChanges() {
     this.requests = [];

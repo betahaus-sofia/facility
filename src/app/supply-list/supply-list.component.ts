@@ -1,17 +1,13 @@
-import { FORM_DIRECTIVES } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { Request, Room, Supply } from '../models';
-import { RequestListComponent } from '../request-list';
 
 @Component({
-  directives: [FORM_DIRECTIVES, RequestListComponent],
-  moduleId: module.id,
   selector: 'app-supply-list',
-  styleUrls: ['supply-list.component.css'],
-  templateUrl: 'supply-list.component.html'
+  styleUrls: ['./supply-list.component.css'],
+  templateUrl: './supply-list.component.html'
 })
-export class SupplyListComponent {
+export class SupplyListComponent implements OnChanges {
   @Input() room: Room;
   private supplies: Supply[];
 

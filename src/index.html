@@ -4,21 +4,9 @@
     <meta charset="utf-8">
     <title>Betahaus Sofia Office Manager</title>
     <base href="/">
-    {{content-for 'head'}}
-    <link rel="icon" type="image/x-icon" href="icon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Service worker support is disabled by default.
-         Install the worker script and uncomment to enable.
-         Only enable service workers in production.
-    <script type="text/javascript">
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/worker.js').catch(function(err) {
-          console.log('Error installing service worker: ', err);
-        });
-      }
-    </script>
-    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/icon.png">
 
     <!-- Override -->
     <!-- http://jaydenseric.com/blog/forget-normalize-or-resets-lay-your-own-css-foundation -->
@@ -186,24 +174,14 @@
   </head>
 
   <body>
-    <app>
+    <app-root>
       <!-- Spinner displayed before Angular loads -->
       <div class="spinner-view">
         <div class="spinner"></div>
       </div>
-    </app>
+    </app-root>
 
-    <script src="vendor/es6-shim/es6-shim.js"></script>
-    <script src="vendor/reflect-metadata/Reflect.js"></script>
-    <script src="vendor/systemjs/dist/system.src.js"></script>
-    <script src="vendor/zone.js/dist/zone.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-
-    <script>
-      System.import('system-config.js').then(function () {
-        System.import('main');
-      }).catch(console.error.bind(console));
-    </script>
   </body>
 </html>

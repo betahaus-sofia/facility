@@ -1,15 +1,12 @@
-import { Pipe } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'timeago' })
-export class TimeagoPipe {
+export class TimeagoPipe implements PipeTransform {
   transform(date: Date | string | number, withoutSuffix: boolean): string {
     return moment(date).fromNow(withoutSuffix);
   }
 }
 
 @Pipe({ name: 'timeagoImpure', pure: false })
-export class TimeagoImpurePipe {
-  transform(date: Date | string | number, withoutSuffix: boolean): string {
-    return moment(date).fromNow(withoutSuffix);
-  }
+export class TimeagoImpurePipe extends TimeagoPipe implements PipeTransform {
 }

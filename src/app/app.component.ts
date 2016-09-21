@@ -1,15 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { RoomListComponent } from './room-list';
-
 @Component({
-  directives: [RoomListComponent],
   // CSS from this component is global!
   encapsulation: ViewEncapsulation.None,
-  moduleId: module.id,
-  selector: 'app',
-  styleUrls: ['app.component.css'],
-  templateUrl: 'app.component.html'
+  selector: 'app-root',
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   constructor() {
