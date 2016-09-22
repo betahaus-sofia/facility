@@ -1,10 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  // CSS from this component is global!
-  encapsulation: ViewEncapsulation.None,
   selector: 'app-root',
-  styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

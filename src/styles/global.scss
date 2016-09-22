@@ -1,0 +1,22 @@
+// Full-height content
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: $foreground-dark;
+}
+
+button {
+  border-radius: 3px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+
+h1 { font-size: $h1-font-size; }
+h2 { font-size: $h2-font-size; }
+h3 { font-size: $h3-font-size; }
+h4 { font-size: $h4-font-size; }
+h5 { font-size: $h5-font-size; }
+h6 { font-size: $h6-font-size; }

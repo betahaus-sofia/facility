@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
+import { fade } from '../animations';
 import { Request, Room, Supply } from '../models';
 
 @Component({
+  animations: [fade],
   selector: 'app-supply-list',
-  styleUrls: ['./supply-list.component.css'],
+  styleUrls: ['./supply-list.component.scss'],
   templateUrl: './supply-list.component.html'
 })
 export class SupplyListComponent implements OnChanges {

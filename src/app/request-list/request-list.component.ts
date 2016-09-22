@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
+import { fade } from '../animations';
 import { Request, Room, Supply } from '../models';
 
 @Component({
+  animations: [fade],
   selector: 'app-request-list',
-  styleUrls: ['./request-list.component.css'],
+  styleUrls: ['./request-list.component.scss'],
   templateUrl: './request-list.component.html'
 })
 export class RequestListComponent implements OnChanges {
@@ -30,7 +32,7 @@ export class RequestListComponent implements OnChanges {
         // Prevent displaying future dates in case of server time differences
         request.date = Math.min(request.date as any, Date.now());
 
-        this.requests.push(request);
+        this.requests.unshift(request);
       });
   }
 }

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Room } from '../models';
-// import { SupplyListComponent } from '../supply-list';
 
 @Component({
-  // directives: [FORM_DIRECTIVES, SupplyListComponent],
   selector: 'app-room-list',
-  styleUrls: ['./room-list.component.css'],
+  styleUrls: ['./room-list.component.scss'],
   templateUrl: './room-list.component.html'
 })
 export class RoomListComponent implements OnInit {

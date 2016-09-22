@@ -1,8 +1,8 @@
-<div class="supply-list">
-  <div class="supply-list-item ng-animate" *ngFor="let supply of supplies">
+<div class="supply-list flex-row flex-wrap justify-content-start align-items-stretch">
+  <div class="supply-list-item" *ngFor="let supply of supplies" [@fade]="'in'">
     <div class="supply-list-item-container">
       <button class="supply-list-item-button" (click)="addRequestFor(supply)">
-        <img class="supply-list-item-image" [src]="supply.imageUrl || '/icon.png'" />
+        <img class="supply-list-item-image" [src]="supply.imageUrl || '/assets/icon.png'" />
         <h5>{{supply.name}}</h5>
       </button>
       <app-request-list [room]="room" [supply]="supply"></app-request-list>
