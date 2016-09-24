@@ -1,11 +1,11 @@
 <div class="supply-list flex-row flex-wrap justify-content-start align-items-stretch">
   <div class="supply-list-item" *ngFor="let supply of supplies" [@fade]="'in'">
     <div class="supply-list-item-container">
-      <button class="supply-list-item-button" (click)="addRequestFor(supply)">
+      <button class="supply-list-item-button" (click)="request(supply)">
         <img class="supply-list-item-image" [src]="supply.imageUrl || '/assets/icon.png'" />
         <h5>{{supply.name}}</h5>
       </button>
-      <app-request-list [room]="room" [supply]="supply"></app-request-list>
+      <h4 *ngIf="supply.requested">Requested {{supply.requested | timeagoImpure}}</h4>
     </div>
   </div>
 </div>

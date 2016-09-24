@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { fade } from '../animations';
-import { Request, Room, Supply } from '../models';
+import { Room, Supply } from '../models';
 
 @Component({
   animations: [fade],
@@ -9,28 +9,34 @@ import { Request, Room, Supply } from '../models';
   styleUrls: ['./supply-list.component.scss'],
   templateUrl: './supply-list.component.html'
 })
-export class SupplyListComponent implements OnChanges {
+export class SupplyListComponent implements OnInit {
   @Input() room: Room;
   private supplies: Supply[];
 
-  ngOnChanges() {
+  ngOnInit() {
     this.supplies = [];
 
-    firebase.database().ref(`rooms/${this.room.id}/supplies`).on('child_added', (roomSupplySnapshot) => {
-      firebase.database().ref(`supplies/${roomSupplySnapshot.key}`).once('value', (supplySnapshot) => {
+    firebase.database().ref(`rooms/${this.room.id}/supplies`).on('child_added', (roomSupplyChildSnapshot) => {
+      firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot) => {
         const supply = new Supply(supplySnapshot.val());
         supply.id = supplySnapshot.key;
         this.supplies.push(supply);
+
+        firebase.database().ref(`roomSupplies/${this.room.id}_${supply.id}/requested`).on('value', (requestedSnapshot) => {
+          const requested = requestedSnapshot.val();
+          if (requested) {
+            supply.requested = Math.min(requested, Date.now());
+          }
+        });
       });
     });
   }
 
-  addRequestFor(supply: Supply): void {
-    const request = new Request({
-      room_supply: `${this.room.id}_${supply.id}`,
-      date: firebase.database.ServerValue.TIMESTAMP
+  request(supply: Supply): void {
+    firebase.database().ref(`roomSupplies/${this.room.id}_${supply.id}`).update({
+      room: this.room.id,
+      supply: supply.id,
+      requested: firebase.database.ServerValue.TIMESTAMP
     });
-
-    firebase.database().ref('requests').push(request);
   }
 }

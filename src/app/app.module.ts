@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { RoomListComponent } from './room-list';
 import { SupplyListComponent } from './supply-list';
-import { RequestListComponent } from './request-list';
 import { TimeagoPipe, TimeagoImpurePipe } from './timeago';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { TimeagoPipe, TimeagoImpurePipe } from './timeago';
     AppComponent,
     RoomListComponent,
     SupplyListComponent,
-    RequestListComponent,
     TimeagoPipe,
     TimeagoImpurePipe
   ],

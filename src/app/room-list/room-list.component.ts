@@ -12,9 +12,9 @@ export class RoomListComponent implements OnInit {
   private selectedRoom: Room;
 
   ngOnInit() {
-    firebase.database().ref('rooms').on('child_added', (snapshot) => {
-      const room = new Room(snapshot.val());
-      room.id = snapshot.key;
+    firebase.database().ref('rooms').on('child_added', (roomChildSnapshot) => {
+      const room = new Room(roomChildSnapshot.val());
+      room.id = roomChildSnapshot.key;
       this.rooms.push(room);
 
       if (!this.selectedRoom) {

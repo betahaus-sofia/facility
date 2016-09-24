@@ -1,0 +1,40 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": false,
+
+    // Room supplies
+    "roomSupplies": {
+      "$roomSupply": {
+        "room": {
+          ".write": true,
+          ".validate": "newData.isString()"
+        },
+        "supply": {
+          ".write": true,
+          ".validate": "newData.isString()"
+        },
+        "requested": {
+          ".write": true,
+          ".validate": "newData.val() === now"
+        },
+        "notified": { ".validate": "newData.val() === now" }
+      }
+    },
+
+    // Rooms
+    "rooms": {
+      "$room": {
+        "name": { ".validate": "newData.isString()" }
+      }
+    },
+
+    // Supplies
+    "supplies": {
+      "$supply": {
+        "name": { ".validate": "newData.isString()" },
+        "imageUrl": { ".validate": "newData.isString()" }
+      }
+    }
+  }
+}

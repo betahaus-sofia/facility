@@ -1,56 +1,6 @@
 {
   "database": {
-    "rules": {
-      ".read": true,
-      ".write": false,
-
-      // Messages
-      "messages": {
-        "$room_supply": {
-          "delivered": { ".validate": "newData.val() === now" },
-          "$other": { ".validate": false }
-        }
-      },
-
-      // Requests
-      "requests": {
-        ".write": true,
-        ".indexOn": "room_supply",
-
-        "$request": {
-          "room_supply": { ".validate": "newData.isString()" },
-          "date": { ".validate": "newData.val() === now" },
-          "delivered": { ".validate": "newData.isBoolean()" },
-
-          "$other": { ".validate": false }
-        }
-      },
-
-      // Supplies
-      "supplies": {
-        "$supply": {
-          "name": { ".validate": "newData.isString()" },
-          "imageUrl": { ".validate": "newData.isString()" },
-
-          "$other": { ".validate": false }
-        }
-      },
-
-      // Rooms
-      "rooms": {
-        "$room": {
-          "name": { ".validate": "newData.isString()" },
-          "supplies": {
-            ".write": true,
-            "$supply": { ".validate": "newData.isBoolean()" }
-          },
-
-          "$other": { ".validate": false }
-        }
-      },
-
-      "$other": { ".validate": false }
-    }
+    "rules": "firebase.rules.json"
   },
   "hosting": {
     "public": "dist",
