@@ -5,11 +5,12 @@ body {
 }
 
 body {
-  color: $foreground-dark;
+  background: $primary;
 }
 
 button {
   border-radius: 3px;
+  background: $neutral-light;
   padding: 8px 12px;
   text-transform: uppercase;
 }
