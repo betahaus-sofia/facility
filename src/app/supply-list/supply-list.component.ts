@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { fade } from '../animations';
 import { Room, Supply } from '../models';
@@ -9,11 +9,11 @@ import { Room, Supply } from '../models';
   styleUrls: ['./supply-list.component.scss'],
   templateUrl: './supply-list.component.html'
 })
-export class SupplyListComponent implements OnInit {
+export class SupplyListComponent implements OnChanges {
   @Input() room: Room;
   private supplies: Supply[];
 
-  ngOnInit() {
+  ngOnChanges() {
     this.supplies = [];
 
     firebase.database().ref(`rooms/${this.room.id}/supplies`).on('child_added', (roomSupplyChildSnapshot) => {
