@@ -3,10 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Betahaus Sofia Office Manager</title>
-    <base href="/">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="assets/icon.png">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="320" name="MobileOptimized">
+    <meta content="on" http-equiv="cleartype">
+
+    <base href="/">
 
     <!-- Spinner -->
     <style>
@@ -95,7 +99,7 @@
   </head>
 
   <body>
-    <div id="app">
+    <div id="container">
       <!-- Spinner displayed before the application loads -->
       <div class="spinner-view">
         <div class="spinner"></div>
@@ -116,5 +120,7 @@
 
     <!-- Application scripts -->
     <script src="https://www.gstatic.com/firebasejs/live/3.6/firebase.js"></script>
+    <script src="node_modules/mithril/mithril.js"></script>
+    <script src="build/facility.js"></script>
   </body>
 </html>
