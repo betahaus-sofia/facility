@@ -1,7 +1,5 @@
 /// <reference path="../node_modules/compote/compote.d.ts" />
 
-declare var firebase: any;
-
 import { App, Mithril, h1 } from 'compote';
 
 import timeago from './app/timeago';
