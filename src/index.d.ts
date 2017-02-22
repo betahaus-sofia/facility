@@ -1,2 +1,2 @@
 declare var firebase: any;
-declare var moment: any;
+declare var require: (moduleName: string) => any;
