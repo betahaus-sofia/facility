@@ -1,9 +1,0 @@
-<div class="room-list">
-  <select class="room-list-select" [(ngModel)]="selectedRoom">
-    <option *ngFor="let room of rooms" [ngValue]="room">{{room.name}}</option>
-  </select>
-
-  <div class="room-list-item" *ngIf="selectedRoom">
-    <app-supply-list [room]="selectedRoom"></app-supply-list>
-  </div>
-</div>

@@ -1,12 +1,11 @@
 {
-  "compileOnSave": true,
+  "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "src",
     "experimentalDecorators": true,
-    "module": "ES6",
+    "module": "commonjs",
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "outDir": "build",
     "suppressImplicitAnyIndexErrors": false,
     "target": "ES6"
   },
