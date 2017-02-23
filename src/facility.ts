@@ -11,7 +11,6 @@ class FacilityApp implements App {
     });
 
     this.roomList = new RoomList(this);
-    this.update();
   }
 
   private roomList: RoomList;
@@ -25,4 +24,5 @@ class FacilityApp implements App {
   }
 }
 
-new FacilityApp();
+const app = new FacilityApp();
+app.update();
