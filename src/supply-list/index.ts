@@ -1,8 +1,8 @@
 import { Component, div, button, img, h5, h4 } from 'compote';
 const timeago = require('timeago.js');
 
-import Room from './room';
-import Supply from './supply';
+import Room from '../room';
+import Supply from '../supply';
 
 export default class SupplyList extends Component<SupplyList> {
   room: Room;

@@ -1,7 +1,7 @@
 import { Component, div, select, option } from 'compote';
 
-import Room from './room';
-import SupplyList from './supply-list';
+import Room from '../room';
+import SupplyList from '../supply-list';
 
 export default class RoomList extends Component<RoomList> {
   private rooms: Room[] = this.getRooms();

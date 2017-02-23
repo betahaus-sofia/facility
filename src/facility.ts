@@ -1,5 +1,5 @@
 import { App, Mithril } from 'compote';
-import RoomList from './app/room-list';
+import RoomList from './room-list';
 
 class FacilityApp implements App {
   constructor() {
