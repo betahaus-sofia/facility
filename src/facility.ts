@@ -1,28 +1,40 @@
-import { App, Mithril } from 'compote';
-import RoomList from './room-list';
+import { Mithril, div } from 'compote';
 
-class FacilityApp implements App {
-  constructor() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyBJs9umNrD6Bg3iuyTqVVbOEMv7Xgsk0uY',
-      authDomain: 'betahaus-sofia-office-manager.firebaseapp.com',
-      databaseURL: 'https://betahaus-sofia-office-manager.firebaseio.com',
-      storageBucket: 'betahaus-sofia-office-manager.appspot.com'
-    });
+import Room from './room';
+import Supply from './supply';
 
-    this.roomList = new RoomList(this);
-  }
+import { RoomList, getSupplies } from './room-list';
+import { SupplyList } from './supply-list';
 
-  private roomList: RoomList;
+initializeApp();
 
-  update() {
-    Mithril.render(document.querySelector('#container'), this.render());
-  }
+function initializeApp() {
+  firebase.initializeApp({
+    apiKey: 'AIzaSyBJs9umNrD6Bg3iuyTqVVbOEMv7Xgsk0uY',
+    authDomain: 'betahaus-sofia-office-manager.firebaseapp.com',
+    databaseURL: 'https://betahaus-sofia-office-manager.firebaseio.com',
+    storageBucket: 'betahaus-sofia-office-manager.appspot.com'
+  });
 
-  render() {
-    return this.roomList.render();
-  }
+  const rooms: Room[] = [];
+  const roomsRef = firebase.database().ref('rooms');
+  roomsRef.off('child_added');
+  roomsRef.on('child_added', (roomChildSnapshot: any) => {
+    const room = new Room(roomChildSnapshot.val());
+    room.id = roomChildSnapshot.key;
+    rooms.push(room);
+    if (rooms.length === 1) {
+      getSupplies(rooms, room);
+    }
+    render(rooms, room);
+  });
 }
 
-const app = new FacilityApp();
-app.update();
+export function render(rooms: Room[], selectedRoom: Room, supplies: Supply[] = []) {
+  Mithril.render(document.querySelector('#container'), [
+    RoomList(rooms),
+    div({ className: 'room-list-item' }, (
+      SupplyList(rooms, selectedRoom, supplies)
+    ))
+  ]);
+}
