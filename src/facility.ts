@@ -1,9 +1,9 @@
 import { Mithril, div } from 'compote';
 
-import Room from './room';
-import Supply from './supply';
+import { getRooms } from './room';
+import Store from './store';
 
-import { RoomList, getSupplies } from './room-list';
+import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
 initializeApp();
@@ -16,25 +16,17 @@ function initializeApp() {
     storageBucket: 'betahaus-sofia-office-manager.appspot.com'
   });
 
-  const rooms: Room[] = [];
-  const roomsRef = firebase.database().ref('rooms');
-  roomsRef.off('child_added');
-  roomsRef.on('child_added', (roomChildSnapshot: any) => {
-    const room = new Room(roomChildSnapshot.val());
-    room.id = roomChildSnapshot.key;
-    rooms.push(room);
-    if (rooms.length === 1) {
-      getSupplies(rooms, room);
-    }
-    render(rooms, room);
-  });
+  const { rooms } = Store.getState();
+  Store.subscribe(render);
+  getRooms(rooms);
 }
 
-export function render(rooms: Room[], selectedRoom: Room, supplies: Supply[] = []) {
+function render() {
+  const { rooms, selectedRoom, selectedRoomSupplies } = Store.getState();
   Mithril.render(document.querySelector('#container'), [
     RoomList(rooms),
     div({ className: 'room-list-item' }, (
-      SupplyList(rooms, selectedRoom, supplies)
+      SupplyList(selectedRoom, selectedRoomSupplies)
     ))
   ]);
 }
