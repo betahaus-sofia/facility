@@ -1,11 +1,10 @@
 import { div, button, img, h5, h4 } from 'compote';
 const timeago = require('timeago.js');
 
-import { render } from '../facility';
-import Room from '../room';
-import Supply from '../supply';
+import { Room } from '../room';
+import { Supply, requestSupply } from '../supply';
 
-export function SupplyList(rooms: Room[], room: Room, supplies: Supply[] = []) {
+export function SupplyList(room: Room, supplies: Supply[]) {
   return (
     div({
       className: 'supply-list flex-row flex-wrap justify-content-start align-items-stretch'
@@ -14,10 +13,7 @@ export function SupplyList(rooms: Room[], room: Room, supplies: Supply[] = []) {
         div({ className: 'supply-list-item-container' }, [
           button({
             className: 'supply-list-item-button',
-            onclick: () => {
-              makeRequestFor(room, supply);
-              render(rooms, room, supplies);
-            }
+            onclick: () => requestSupply(room, supply)
           }, [
             img({ className: 'supply-list-item-image', src: supply.imageUrl || '/assets/icon.png' }),
             h5(supply.name)
@@ -28,12 +24,4 @@ export function SupplyList(rooms: Room[], room: Room, supplies: Supply[] = []) {
       )
     )))
   );
-}
-
-function makeRequestFor(room: Room, supply: Supply) {
-  firebase.database().ref(`roomSupplies/${room.id}_${supply.id}`).update({
-    room: room.id,
-    supply: supply.id,
-    requested: firebase.database.ServerValue.TIMESTAMP
-  });
 }
