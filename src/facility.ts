@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { Mithril, div } from 'compote';
 import throttle = require('lodash.throttle');
 
@@ -24,10 +26,12 @@ function initializeApp() {
 
 function render() {
   const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
-  Mithril.render(container, [
-    RoomList(rooms),
-    div({ className: 'room-list-item' }, (
-      SupplyList(selectedRoom, selectedRoomSupplies)
-    ))
-  ]);
+  Mithril.render(container,
+    div({ className: 'room-list' }, [
+      RoomList(rooms),
+      div({ className: 'room-list-item' }, (
+        SupplyList(selectedRoom, selectedRoomSupplies)
+      ))
+    ])
+  );
 }

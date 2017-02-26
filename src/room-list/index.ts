@@ -1,3 +1,5 @@
+import './style.scss';
+
 import { select, option } from 'compote';
 import { Room, selectRoom } from '../room';
 
