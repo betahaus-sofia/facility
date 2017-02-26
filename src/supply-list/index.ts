@@ -6,15 +6,10 @@ import { Supply, requestSupply } from '../supply';
 
 export function SupplyList(room: Room, supplies: Supply[]) {
   return (
-    div({
-      className: 'supply-list flex-row flex-wrap justify-content-start align-items-stretch'
-    }, supplies.map((supply) => (
+    div({ className: 'supply-list flex-row flex-wrap justify-content-start align-items-stretch' }, supplies.map((supply) => (
       div({ className: 'supply-list-item' },
         div({ className: 'supply-list-item-container' }, [
-          button({
-            className: 'supply-list-item-button',
-            onclick: () => requestSupply(room, supply)
-          }, [
+          button({ className: 'supply-list-item-button', onclick: () => requestSupply(room, supply) }, [
             img({ className: 'supply-list-item-image', src: supply.imageUrl || '/assets/icon.png' }),
             h5(supply.name)
           ]),
