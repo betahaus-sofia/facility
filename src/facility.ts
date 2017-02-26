@@ -1,11 +1,13 @@
 import { Mithril, div } from 'compote';
+import throttle = require('lodash.throttle');
 
 import { getRooms } from './room';
-import Store from './store';
+import store from './store';
 
 import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
+const container = document.querySelector('#container');
 initializeApp();
 
 function initializeApp() {
@@ -16,14 +18,13 @@ function initializeApp() {
     storageBucket: 'betahaus-sofia-office-manager.appspot.com'
   });
 
-  const { rooms } = Store.getState();
-  Store.subscribe(render);
-  getRooms(rooms);
+  store.subscribe(throttle(render, 10));
+  getRooms();
 }
 
 function render() {
-  const { rooms, selectedRoom, selectedRoomSupplies } = Store.getState();
-  Mithril.render(document.querySelector('#container'), [
+  const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
+  Mithril.render(container, [
     RoomList(rooms),
     div({ className: 'room-list-item' }, (
       SupplyList(selectedRoom, selectedRoomSupplies)
