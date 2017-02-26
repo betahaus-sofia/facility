@@ -1,7 +1,7 @@
 import Actions from './actions';
 import Model from './model';
 import { Room } from './room';
-import Store from './store';
+import store from './store';
 
 export class Supply extends Model<Supply> {
   id: string;
@@ -10,7 +10,8 @@ export class Supply extends Model<Supply> {
   requested: number;
 }
 
-export function getSupplies(rooms: Room[], room: Room) {
+export function getSupplies(room: Room) {
+  // TODO: Unsubscribe when switching room
   const suppliesRef = firebase.database().ref(`rooms/${room.id}/supplies`);
   suppliesRef.off('child_added');
   suppliesRef.on('child_added', (roomSupplyChildSnapshot: any) => {
@@ -18,7 +19,7 @@ export function getSupplies(rooms: Room[], room: Room) {
       const supply = new Supply({ id: supplySnapshot.key }, supplySnapshot.val());
       addSupply(supply);
 
-      // TODO: Unsubscribe on remove
+      // TODO: Unsubscribe when switching room
       firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: any) => {
         const requested = requestedSnapshot.val();
         if (requested) {
@@ -30,10 +31,7 @@ export function getSupplies(rooms: Room[], room: Room) {
 }
 
 export function addSupply(supply: Supply) {
-  Store.dispatch({
-    type: Actions.ADD_SUPPLY,
-    supply
-  });
+  store.dispatch({ type: Actions.ADD_SUPPLY, supply });
 }
 
 export function requestSupply(room: Room, supply: Supply) {
@@ -47,9 +45,5 @@ export function requestSupply(room: Room, supply: Supply) {
 }
 
 export function supplyRequested(supply: Supply, requested: number) {
-  Store.dispatch({
-    type: Actions.SUPPLY_REQUESTED,
-    supply,
-    requested
-  });
+  store.dispatch({ type: Actions.SUPPLY_REQUESTED, supply, requested });
 }

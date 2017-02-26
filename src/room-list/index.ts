@@ -1,6 +1,6 @@
 import { select, option } from 'compote';
 
-import { Room } from '../room';
+import { Room, selectRoom } from '../room';
 import { getSupplies } from '../supply';
 
 export function RoomList(rooms: Room[]) {
@@ -11,7 +11,8 @@ export function RoomList(rooms: Room[]) {
         const value = (<HTMLSelectElement>$event.target).value;
         rooms.forEach((room) => {
           if (room.id === value) {
-            getSupplies(rooms, room);
+            selectRoom(room);
+            getSupplies(room);
           }
         });
       }
