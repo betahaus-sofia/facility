@@ -12,11 +12,21 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx', '.scss']
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      // TypeScript
+      { test: /\.tsx?$/, loader: 'ts-loader' },
+      // SASS
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
+      }
     ]
   }
 };
