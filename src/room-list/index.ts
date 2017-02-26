@@ -1,7 +1,5 @@
 import { select, option } from 'compote';
-
 import { Room, selectRoom } from '../room';
-import { getSupplies } from '../supply';
 
 export function RoomList(rooms: Room[]) {
   return (
@@ -12,7 +10,6 @@ export function RoomList(rooms: Room[]) {
         rooms.forEach((room) => {
           if (room.id === value) {
             selectRoom(room);
-            getSupplies(room);
           }
         });
       }

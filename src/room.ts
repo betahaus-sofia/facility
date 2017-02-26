@@ -1,6 +1,7 @@
 import Actions from './actions';
 import Model from './model';
 import store from './store';
+import { getSupplies } from './supply';
 
 export class Room extends Model<Room> {
   id: string;
@@ -13,7 +14,10 @@ export function getRooms() {
   roomsRef.on('child_added', (roomChildSnapshot: any) => {
     const room = new Room({ id: roomChildSnapshot.key }, roomChildSnapshot.val());
     addRoom(room);
-    selectDefaultRoom(room);
+    const { selectedRoom } = store.getState();
+    if (!selectedRoom) {
+      selectRoom(room);
+    }
   });
 }
 
@@ -21,11 +25,15 @@ export function addRoom(room: Room) {
   store.dispatch({ type: Actions.ADD_ROOM, room });
 }
 
-export function selectDefaultRoom(room: Room) {
-  const { rooms } = store.getState();
-  store.dispatch({ type: Actions.SELECT_DEFAULT_ROOM, rooms, room });
-}
-
 export function selectRoom(room: Room) {
+  const { selectedRoom, selectedRoomSupplies } = store.getState();
+  if (selectedRoom) {
+    firebase.database().ref(`rooms/${selectedRoom.id}/supplies`).off('child_added');
+    selectedRoomSupplies.forEach((supply) => {
+      firebase.database().ref(`roomSupplies/${selectedRoom.id}_${supply.id}/requested`).off('value');
+    });
+  }
+
   store.dispatch({ type: Actions.SELECT_ROOM, room });
+  getSupplies(room);
 }

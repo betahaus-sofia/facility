@@ -11,15 +11,12 @@ export class Supply extends Model<Supply> {
 }
 
 export function getSupplies(room: Room) {
-  // TODO: Unsubscribe when switching room
   const suppliesRef = firebase.database().ref(`rooms/${room.id}/supplies`);
-  suppliesRef.off('child_added');
   suppliesRef.on('child_added', (roomSupplyChildSnapshot: any) => {
     firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot: any) => {
       const supply = new Supply({ id: supplySnapshot.key }, supplySnapshot.val());
       addSupply(supply);
 
-      // TODO: Unsubscribe when switching room
       firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: any) => {
         const requested = requestedSnapshot.val();
         if (requested) {
