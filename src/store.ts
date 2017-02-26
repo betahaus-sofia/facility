@@ -33,8 +33,6 @@ export function rooms(state: Room[] = [], action: Action = {}): Room[] {
 
 export function selectedRoom(state: Room = null, action: Action = {}): Room {
   switch (action.type) {
-  case Actions.SELECT_DEFAULT_ROOM:
-    return action['rooms'][0] || action['room'];
   case Actions.SELECT_ROOM:
     return action['room'];
   default:
@@ -44,12 +42,14 @@ export function selectedRoom(state: Room = null, action: Action = {}): Room {
 
 export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}): Supply[] {
   switch (action.type) {
+  case Actions.SELECT_ROOM:
+    return [];
   case Actions.ADD_SUPPLY:
     return [...state, action['supply']];
   case Actions.SUPPLY_REQUESTED:
     const requestedSupply = action['supply'];
     return state.map((supply) => (
-      supply !== requestedSupply ? supply : { ...requestedSupply, requested: action['requested'] }
+      supply !== requestedSupply ? supply : new Supply(supply, { requested: action['requested'] })
     ));
   default:
     return state;
