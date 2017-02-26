@@ -10,8 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@types/lodash.throttle": "4.1.1",
-    "compote": "0.7.2",
+    "compote": "0.8.0",
     "lodash.throttle": "4.1.1",
     "mithril": "1.0.1",
     "redux": "3.6.0",
