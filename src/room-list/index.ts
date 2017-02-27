@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { select, option } from 'compote';
+import { select, option } from 'compote/html';
 import { Room, selectRoom } from '../room';
 
 export function RoomList(rooms: Room[]) {
