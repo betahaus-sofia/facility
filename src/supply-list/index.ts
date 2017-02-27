@@ -2,7 +2,7 @@ import './style.scss';
 
 declare var require: (moduleName: string) => any;
 
-import { div, button, img, h5, h4 } from 'compote';
+import { div, button, img, h5, h4 } from 'compote/html';
 const timeago = require('timeago.js');
 
 import { Room } from '../room';
