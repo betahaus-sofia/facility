@@ -1,7 +1,7 @@
 import './style.scss';
 
 import { Compote, div } from 'compote/html';
-import throttle = require('lodash.throttle');
+import throttle = require('lodash/throttle');
 
 import { getRooms } from './room';
 import store from './store';
