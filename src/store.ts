@@ -14,7 +14,7 @@ export type FacilityState = {
 const facility = combineReducers<FacilityState>({ rooms, selectedRoom, selectedRoomSupplies });
 export default createStore(
   facility,
-  applyMiddleware(logger)
+  process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );
 
 export type Action = {
