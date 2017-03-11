@@ -18,6 +18,7 @@ module.exports = {
     rules: [
       // TypeScript
       { test: /\.tsx?$/, loader: 'ts-loader' },
+
       // SASS
       {
         test: /\.scss$/,
