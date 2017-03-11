@@ -1,5 +1,6 @@
 {
-  "name": "Betahaus Sofia Office Manager",
+  "short_name": "Facility",
+  "name": "Betahaus Sofia Facility",
   "icons": [
     {
       "src": "icon.png",
