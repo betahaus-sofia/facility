@@ -27,6 +27,12 @@ module.exports = {
           { loader: 'css-loader' },
           { loader: 'sass-loader' }
         ]
+      },
+
+      // Assets
+      {
+        test: /\.(jpe?g|ico|gif|png|svg|wav|mp3)$/,
+        loader: 'file-loader?name=[name].[ext]'
       }
     ]
   }

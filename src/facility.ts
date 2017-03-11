@@ -1,3 +1,5 @@
+import './assets/icon.png';
+import './manifest.json';
 import './style.scss';
 
 import { Compote, div } from 'compote/html';
