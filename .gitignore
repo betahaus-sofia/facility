@@ -1,4 +1,5 @@
-/build
-/node_modules
-/src/google*.html
+build
+coverage
+node_modules
+src/google*.html
 *.log
