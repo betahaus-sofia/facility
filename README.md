@@ -1,4 +1,4 @@
-# Betahaus Sofia Office Manager
+# Betahaus Sofia Facility
 
 # License
 Copyright (c) 2017 Vladimir Sabev
