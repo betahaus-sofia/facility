@@ -3,7 +3,8 @@ $foreground-dark: #161617;
 
 $neutral-light: #ffffff;
 
-$primary: #03a9f4;
+$primary: #2980b9;
+$primary-dark: darken($primary, 5%);
 
 // Device sizes
 $xxl-min: 2000px;
@@ -36,3 +37,7 @@ $h6-font-size: 14px;
 // Spacing
 $spacing: 10px;
 $flex-item-spacing: 2.5px;
+
+// Animation
+$animation-duration: 0.4s;
+$animation-easing: cubic-bezier(0.25, 1, 0.25, 1); // ease

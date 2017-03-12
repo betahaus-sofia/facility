@@ -2,7 +2,7 @@ import './assets/icon.png';
 import './manifest.json';
 import './style.scss';
 
-import { Compote, div } from 'compote/html';
+import { Compote } from 'compote/html';
 import throttle = require('lodash/throttle');
 
 import { getRooms } from './room';
@@ -28,12 +28,8 @@ function initializeApp() {
 
 function render() {
   const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
-  Compote.render(container,
-    div({ className: 'room-list' }, [
-      RoomList(rooms),
-      div({ className: 'room-list-item' }, (
-        SupplyList(selectedRoom, selectedRoomSupplies)
-      ))
-    ])
-  );
+  Compote.render(container, [
+    RoomList(rooms),
+    SupplyList(selectedRoom, selectedRoomSupplies)
+  ]);
 }

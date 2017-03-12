@@ -4,3 +4,10 @@
 @import 'style/global';
 @import 'style/classes';
 @import 'style/animations';
+
+// Add padding to root container element
+// scss-lint:disable IdSelector
+#container {
+  padding: 20px;
+}
+// scss-lint:enable IdSelector

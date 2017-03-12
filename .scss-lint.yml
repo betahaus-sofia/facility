@@ -27,9 +27,8 @@ linters:
     enabled: true
   ElsePlacement:
     enabled: true
-    style: new_line
   EmptyLineBetweenBlocks:
-    enabled: true
+    enabled: false
   EmptyRule:
     enabled: true
   ExtendDirective:
@@ -85,7 +84,7 @@ linters:
     enabled: true
   Shorthand:
     enabled: true
-    allowed_shorthands: [1, 2]
+    allowed_shorthands: [1, 2, 4]
   SingleLinePerProperty:
     enabled: true
   SingleLinePerSelector:
