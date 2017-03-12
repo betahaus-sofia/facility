@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: process.cwd(),
@@ -35,5 +36,8 @@ module.exports = {
         loader: 'file-loader?name=[name].[ext]'
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ template: './src/index.ejs' })
+  ]
 };

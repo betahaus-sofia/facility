@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="icon.png">
     <link rel="manifest" href="manifest.json">
 
-    <!-- Spinner -->
+    <% // Spinner %>
     <style>
       .spinner-view {
         position: absolute;
@@ -24,7 +24,7 @@
         margin-left: -3.6em;
       }
 
-      /* http://projects.lukehaas.me/css-loaders/ */
+      <% // http://projects.lukehaas.me/css-loaders/ %>
       .spinner,
       .spinner:before,
       .spinner:after {
@@ -100,7 +100,7 @@
       }
     </style>
 
-    <!-- FontAwesome -->
+    <% // FontAwesome %>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -111,14 +111,15 @@
 
   <body>
     <div id="container">
-      <!-- Spinner displayed before the application loads -->
+      <% // Spinner displayed before the application loads %>
       <div class="spinner-view">
         <div class="spinner"></div>
       </div>
     </div>
 
-    <!-- Embedded form -->
-    <!-- <iframe
+    <% // Embedded form %>
+    <% /* %>
+    <iframe
       src="https://docs.google.com/forms/d/e/1FAIpQLSeGiloUO-HcDpf4V_yAnDNdDkfRPVeJGGF2Y2f6vt-lpeS-Yg/viewform?embedded=true"
       width="100%"
       height="1600px"
@@ -127,9 +128,10 @@
       marginwidth="0"
     >
       Loading...
-    </iframe> -->
+    </iframe>
+    <% */ %>
 
-    <!-- Application scripts -->
+    <% // Application scripts %>
     <script src="https://www.gstatic.com/firebasejs/live/3.6/firebase.js"></script>
     <script src="facility.js"></script>
   </body>
