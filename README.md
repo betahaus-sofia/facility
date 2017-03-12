@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/betahaus-sofia/facility.svg?branch=master)](https://travis-ci.org/betahaus-sofia/facility)
 [![codecov](https://codecov.io/gh/betahaus-sofia/facility/branch/master/graph/badge.svg)](https://codecov.io/gh/betahaus-sofia/facility)
+[![Greenkeeper badge](https://badges.greenkeeper.io/betahaus-sofia/facility.svg)](https://greenkeeper.io/)
 
 # Betahaus Sofia Facility
 
