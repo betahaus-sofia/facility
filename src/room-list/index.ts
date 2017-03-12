@@ -14,7 +14,14 @@ export const isSelected = (room: Room): boolean => {
 };
 
 export const RoomListItem = (room: Room) => (
-  div({ className: `room-list-item ${isSelected(room) ? 'selected' : ''}`, onclick: () => selectRoom(room) },
+  div({
+    className: `room-list-item ${isSelected(room) ? 'selected' : ''}`,
+    onclick() {
+      if (!isSelected(room)) {
+        selectRoom(room);
+      }
+    }
+  },
     room.name
   )
 );
