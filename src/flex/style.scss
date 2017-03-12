@@ -1,4 +1,56 @@
-// Flexbox
+@import '../style/variables';
+
+// Mixins
+// Vendor prefixes are necessary for mixins
+// scss-lint:disable VendorPrefix
+@mixin flex($arguments...) {
+  display: -webkit-box;      // OLD - iOS 6-, Safari 3.1-6
+  display: -moz-box;         // OLD - Firefox 19- (buggy but mostly works)
+  display: -ms-flexbox;      // TWEENER - IE 10
+  display: -webkit-flex;     // NEW - Chrome
+  display: flex;             // NEW, Spec - Opera 12.1, Firefox 20+
+}
+
+@mixin flex-direction($arguments...) {
+  -webkit-flex-direction: $arguments;
+  -ms-flex-direction: $arguments;
+  flex-direction: $arguments;
+
+  // Fix Firefox overflow issues:
+  // http://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox
+  min-width: 0;
+  min-height: 0;
+}
+
+@mixin flex-wrap($arguments...) {
+  -moz-box-wrap: $arguments;
+  -webkit-box-wrap: $arguments;
+  -webkit-flex-wrap: $arguments;
+  -ms-flexbox-wrap: $arguments;
+  -ms-flex-wrap: $arguments;
+  flex-wrap: $arguments;
+}
+
+@mixin justify-content($arguments...) {
+  -webkit-justify-content: $arguments;
+  -ms-justify-content: $arguments;
+  justify-content: $arguments;
+}
+
+@mixin align-items($arguments...) {
+  -webkit-align-items: $arguments;
+  -ms-align-items: $arguments;
+  align-items: $arguments;
+}
+
+@mixin align-self($arguments...) {
+  -webkit-align-self: $arguments;
+  -ms-align-self: $arguments;
+  align-self: $arguments;
+}
+// scss-lint:enable VendorPrefix
+
+// Classes
 // https://css-tricks.com/using-flexbox/
 // display
 .flex {
@@ -53,6 +105,13 @@
 .align-self-baseline { @include align-self(baseline); }
 
 // Responsive classes
+.flex-row-xs,
+.flex-row-sm,
+.flex-row-md,
+.flex-row-lg {
+  @include flex();
+}
+
 .flex-row-xs {
   @include flex-direction(row);
   margin: 0 (-$flex-item-spacing);

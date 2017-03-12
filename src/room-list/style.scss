@@ -2,16 +2,28 @@
 @import '../style/mixins';
 
 .room-list {
-  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.room-list-group,
+.room-list-item {
+  margin: 0 10px 10px 10px;
+  border-bottom: 3px solid $neutral-light;
+  padding-bottom: 10px;
+}
+
+.room-list-group {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 .room-list-item {
   @include transition(border-color $animation-duration $animation-easing);
 
-  margin: 5px 10px;
-  border-bottom: 3px solid transparent;
+  border-color: transparent;
   cursor: pointer;
-  padding-bottom: 5px;
+  text-transform: capitalize;
+  font-size: 1.1em;
 
   &:hover,
   &.selected {

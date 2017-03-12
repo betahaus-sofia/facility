@@ -1,5 +1,5 @@
 import 'jest';
-import Model from './model';
+import Model from './index';
 
 test('should assign first argument to instance', () => {
   expect(new Model({ a: 1 })).toEqual({ a: 1 });

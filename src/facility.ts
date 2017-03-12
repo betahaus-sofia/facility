@@ -29,7 +29,7 @@ function initializeApp() {
 function render() {
   const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
   Compote.render(container, [
-    RoomList(rooms),
+    RoomList(rooms, selectedRoom),
     SupplyList(selectedRoom, selectedRoomSupplies)
   ]);
 }

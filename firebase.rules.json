@@ -25,6 +25,7 @@
     // Rooms
     "rooms": {
       "$room": {
+        "group": { ".validate": "newData.isString()" },
         "name": { ".validate": "newData.isString()" }
       }
     },
