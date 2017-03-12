@@ -19,6 +19,7 @@
 
 .room-list-item {
   @include transition(border-color $animation-duration $animation-easing);
+  @include user-select(none);
 
   border-color: transparent;
   cursor: pointer;
