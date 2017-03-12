@@ -1,4 +1,5 @@
 @import '../style/variables';
+@import '../style/mixins';
 
 .supply-list {
   margin: 10px -10px;
@@ -6,6 +7,7 @@
 
 .supply-list-item {
   width: 25%;
+  text-align: center;
 
   @media (min-width: $md-min) and (max-width: $md-max) {
     width: 33%;
@@ -20,18 +22,36 @@
   }
 }
 
-.supply-list-item-container {
-  margin: 10px;
-}
-
 .supply-list-item-button {
   margin-bottom: 5px;
-  width: 100%;
 }
 
-.supply-list-item-image {
-  width: 128px;
-  max-width: 100%;
-  height: 128px;
-  object-fit: cover;
+.supply-list-item-container {
+  $size: 128px;
+  $shadow-size: 10px;
+
+  @include transition(all $animation-duration $animation-easing);
+
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  background: $neutral-light;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: $size;
+
+  cursor: pointer;
+  padding: $size / 2 + $shadow-size; // fit square images without rounding them
+
+  width: $size;
+  height: $size;
+
+  &:hover {
+    @include box-shadow(inset 0 0 0 $shadow-size $primary-dark);
+  }
+}
+
+.supply-list-item-name {
+  margin-bottom: 10px;
 }

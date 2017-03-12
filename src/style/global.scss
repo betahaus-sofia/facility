@@ -6,13 +6,7 @@ body {
 
 body {
   background: $primary;
-}
-
-button {
-  border-radius: 3px;
-  background: $neutral-light;
-  padding: 8px 12px;
-  text-transform: uppercase;
+  color: $neutral-light;
 }
 
 h1 { font-size: $h1-font-size; }

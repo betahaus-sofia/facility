@@ -1,16 +1,20 @@
 @import '../style/variables';
+@import '../style/mixins';
 
 .room-list {
-  padding: 20px;
-}
-
-.room-list-select {
-  border-radius: 3px;
-  width: 100%;
-  height: 39px;
-  font-size: 1.8em;
+  font-size: 1.1em;
 }
 
 .room-list-item {
-  width: 100%;
+  @include transition(border-color $animation-duration $animation-easing);
+
+  margin: 5px 10px;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  padding-bottom: 5px;
+
+  &:hover,
+  &.selected {
+    border-color: $neutral-light;
+  }
 }

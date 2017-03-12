@@ -25,7 +25,7 @@ export type Action = {
 export function rooms(state: Room[] = [], action: Action = {}): Room[] {
   switch (action.type) {
   case Actions.ADD_ROOM:
-    return [...state, action['room']];
+    return [...state, action.room];
   default:
     return state;
   }
@@ -34,7 +34,7 @@ export function rooms(state: Room[] = [], action: Action = {}): Room[] {
 export function selectedRoom(state: Room = null, action: Action = {}): Room {
   switch (action.type) {
   case Actions.SELECT_ROOM:
-    return action['room'];
+    return action.room;
   default:
     return state;
   }
@@ -45,11 +45,11 @@ export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}):
   case Actions.SELECT_ROOM:
     return [];
   case Actions.ADD_SUPPLY:
-    return [...state, action['supply']];
+    return [...state, action.supply];
   case Actions.SUPPLY_REQUESTED:
-    const requestedSupply = action['supply'];
+    const requestedSupply = action.supply;
     return state.map((supply) => (
-      supply !== requestedSupply ? supply : new Supply(supply, { requested: action['requested'] })
+      supply !== requestedSupply ? supply : new Supply(supply, { requested: action.requested })
     ));
   default:
     return state;

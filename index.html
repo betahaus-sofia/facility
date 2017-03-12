@@ -31,29 +31,11 @@
         border-radius: 50%;
       }
 
-      .spinner:before,
-      .spinner:after {
-        position: absolute;
-        content: '';
-      }
-
-      .spinner:before {
-        width: 5.2em;
-        height: 10.2em;
-        background: #ffffff;
-        border-radius: 10.2em 0 0 10.2em;
-        top: -0.1em;
-        left: -0.1em;
-        -webkit-transform-origin: 5.2em 5.1em;
-        transform-origin: 5.2em 5.1em;
-        -webkit-animation: spin2 2s infinite ease 1.5s;
-        animation: spin2 2s infinite ease 1.5s;
-      }
-
       .spinner {
-        color: #161617;
+        color: #ffffff;
         font-size: 11px;
         text-indent: -99999em;
+        margin: 55px auto;
         position: relative;
         width: 10em;
         height: 10em;
@@ -63,10 +45,29 @@
         transform: translateZ(0);
       }
 
+      .spinner:before,
+      .spinner:after {
+        position: absolute;
+        content: '';
+      }
+
+      .spinner:before {
+        width: 5.2em;
+        height: 10.2em;
+        background: #2980b9;
+        border-radius: 10.2em 0 0 10.2em;
+        top: -0.1em;
+        left: -0.1em;
+        -webkit-transform-origin: 5.2em 5.1em;
+        transform-origin: 5.2em 5.1em;
+        -webkit-animation: spin2 2s infinite ease 1.5s;
+        animation: spin2 2s infinite ease 1.5s;
+      }
+
       .spinner:after {
         width: 5.2em;
         height: 10.2em;
-        background: #ffffff;
+        background: #2980b9;
         border-radius: 0 10.2em 10.2em 0;
         top: -0.1em;
         left: 5.1em;
@@ -98,6 +99,14 @@
         }
       }
     </style>
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    >
   </head>
 
   <body>
