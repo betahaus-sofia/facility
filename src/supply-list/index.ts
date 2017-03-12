@@ -21,9 +21,7 @@ export const SupplyListItem = (room: Room) => (supply: Supply) => (
     div({ className: 'supply-list-item-button' }, [
       div({
         className: 'supply-list-item-container',
-        style: {
-          'background-image': `url(${supply.imageUrl || '/assets/icon.png'})`
-        },
+        style: { 'background-image': `url(${supply.imageUrl || '/assets/icon.png'})` },
         onclick: () => requestSupply(room, supply)
       }),
       h4({ className: 'supply-list-item-name' }, supply.name),

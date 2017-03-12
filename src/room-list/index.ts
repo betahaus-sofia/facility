@@ -6,23 +6,33 @@ import keys = require('lodash/keys');
 
 import { flex } from '../flex';
 import { Room, selectRoom } from '../room';
+import store from '../store';
 
-export const RoomListItem = (selectedRoom: Room) => (room: Room) => (
-  div({
-    className: `room-list-item ${room.id === selectedRoom.id ? 'selected' : ''}`,
-    onclick: () => selectRoom(room)
-  }, room.name)
+export const isSelected = (room: Room): boolean => {
+  const { selectedRoom } = store.getState();
+  return selectedRoom != null && selectedRoom.id === room.id;
+};
+
+export const RoomListItem = (room: Room) => (
+  div({ className: `room-list-item ${isSelected(room) ? 'selected' : ''}`, onclick: () => selectRoom(room) },
+    room.name
+  )
 );
 
-export const RoomList = (rooms: Room[], selectedRoom: Room) => {
-  const groupedRooms = groupBy(rooms, 'group');
-  const groups = keys(groupedRooms);
-  return div({ className: 'room-list flex-row-md justify-content-start align-items-stretch' }, groups.map((group) => (
-    div({ className: 'flex-item', style: flex(1) }, [
-      div({ className: 'room-list-group' }, group),
-      div({ className: 'flex-row justify-content-start align-items-stretch' },
-        groupedRooms[group].map(RoomListItem(selectedRoom))
-      )
-    ])
-  )));
+export const RoomsByGroup = (groupedRooms: Record<string, Room[]>) => (group: string) => (
+  div({ className: 'flex-item', style: flex(1) }, [
+    div({ className: 'room-list-group' }, group),
+    div({ className: 'flex-row justify-content-start align-items-stretch' },
+      groupedRooms[group].map(RoomListItem)
+    )
+  ])
+);
+
+export const RoomList = (rooms: Room[]) => {
+  const roomsByGroup = groupBy(rooms, 'group');
+  const groups = keys(roomsByGroup);
+
+  return div({ className: 'room-list flex-row-md justify-content-start align-items-stretch' },
+    groups.map(RoomsByGroup(roomsByGroup))
+  );
 };
