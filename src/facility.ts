@@ -19,7 +19,8 @@ function initializeApp() {
     apiKey: 'AIzaSyBJs9umNrD6Bg3iuyTqVVbOEMv7Xgsk0uY',
     authDomain: 'betahaus-sofia-office-manager.firebaseapp.com',
     databaseURL: 'https://betahaus-sofia-office-manager.firebaseio.com',
-    storageBucket: 'betahaus-sofia-office-manager.appspot.com'
+    storageBucket: 'betahaus-sofia-office-manager.appspot.com',
+    messagingSenderId: '54350089959'
   });
 
   store.subscribe(throttle(render, 10));
@@ -29,7 +30,7 @@ function initializeApp() {
 function render() {
   const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
   Compote.render(container, [
-    RoomList(rooms, selectedRoom),
+    RoomList(rooms),
     SupplyList(selectedRoom, selectedRoomSupplies)
   ]);
 }
