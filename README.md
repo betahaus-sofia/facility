@@ -3,6 +3,8 @@
 
 # Betahaus Sofia Facility
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/betahaus-sofia/facility.svg)](https://greenkeeper.io/)
+
 # License
 Copyright (c) 2017 Vladimir Sabev
 
