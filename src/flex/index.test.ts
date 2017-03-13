@@ -1,7 +1,7 @@
 import 'jest';
 import { flex } from './index';
 
-test(`should set '' for undefined`, () => {
+it(`should set '' for undefined`, () => {
   expect(flex(undefined)).toEqual({
     '-webkit-box-flex': '',
     '-moz-box-flex': '',
@@ -11,7 +11,7 @@ test(`should set '' for undefined`, () => {
   });
 });
 
-test(`should set '' for null`, () => {
+it(`should set '' for null`, () => {
   expect(flex(null)).toEqual({
     '-webkit-box-flex': '',
     '-moz-box-flex': '',
@@ -21,7 +21,7 @@ test(`should set '' for null`, () => {
   });
 });
 
-test(`should set 'a' for 'a'`, () => {
+it(`should set 'a' for 'a'`, () => {
   expect(flex('a')).toEqual({
     '-webkit-box-flex': 'a',
     '-moz-box-flex': 'a',
@@ -31,7 +31,7 @@ test(`should set 'a' for 'a'`, () => {
   });
 });
 
-test(`should set '0' for 0`, () => {
+it(`should set '0' for 0`, () => {
   expect(flex(0)).toEqual({
     '-webkit-box-flex': '0',
     '-moz-box-flex': '0',
@@ -41,7 +41,7 @@ test(`should set '0' for 0`, () => {
   });
 });
 
-test(`should set '1' for 1`, () => {
+it(`should set '1' for 1`, () => {
   expect(flex(1)).toEqual({
     '-webkit-box-flex': '1',
     '-moz-box-flex': '1',
