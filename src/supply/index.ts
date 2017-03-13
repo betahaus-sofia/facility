@@ -4,10 +4,10 @@ import { Room } from '../room';
 import store from '../store';
 
 export class Supply extends Model<Supply> {
-  id: string;
-  name: string;
-  imageUrl: string;
-  requested: number;
+  id?: string;
+  name?: string;
+  imageUrl?: string;
+  requested?: number;
 }
 
 export function getSupplies(room: Room) {

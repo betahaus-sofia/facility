@@ -2,32 +2,47 @@
 @import '../style/mixins';
 
 .room-list {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  background: $primary-dark;
+  padding: 10px;
 }
 
 .room-list-group,
-.room-list-item {
-  margin: 0 10px 10px 10px;
-  border-bottom: 3px solid $neutral-light;
-  padding-bottom: 10px;
+.room-list-items {
+  margin: 0 10px;
 }
 
 .room-list-group {
+  border-bottom: 3px solid $neutral-light;
+  padding-bottom: 10px;
   text-align: center;
   font-size: 1.5em;
 }
 
 .room-list-item {
-  @include transition(border-color $animation-duration $animation-easing);
   @include user-select(none);
+  @include transition(
+    border-color $animation-duration $animation-easing,
+    background $animation-duration $animation-easing,
+    color $animation-duration $animation-easing
+  );
 
-  border-color: transparent;
+  border: 3px solid transparent;
+  border-top: 0;
+  border-radius: 0 0 7px 7px;
+  background: transparent;
   cursor: pointer;
+  padding: 10px;
   text-transform: capitalize;
   font-size: 1.1em;
 
   &:hover,
   &.selected {
     border-color: $neutral-light;
+  }
+
+  &.selected {
+    background: $neutral-light;
+    color: $primary-dark;
   }
 }

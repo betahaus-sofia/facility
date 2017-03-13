@@ -4,9 +4,9 @@ import store from '../store';
 import { getSupplies } from '../supply';
 
 export class Room extends Model<Room> {
-  id: string;
-  group: string;
-  name: string;
+  id?: string;
+  group?: string;
+  name?: string;
 }
 
 export function getRooms() {
