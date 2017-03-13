@@ -18,7 +18,7 @@
     "timeago.js": "2.0.5"
   },
   "devDependencies": {
-    "@types/jest": "19.2.1",
+    "@types/jest": "19.2.2",
     "@types/lodash": "4.14.55",
     "css-loader": "0.27.1",
     "file-loader": "0.10.1",
