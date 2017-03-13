@@ -7,11 +7,12 @@
     "build": "webpack -p",
     "deploy": "npm test && npm run build && firebase deploy",
     "start": "webpack-dev-server --port 3000",
-    "test": "jest"
+    "test": "jest",
+    "jest": "jest --watch"
   },
   "dependencies": {
     "bootstrap-sass": "3.3.7",
-    "compote": "0.9.0",
+    "compote": "0.9.1",
     "lodash": "4.17.4",
     "mithril": "1.0.1",
     "redux": "3.6.0",
