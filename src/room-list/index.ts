@@ -29,8 +29,10 @@ export const RoomListItem = (room: Room) => (
 export const RoomsByGroup = (groupedRooms: Record<string, Room[]>) => (group: string) => (
   div({ className: 'flex-item', style: flex(1) }, [
     div({ className: 'room-list-group' }, group),
-    div({ className: 'flex-row justify-content-start align-items-stretch' },
-      groupedRooms[group].map(RoomListItem)
+    div({ className: 'room-list-items' },
+      div({ className: 'flex-row justify-content-start align-items-stretch' },
+        groupedRooms[group].map(RoomListItem)
+      )
     )
   ])
 );
@@ -39,7 +41,9 @@ export const RoomList = (rooms: Room[]) => {
   const roomsByGroup = groupBy(rooms, 'group');
   const groups = keys(roomsByGroup);
 
-  return div({ className: 'room-list flex-row-md justify-content-start align-items-stretch' },
-    groups.map(RoomsByGroup(roomsByGroup))
+  return div({ className: 'room-list' },
+    div({ className: 'flex-row-md justify-content-start align-items-stretch' },
+      groups.map(RoomsByGroup(roomsByGroup))
+    )
   );
 };
