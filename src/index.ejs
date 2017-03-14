@@ -52,6 +52,7 @@
 
       @-webkit-keyframes assemble-from-top {
         0% {
+          opacity: 0;
           -webkit-clip-path: polygon(
              50%   0%,
             100% -10%,
@@ -80,16 +81,17 @@
           );
         }
         100% {
+          opacity: 1;
           -webkit-clip-path: polygon(
             -30% 100%,
-            -30%  58%,
-             30%  58%,
+            -30%  60%,
+             30%  60%,
              30% 100%
           );
           clip-path: polygon(
             -30% 100%,
-            -30%  58%,
-             30%  58%,
+            -30%  60%,
+             30%  60%,
              30% 100%
           );
         }
@@ -97,6 +99,7 @@
 
       @keyframes assemble-from-top {
         0% {
+          opacity: 0;
           -webkit-clip-path: polygon(
              50%   0%,
             100% -10%,
@@ -125,16 +128,17 @@
           );
         }
         100% {
+          opacity: 1;
           -webkit-clip-path: polygon(
             -30% 100%,
-            -30%  58%,
-             30%  58%,
+            -30%  60%,
+             30%  60%,
              30% 100%
           );
           clip-path: polygon(
             -30% 100%,
-            -30%  58%,
-             30%  58%,
+            -30%  60%,
+             30%  60%,
              30% 100%
           );
         }
@@ -149,6 +153,7 @@
 
       @-webkit-keyframes assemble-from-left {
         0% {
+          opacity: 0;
           -webkit-clip-path: polygon(
               0%  60%,
              40%  60%,
@@ -193,6 +198,7 @@
           );
         }
         100% {
+          opacity: 1;
           -webkit-clip-path: polygon(
              82%  60%,
              90%  60%,
@@ -218,6 +224,7 @@
 
       @keyframes assemble-from-left {
         0% {
+          opacity: 0;
           -webkit-clip-path: polygon(
               0%  60%,
              40%  60%,
@@ -262,6 +269,7 @@
           );
         }
         100% {
+          opacity: 1;
           -webkit-clip-path: polygon(
              82%  60%,
              90%  60%,
@@ -304,16 +312,16 @@
              class="from-top"
              d="
                M300,10
-               c0,0 -150,0 -150,90
-               v55
+               c0,0 -160,0 -160,100
+               v60
              "
            />
 
            <path
              class="from-left"
              d="
-               M0,150
-               h160
+               M0,165
+               h150
                c0,0 20,0 20,-15
                c0,0 0,-15 -20,-15
                h-15
