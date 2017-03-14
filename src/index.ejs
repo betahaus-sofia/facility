@@ -24,82 +24,264 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -3.6em;
-        margin-left: -3.6em;
-      }
-
-      <% // http://projects.lukehaas.me/css-loaders/ %>
-      .spinner,
-      .spinner:before,
-      .spinner:after {
-        border-radius: 50%;
+        margin-top: -150px;
+        margin-left: -150px;
       }
 
       .spinner {
-        color: #ffffff;
-        font-size: 11px;
-        text-indent: -99999em;
-        margin: 55px auto;
-        position: relative;
-        width: 10em;
-        height: 10em;
-        box-shadow: inset 0 0 0 1em;
-        -webkit-transform: translateZ(0);
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
+        width: 300px;
+        height: 300px;
       }
 
-      .spinner:before,
-      .spinner:after {
-        position: absolute;
-        content: '';
+      .spinner .from-top,
+      .spinner .from-left {
+        stroke: white;
+        stroke-width: 10;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        fill: none;
       }
 
-      .spinner:before {
-        width: 5.2em;
-        height: 10.2em;
-        background: #2980b9;
-        border-radius: 10.2em 0 0 10.2em;
-        top: -0.1em;
-        left: -0.1em;
-        -webkit-transform-origin: 5.2em 5.1em;
-        transform-origin: 5.2em 5.1em;
-        -webkit-animation: spin2 2s infinite ease 1.5s;
-        animation: spin2 2s infinite ease 1.5s;
+      .spinner .from-top {
+        -webkit-animation: assemble-from-top 0.4s linear;
+        -webkit-animation-fill-mode: forwards;
+
+        animation: assemble-from-top 0.4s linear;
+        animation-fill-mode: forwards;
       }
 
-      .spinner:after {
-        width: 5.2em;
-        height: 10.2em;
-        background: #2980b9;
-        border-radius: 0 10.2em 10.2em 0;
-        top: -0.1em;
-        left: 5.1em;
-        -webkit-transform-origin: 0px 5.1em;
-        transform-origin: 0px 5.1em;
-        -webkit-animation: spin2 2s infinite ease;
-        animation: spin2 2s infinite ease;
-      }
-
-      @-webkit-keyframes spin2 {
+      @-webkit-keyframes assemble-from-top {
         0% {
-          -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+          -webkit-clip-path: polygon(
+             50%   0%,
+            100% -10%,
+            100%  50%,
+             50%  50%
+          );
+          clip-path: polygon(
+             50%   0%,
+            100% -10%,
+            100%  50%,
+             50%  50%
+          );
+        }
+        60% {
+          -webkit-clip-path: polygon(
+             0% 20%,
+            30%  0%,
+            50% 30%,
+            30% 50%
+          );
+          clip-path: polygon(
+             0% 20%,
+            30%  0%,
+            50% 30%,
+            30% 50%
+          );
         }
         100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
+          -webkit-clip-path: polygon(
+            -30% 100%,
+            -30%  58%,
+             30%  58%,
+             30% 100%
+          );
+          clip-path: polygon(
+            -30% 100%,
+            -30%  58%,
+             30%  58%,
+             30% 100%
+          );
         }
       }
 
-      @keyframes spin2 {
+      @keyframes assemble-from-top {
         0% {
-          -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
+          -webkit-clip-path: polygon(
+             50%   0%,
+            100% -10%,
+            100%  50%,
+             50%  50%
+          );
+          clip-path: polygon(
+             50%   0%,
+            100% -10%,
+            100%  50%,
+             50%  50%
+          );
+        }
+        60% {
+          -webkit-clip-path: polygon(
+             0% 20%,
+            30%  0%,
+            50% 30%,
+            30% 50%
+          );
+          clip-path: polygon(
+             0% 20%,
+            30%  0%,
+            50% 30%,
+            30% 50%
+          );
         }
         100% {
-          -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
+          -webkit-clip-path: polygon(
+            -30% 100%,
+            -30%  58%,
+             30%  58%,
+             30% 100%
+          );
+          clip-path: polygon(
+            -30% 100%,
+            -30%  58%,
+             30%  58%,
+             30% 100%
+          );
+        }
+      }
+
+      .spinner .from-left {
+        -webkit-animation: assemble-from-left 0.4s linear;
+        -webkit-animation-fill-mode: forwards;
+        animation: assemble-from-left 0.4s linear;
+        animation-fill-mode: forwards;
+      }
+
+      @-webkit-keyframes assemble-from-left {
+        0% {
+          -webkit-clip-path: polygon(
+              0%  60%,
+             40%  60%,
+             40%  60%,
+             40%  60%,
+             40% 150%,
+             40% 150%,
+             40% 150%,
+              0% 150%
+          );
+          clip-path: polygon(
+              0%  60%,
+             40%  60%,
+             40%  60%,
+             40%  60%,
+             40% 150%,
+             40% 150%,
+             40% 150%,
+              0% 150%
+          );
+        }
+        60% {
+          -webkit-clip-path: polygon(
+             70%  60%,
+             90%  60%,
+             90%  40%,
+             90%  40%,
+            150% 150%,
+            100% 150%,
+            100% 150%,
+             70% 150%
+          );
+          clip-path: polygon(
+             70%  60%,
+             90%  60%,
+             90%  40%,
+             90%  40%,
+            150% 150%,
+            100% 150%,
+            100% 150%,
+             70% 150%
+          );
+        }
+        100% {
+          -webkit-clip-path: polygon(
+             82%  60%,
+             90%  60%,
+             90%  40%,
+             82%  40%,
+             82% -90%,
+            150% -10%,
+            150% 150%,
+             82% 150%
+          );
+          clip-path: polygon(
+             82%  60%,
+             90%  60%,
+             90%  40%,
+             82%  40%,
+             82% -90%,
+            150% -10%,
+            150% 150%,
+             82% 150%
+          );
+        }
+      }
+
+      @keyframes assemble-from-left {
+        0% {
+          -webkit-clip-path: polygon(
+              0%  60%,
+             40%  60%,
+             40%  60%,
+             40%  60%,
+             40% 150%,
+             40% 150%,
+             40% 150%,
+              0% 150%
+          );
+          clip-path: polygon(
+              0%  60%,
+             40%  60%,
+             40%  60%,
+             40%  60%,
+             40% 150%,
+             40% 150%,
+             40% 150%,
+              0% 150%
+          );
+        }
+        60% {
+          -webkit-clip-path: polygon(
+             70%  60%,
+             90%  60%,
+             90%  40%,
+             90%  40%,
+            150% 150%,
+            100% 150%,
+            100% 150%,
+             70% 150%
+          );
+          clip-path: polygon(
+             70%  60%,
+             90%  60%,
+             90%  40%,
+             90%  40%,
+            150% 150%,
+            100% 150%,
+            100% 150%,
+             70% 150%
+          );
+        }
+        100% {
+          -webkit-clip-path: polygon(
+             82%  60%,
+             90%  60%,
+             90%  40%,
+             82%  40%,
+             82% -90%,
+            150% -10%,
+            150% 150%,
+             82% 150%
+          );
+          clip-path: polygon(
+             82%  60%,
+             90%  60%,
+             90%  40%,
+             82%  40%,
+             82% -90%,
+            150% -10%,
+            150% 150%,
+             82% 150%
+          );
         }
       }
     </style>
@@ -117,7 +299,29 @@
     <div id="container">
       <% // Spinner displayed before the application loads %>
       <div class="spinner-view">
-        <div class="spinner"></div>
+        <svg class="spinner" viewBox="0,0,300,300">
+           <path
+             class="from-top"
+             d="
+               M300,10
+               c0,0 -150,0 -150,90
+               v55
+             "
+           />
+
+           <path
+             class="from-left"
+             d="
+               M0,150
+               h160
+               c0,0 20,0 20,-15
+               c0,0 0,-15 -20,-15
+               h-15
+             "
+           />
+
+           Loading...
+        </svg>
       </div>
     </div>
 
