@@ -2,12 +2,21 @@ language: node_js
 
 node_js: 6
 
+branches:
+  only:
+    - master
+
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 script:
   - npm test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: firebase
+  token:
+    secure: "LLthx4bBBNnBS1YbinVz7jkHKmogk1p7y40nwzbnDPU7ZMih6/GVjVEsRuVbk16CVNQ2NMqBKbcVC+HnYqsC26C+lSKcj6MPm5kue5QkyVsbd9Q4QCfzyB5FazOccFBrwtpluAcYoDNBVqIDhd5RMiTGwgymVQdK6Hhj4TasHuoPxVD3Qy81bR2qpWz+DCQhLXg87V2hIJoq4XFUBifL8uXTIChQGG+raFybVzO6vkjI2l715xRhL7uUUHgDbKnja1wy1PpjXu2IP7wF+wat/uaMJmF2sZOnUdjwqptWqWQaNOlSr9f98UukIYOIU+bUbtRhIIocLC5CepSsXY4QgotmJ3Ha7e1YsVghIg1Yc7qKM1CZieqdj7O0X71A3YwmZ2CIM6aLZyMvA2OjIc/q9IwNfFFmkQeii8bsqDnKtc0MFETAIrEyUsQZ+HUVOCPjdyVJt2Q0WHq6M6l1q7Nxo8mN2iSWpujUdEv27rJH9WwlQEBDtaMWjfPMG0DGcVmofRY0+2eu6QmS/Ck6xeAEq/MqacotyUCv/7YOWMMzxhZ3XHgi5ZRhVvRs5PUmUC2Ocp9pNxMzvyJuwDvylnw1zvtECEHt+j7DQUrpLLQy21fET98Jcfmj8mLFrV7PNBbqs/6CQ4RhpZV4FPeursSh/C+5Y4RLzPcXHYqOccR+cwQ="
