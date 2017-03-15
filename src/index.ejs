@@ -37,29 +37,33 @@
       .spinner .from-top,
       .spinner .from-left {
         stroke: white;
-        fill: none;
       }
 
       .spinner .from-center {
         stroke-width: 5;
+        fill: #2980b9;
 
         -webkit-animation: expand-from-center 2.4s linear infinite;
         animation: expand-from-center 2.4s linear infinite;
       }
 
-      .spinner .from-center-1 {
+      .spinner .from-center:nth-of-type(1) {
+        -webkit-animation-delay: 0.2s;
         animation-delay: 0.2s;
       }
 
-      .spinner .from-center-2 {
+      .spinner .from-center:nth-of-type(2) {
+        -webkit-animation-delay: 0.8s;
         animation-delay: 0.8s;
       }
 
-      .spinner .from-center-3 {
+      .spinner .from-center:nth-of-type(3) {
+        -webkit-animation-delay: 1.4s;
         animation-delay: 1.4s;
       }
 
-      .spinner .from-center-4 {
+      .spinner .from-center:nth-of-type(4) {
+        -webkit-animation-delay: 2s;
         animation-delay: 2s;
       }
 
@@ -102,6 +106,7 @@
         stroke-width: 10;
         stroke-linejoin: round;
         stroke-linecap: round;
+        fill: none;
       }
 
       .spinner .from-top {
@@ -370,10 +375,10 @@
       <% // Spinner displayed before the application loads %>
       <div class="spinner-view">
         <svg class="spinner" viewBox="0,0,300,300">
-          <circle class="from-center from-center-1" cx="150" cy="150"></circle>
-          <circle class="from-center from-center-2" cx="150" cy="150"></circle>
-          <circle class="from-center from-center-3" cx="150" cy="150"></circle>
-          <circle class="from-center from-center-4" cx="150" cy="150"></circle>
+          <circle class="from-center" cx="150" cy="150"></circle>
+          <circle class="from-center" cx="150" cy="150"></circle>
+          <circle class="from-center" cx="150" cy="150"></circle>
+          <circle class="from-center" cx="150" cy="150"></circle>
 
           <path
             class="from-top"
