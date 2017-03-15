@@ -33,13 +33,75 @@
         height: 300px;
       }
 
+      .spinner .from-center,
       .spinner .from-top,
       .spinner .from-left {
         stroke: white;
+        fill: none;
+      }
+
+      .spinner .from-center {
+        stroke-width: 5;
+
+        -webkit-animation: expand-from-center 2.4s linear infinite;
+        animation: expand-from-center 2.4s linear infinite;
+      }
+
+      .spinner .from-center-1 {
+        animation-delay: 0.2s;
+      }
+
+      .spinner .from-center-2 {
+        animation-delay: 0.8s;
+      }
+
+      .spinner .from-center-3 {
+        animation-delay: 1.4s;
+      }
+
+      .spinner .from-center-4 {
+        animation-delay: 2s;
+      }
+
+      @-webkit-keyframes expand-from-center {
+        0% {
+          opacity: 0;
+          r: 45;
+        }
+        20%, 40% {
+          opacity: 0.2;
+        }
+        30% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0;
+          r: 150;
+        }
+      }
+
+      @keyframes expand-from-center {
+        0% {
+          opacity: 0;
+          r: 45;
+        }
+        20%, 40% {
+          opacity: 0.2;
+        }
+        30% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 0;
+          r: 150;
+        }
+      }
+
+      .spinner .from-top,
+      .spinner .from-left {
         stroke-width: 10;
         stroke-linejoin: round;
         stroke-linecap: round;
-        fill: none;
       }
 
       .spinner .from-top {
@@ -308,25 +370,30 @@
       <% // Spinner displayed before the application loads %>
       <div class="spinner-view">
         <svg class="spinner" viewBox="0,0,300,300">
-           <path
-             class="from-top"
-             d="
-               M300,10
-               c0,0 -160,0 -160,100
-               v60
-             "
-           />
+          <circle class="from-center from-center-1" cx="150" cy="150"></circle>
+          <circle class="from-center from-center-2" cx="150" cy="150"></circle>
+          <circle class="from-center from-center-3" cx="150" cy="150"></circle>
+          <circle class="from-center from-center-4" cx="150" cy="150"></circle>
 
-           <path
-             class="from-left"
-             d="
-               M0,165
-               h150
-               c0,0 20,0 20,-15
-               c0,0 0,-15 -20,-15
-               h-15
-             "
-           />
+          <path
+            class="from-top"
+            d="
+              M300,10
+              c0,0 -160,0 -160,100
+              v75
+            "
+          />
+
+          <path
+            class="from-left"
+            d="
+              M0,180
+              h150
+              c0,0 20,0 20,-15
+              c0,0 0,-15 -20,-15
+              h-15
+            "
+          />
 
            Loading...
         </svg>
