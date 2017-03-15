@@ -28,7 +28,7 @@
     "jest": "19.0.2",
     "node-sass": "4.5.0",
     "sass-loader": "6.0.3",
-    "style-loader": "0.13.2",
+    "style-loader": "0.14.0",
     "ts-jest": "19.0.1",
     "ts-loader": "2.0.1",
     "typescript": "2.2.1",
