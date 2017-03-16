@@ -30,7 +30,7 @@
     "sass-loader": "6.0.3",
     "style-loader": "0.14.1",
     "ts-jest": "19.0.1",
-    "ts-loader": "2.0.1",
+    "ts-loader": "2.0.2",
     "typescript": "2.2.1",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"
