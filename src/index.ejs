@@ -21,7 +21,6 @@
         const spinnerSize = 300;
         const prefixes = {
           animation: ['-webkit-', ''],
-          'clip-path': ['-webkit-', ''],
           keyframes: ['-webkit-', ''],
           transform: ['-webkit-', '-ms-', '']
         };
@@ -41,7 +40,7 @@
         margin-top: -150px;
         margin-left: -150px;
 
-        transition: all 0.2s ease;
+        transition: all 0.3s cubic-bezier(0.33, -0.69, .25, 1);
       }
 
       #spinner-view.loaded {
@@ -103,13 +102,12 @@
       .spinner .from-left {
         stroke-width: 10;
         stroke-linejoin: round;
-        stroke-linecap: round;
         fill: none;
       }
 
       .spinner .from-top {
         <%= prefixed('animation', `
-        animation: assemble-from-top 0.4s linear;
+        animation: assemble-from-top 0.6s cubic-bezier(0, 0, 0, 1);
         `) %>
 
         <%= prefixed('animation', `
@@ -121,44 +119,20 @@
       @<%= prefix %>keyframes assemble-from-top {
         0% {
           opacity: 0;
-
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-             50%   0%,
-            100% -10%,
-            100%  50%,
-             50%  50%
-          );
-          `) %>
-        }
-        60% {
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-             0% 20%,
-            30%  0%,
-            50% 30%,
-            30% 50%
-          );
-          `) %>
+          stroke-dasharray: 0% 100%;
+          stroke-dashoffset: 0%;
         }
         100% {
           opacity: 1;
-
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-            -30% 100%,
-            -30%  60%,
-             30%  60%,
-             30% 100%
-          );
-          `) %>
+          stroke-dasharray: 30% 100%;
+          stroke-dashoffset: -64%;
         }
       }
       <% }); %>
 
       .spinner .from-left {
         <%= prefixed('animation', `
-        animation: assemble-from-left 0.4s linear;
+        animation: assemble-from-left 0.6s cubic-bezier(0, 0, 0, 1);
         `) %>
 
         <%= prefixed('animation', `
@@ -170,49 +144,13 @@
       @<%= prefix %>keyframes assemble-from-left {
         0% {
           opacity: 0;
-
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-              0%  60%,
-             40%  60%,
-             40%  60%,
-             40%  60%,
-             40% 150%,
-             40% 150%,
-             40% 150%,
-              0% 150%
-          );
-          `) %>
-        }
-        60% {
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-             70%  60%,
-             90%  60%,
-             90%  40%,
-             90%  40%,
-            150% 150%,
-            100% 150%,
-            100% 150%,
-             70% 150%
-          );
-          `) %>
+          stroke-dasharray: 0% 100%;
+          stroke-dashoffset: 0%;
         }
         100% {
           opacity: 1;
-
-          <%= prefixed('clip-path', `
-          clip-path: polygon(
-             82%  60%,
-             90%  60%,
-             90%  40%,
-             82%  40%,
-             82% -90%,
-            150% -10%,
-            150% 150%,
-             82% 150%
-          );
-          `) %>
+          stroke-dasharray: 30% 100%;
+          stroke-dashoffset: -108.25%;
         }
       }
       <% }); %>
@@ -241,19 +179,18 @@
           class="from-top"
           d="
             M300,10
-            c0,0 -160,0 -160,100
-            v75
+            C300,10 160,30 150,110
+            L140,180
           "
         />
 
         <path
           class="from-left"
           d="
-            M0,180
-            h150
-            c0,0 20,0 20,-15
-            c0,0 0,-15 -20,-15
-            h-15
+            M-150,300
+            C-150,300 0,140 140,176
+            c0,0 20,5 25,-15
+            c0,0 10,-40 -20,-15
           "
         />
 
