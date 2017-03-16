@@ -16,8 +16,16 @@
 
     <% // Spinner %>
     <style>
+      <%
+        const primary = '#2980b9';
+        const prefixes = ['-webkit-', ''];
+        const prefixed = (value) => prefixes.map((prefix) => prefix + value.trim()).join(' ');
+        const round = (value) => Math.round(value * 100) / 100;
+        const numberOfConcentricCircles = 5;
+      %>
+
       body {
-        background: #2980b9;
+        background: <%= primary %>;
       }
 
       .spinner-view {
@@ -41,36 +49,26 @@
 
       .spinner .from-center {
         stroke-width: 5;
-        fill: #2980b9;
+        fill: <%= primary %>;
 
-        -webkit-animation: expand-from-center 2.4s linear infinite;
-        animation: expand-from-center 2.4s linear infinite;
+        <%= prefixed(`
+        animation: expand-from-center 2s linear infinite;
+        `) %>
       }
 
-      .spinner .from-center:nth-of-type(1) {
-        -webkit-animation-delay: 0.2s;
-        animation-delay: 0.2s;
+      <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
+      .spinner .from-center:nth-of-type(<%= index %>) {
+        <%= prefixed(`
+        animation-delay: ${round(0.2 * index)}s;
+        `) %>
       }
+      <% } %>
 
-      .spinner .from-center:nth-of-type(2) {
-        -webkit-animation-delay: 0.8s;
-        animation-delay: 0.8s;
-      }
-
-      .spinner .from-center:nth-of-type(3) {
-        -webkit-animation-delay: 1.4s;
-        animation-delay: 1.4s;
-      }
-
-      .spinner .from-center:nth-of-type(4) {
-        -webkit-animation-delay: 2s;
-        animation-delay: 2s;
-      }
-
-      @-webkit-keyframes expand-from-center {
+      <% prefixes.forEach((prefix) => { %>
+      @<%= prefix %>keyframes expand-from-center {
         0% {
           opacity: 0;
-          r: 45;
+          r: 40;
         }
         20%, 40% {
           opacity: 0.2;
@@ -83,23 +81,7 @@
           r: 150;
         }
       }
-
-      @keyframes expand-from-center {
-        0% {
-          opacity: 0;
-          r: 45;
-        }
-        20%, 40% {
-          opacity: 0.2;
-        }
-        30% {
-          opacity: 0.4;
-        }
-        100% {
-          opacity: 0;
-          r: 150;
-        }
-      }
+      <% }); %>
 
       .spinner .from-top,
       .spinner .from-left {
@@ -110,127 +92,70 @@
       }
 
       .spinner .from-top {
-        -webkit-animation: assemble-from-top 0.4s linear;
-        -webkit-animation-fill-mode: forwards;
-
+        <%= prefixed(`
         animation: assemble-from-top 0.4s linear;
+        `) %>
+
+        <%= prefixed(`
         animation-fill-mode: forwards;
+        `) %>
       }
 
-      @-webkit-keyframes assemble-from-top {
+      <% prefixes.forEach((prefix) => { %>
+      @<%= prefix %>keyframes assemble-from-top {
         0% {
           opacity: 0;
-          -webkit-clip-path: polygon(
-             50%   0%,
-            100% -10%,
-            100%  50%,
-             50%  50%
-          );
+
+          <%= prefixed(`
           clip-path: polygon(
              50%   0%,
             100% -10%,
             100%  50%,
              50%  50%
           );
+          `) %>
         }
         60% {
-          -webkit-clip-path: polygon(
-             0% 20%,
-            30%  0%,
-            50% 30%,
-            30% 50%
-          );
+          <%= prefixed(`
           clip-path: polygon(
              0% 20%,
             30%  0%,
             50% 30%,
             30% 50%
           );
+          `) %>
         }
         100% {
           opacity: 1;
-          -webkit-clip-path: polygon(
-            -30% 100%,
-            -30%  60%,
-             30%  60%,
-             30% 100%
-          );
-          clip-path: polygon(
-            -30% 100%,
-            -30%  60%,
-             30%  60%,
-             30% 100%
-          );
-        }
-      }
 
-      @keyframes assemble-from-top {
-        0% {
-          opacity: 0;
-          -webkit-clip-path: polygon(
-             50%   0%,
-            100% -10%,
-            100%  50%,
-             50%  50%
-          );
-          clip-path: polygon(
-             50%   0%,
-            100% -10%,
-            100%  50%,
-             50%  50%
-          );
-        }
-        60% {
-          -webkit-clip-path: polygon(
-             0% 20%,
-            30%  0%,
-            50% 30%,
-            30% 50%
-          );
-          clip-path: polygon(
-             0% 20%,
-            30%  0%,
-            50% 30%,
-            30% 50%
-          );
-        }
-        100% {
-          opacity: 1;
-          -webkit-clip-path: polygon(
-            -30% 100%,
-            -30%  60%,
-             30%  60%,
-             30% 100%
-          );
+          <%= prefixed(`
           clip-path: polygon(
             -30% 100%,
             -30%  60%,
              30%  60%,
              30% 100%
           );
+          `) %>
         }
       }
+      <% }); %>
 
       .spinner .from-left {
-        -webkit-animation: assemble-from-left 0.4s linear;
-        -webkit-animation-fill-mode: forwards;
+        <%= prefixed(`
         animation: assemble-from-left 0.4s linear;
+        `) %>
+
+        <%= prefixed(`
         animation-fill-mode: forwards;
+        `) %>
       }
 
-      @-webkit-keyframes assemble-from-left {
+      <% prefixes.forEach((prefix) => { %>
+      @<%= prefix %>keyframes assemble-from-left {
         0% {
           opacity: 0;
-          -webkit-clip-path: polygon(
-              0%  60%,
-             40%  60%,
-             40%  60%,
-             40%  60%,
-             40% 150%,
-             40% 150%,
-             40% 150%,
-              0% 150%
-          );
+
+          <%= prefixed(`
           clip-path: polygon(
               0%  60%,
              40%  60%,
@@ -241,18 +166,10 @@
              40% 150%,
               0% 150%
           );
+          `) %>
         }
         60% {
-          -webkit-clip-path: polygon(
-             70%  60%,
-             90%  60%,
-             90%  40%,
-             90%  40%,
-            150% 150%,
-            100% 150%,
-            100% 150%,
-             70% 150%
-          );
+          <%= prefixed(`
           clip-path: polygon(
              70%  60%,
              90%  60%,
@@ -263,90 +180,12 @@
             100% 150%,
              70% 150%
           );
+          `) %>
         }
         100% {
           opacity: 1;
-          -webkit-clip-path: polygon(
-             82%  60%,
-             90%  60%,
-             90%  40%,
-             82%  40%,
-             82% -90%,
-            150% -10%,
-            150% 150%,
-             82% 150%
-          );
-          clip-path: polygon(
-             82%  60%,
-             90%  60%,
-             90%  40%,
-             82%  40%,
-             82% -90%,
-            150% -10%,
-            150% 150%,
-             82% 150%
-          );
-        }
-      }
 
-      @keyframes assemble-from-left {
-        0% {
-          opacity: 0;
-          -webkit-clip-path: polygon(
-              0%  60%,
-             40%  60%,
-             40%  60%,
-             40%  60%,
-             40% 150%,
-             40% 150%,
-             40% 150%,
-              0% 150%
-          );
-          clip-path: polygon(
-              0%  60%,
-             40%  60%,
-             40%  60%,
-             40%  60%,
-             40% 150%,
-             40% 150%,
-             40% 150%,
-              0% 150%
-          );
-        }
-        60% {
-          -webkit-clip-path: polygon(
-             70%  60%,
-             90%  60%,
-             90%  40%,
-             90%  40%,
-            150% 150%,
-            100% 150%,
-            100% 150%,
-             70% 150%
-          );
-          clip-path: polygon(
-             70%  60%,
-             90%  60%,
-             90%  40%,
-             90%  40%,
-            150% 150%,
-            100% 150%,
-            100% 150%,
-             70% 150%
-          );
-        }
-        100% {
-          opacity: 1;
-          -webkit-clip-path: polygon(
-             82%  60%,
-             90%  60%,
-             90%  40%,
-             82%  40%,
-             82% -90%,
-            150% -10%,
-            150% 150%,
-             82% 150%
-          );
+          <%= prefixed(`
           clip-path: polygon(
              82%  60%,
              90%  60%,
@@ -357,8 +196,10 @@
             150% 150%,
              82% 150%
           );
+          `) %>
         }
       }
+      <% }); %>
     </style>
 
     <% // FontAwesome %>
@@ -375,10 +216,9 @@
       <% // Spinner displayed before the application loads %>
       <div class="spinner-view">
         <svg class="spinner" viewBox="0,0,300,300">
+          <% for (let index = 0; index < numberOfConcentricCircles; index++) { %>
           <circle class="from-center" cx="150" cy="150"></circle>
-          <circle class="from-center" cx="150" cy="150"></circle>
-          <circle class="from-center" cx="150" cy="150"></circle>
-          <circle class="from-center" cx="150" cy="150"></circle>
+          <% } %>
 
           <path
             class="from-top"
