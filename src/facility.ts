@@ -12,6 +12,8 @@ import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
 const container = document.querySelector('#container');
+const spinnerView = <HTMLDivElement>document.querySelector('#spinner-view');
+
 initializeApp();
 
 function initializeApp() {
@@ -24,6 +26,12 @@ function initializeApp() {
   });
 
   store.subscribe(throttle(render, 10));
+
+  const unsubscribeSpinnerView = store.subscribe(() => {
+    spinnerView.className += 'loaded';
+    unsubscribeSpinnerView();
+  });
+
   getRooms();
 }
 
