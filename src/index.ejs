@@ -18,8 +18,14 @@
     <style>
       <%
         const primary = '#2980b9';
-        const prefixes = ['-webkit-', ''];
-        const prefixed = (value) => prefixes.map((prefix) => prefix + value.trim()).join(' ');
+        const spinnerSize = 300;
+        const prefixes = {
+          animation: ['-webkit-', ''],
+          'clip-path': ['-webkit-', ''],
+          keyframes: ['-webkit-', ''],
+          transform: ['-webkit-', '-ms-', '']
+        };
+        const prefixed = (type, value, separator) => prefixes[type].map((prefix) => prefix + value.trim()).join(separator || ' ');
         const round = (value) => Math.round(value * 100) / 100;
         const numberOfConcentricCircles = 5;
       %>
@@ -28,17 +34,27 @@
         background: <%= primary %>;
       }
 
-      .spinner-view {
+      #spinner-view {
         position: absolute;
         top: 50%;
         left: 50%;
         margin-top: -150px;
         margin-left: -150px;
+
+        transition: all 0.2s ease;
+      }
+
+      #spinner-view.loaded {
+        opacity: 0;
+
+        <%= prefixed('transform', `
+        transform: scale(0);
+        `) %>
       }
 
       .spinner {
-        width: 300px;
-        height: 300px;
+        width: <%= spinnerSize %>px;
+        height: <%= spinnerSize %>px;
       }
 
       .spinner .from-center,
@@ -51,20 +67,20 @@
         stroke-width: 5;
         fill: <%= primary %>;
 
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation: expand-from-center 2s linear infinite;
         `) %>
       }
 
       <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
       .spinner .from-center:nth-of-type(<%= index %>) {
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation-delay: ${round(0.2 * index)}s;
         `) %>
       }
       <% } %>
 
-      <% prefixes.forEach((prefix) => { %>
+      <% prefixes.keyframes.forEach((prefix) => { %>
       @<%= prefix %>keyframes expand-from-center {
         0% {
           opacity: 0;
@@ -92,21 +108,21 @@
       }
 
       .spinner .from-top {
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation: assemble-from-top 0.4s linear;
         `) %>
 
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation-fill-mode: forwards;
         `) %>
       }
 
-      <% prefixes.forEach((prefix) => { %>
+      <% prefixes.keyframes.forEach((prefix) => { %>
       @<%= prefix %>keyframes assemble-from-top {
         0% {
           opacity: 0;
 
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
              50%   0%,
             100% -10%,
@@ -116,7 +132,7 @@
           `) %>
         }
         60% {
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
              0% 20%,
             30%  0%,
@@ -128,7 +144,7 @@
         100% {
           opacity: 1;
 
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
             -30% 100%,
             -30%  60%,
@@ -141,21 +157,21 @@
       <% }); %>
 
       .spinner .from-left {
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation: assemble-from-left 0.4s linear;
         `) %>
 
-        <%= prefixed(`
+        <%= prefixed('animation', `
         animation-fill-mode: forwards;
         `) %>
       }
 
-      <% prefixes.forEach((prefix) => { %>
+      <% prefixes.keyframes.forEach((prefix) => { %>
       @<%= prefix %>keyframes assemble-from-left {
         0% {
           opacity: 0;
 
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
               0%  60%,
              40%  60%,
@@ -169,7 +185,7 @@
           `) %>
         }
         60% {
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
              70%  60%,
              90%  60%,
@@ -185,7 +201,7 @@
         100% {
           opacity: 1;
 
-          <%= prefixed(`
+          <%= prefixed('clip-path', `
           clip-path: polygon(
              82%  60%,
              90%  60%,
@@ -212,37 +228,37 @@
   </head>
 
   <body>
-    <div id="container">
-      <% // Spinner displayed before the application loads %>
-      <div class="spinner-view">
-        <svg class="spinner" viewBox="0,0,300,300">
-          <% for (let index = 0; index < numberOfConcentricCircles; index++) { %>
-          <circle class="from-center" cx="150" cy="150"></circle>
-          <% } %>
+    <div id="container"></div>
 
-          <path
-            class="from-top"
-            d="
-              M300,10
-              c0,0 -160,0 -160,100
-              v75
-            "
-          />
+    <% // Spinner displayed until the application loads %>
+    <div id="spinner-view">
+      <svg class="spinner" viewBox="0, 0, <%= spinnerSize %>, <%= spinnerSize %>">
+        <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
+        <circle class="from-center" cx="150" cy="150"></circle>
+        <% } %>
 
-          <path
-            class="from-left"
-            d="
-              M0,180
-              h150
-              c0,0 20,0 20,-15
-              c0,0 0,-15 -20,-15
-              h-15
-            "
-          />
+        <path
+          class="from-top"
+          d="
+            M300,10
+            c0,0 -160,0 -160,100
+            v75
+          "
+        />
 
-           Loading...
-        </svg>
-      </div>
+        <path
+          class="from-left"
+          d="
+            M0,180
+            h150
+            c0,0 20,0 20,-15
+            c0,0 0,-15 -20,-15
+            h-15
+          "
+        />
+
+        Loading...
+      </svg>
     </div>
 
     <% // Embedded form %>
