@@ -1,11 +1,11 @@
 import { svg, circle, line } from '../svg';
 
-const clockSize = 18;
+const clockSize = 17.5;
 const clockMargin = 3;
 const clockCenter = clockSize / 2;
 const clockRadius = clockSize / 2 - clockMargin;
 const hoursLineMultiplier = 0.4;
-const minutesLineMultiplier = 0.6;
+const minutesLineMultiplier = 0.55;
 
 export const timeToXY = (max: number) => (minutes: number): [number, number] => {
   const multiplier = 2 * Math.PI * minutes / max;
@@ -35,7 +35,7 @@ export const Clock = (date: Date) => {
         style: {
           fill: 'none',
           stroke: 'white',
-          'stroke-width': 2
+          'stroke-width': 2.25
         }
       }),
       line({
