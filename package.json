@@ -5,7 +5,6 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
-    "deploy": "firebase deploy",
     "start": "webpack-dev-server --port 3000",
     "test": "jest",
     "jest": "jest --watch"
@@ -24,7 +23,6 @@
     "@types/mithril": "0.0.31",
     "css-loader": "0.27.3",
     "file-loader": "0.10.1",
-    "firebase-tools": "3.5.0",
     "html-webpack-plugin": "2.28.0",
     "jest": "19.0.2",
     "node-sass": "4.5.0",
