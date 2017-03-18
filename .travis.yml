@@ -15,4 +15,4 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - npm run deploy -- --token ${FIREBASE_TOKEN}
+  - npm run deploy -- --token $FIREBASE_TOKEN
