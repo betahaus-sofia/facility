@@ -1,4 +1,4 @@
-import { svg, circle, line } from '../svg';
+import { svg, circle, line } from 'compote/html';
 
 const clockSize = 17.5;
 const clockMargin = 3;
@@ -7,16 +7,16 @@ const clockRadius = clockSize / 2 - clockMargin;
 const hoursLineMultiplier = 0.4;
 const minutesLineMultiplier = 0.55;
 
-export const timeToXY = (max: number) => (minutes: number): [number, number] => {
-  const multiplier = 2 * Math.PI * minutes / max;
-  return [Math.sin(multiplier), Math.cos(multiplier)];
+export const timeToXY = (maxTime: number) => (time: number): [number, number] => {
+  const multiplier = 2 * Math.PI * time / maxTime;
+  return [Math.sin(multiplier), -Math.cos(multiplier)];
 };
 
-export const hoursToXY = timeToXY(24);
+export const hoursToXY = timeToXY(12);
 export const minutesToXY = timeToXY(60);
 
 export const Clock = (date: Date) => {
-  const [hoursX, hoursY] = hoursToXY(date.getMinutes());
+  const [hoursX, hoursY] = hoursToXY(date.getHours());
   const [minutesX, minutesY] = minutesToXY(date.getMinutes());
 
   return (

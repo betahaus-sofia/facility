@@ -1,6 +1,8 @@
 import 'jest';
 jest.mock('compote/html', (value: any) => ({
-  tag: (tag: string) => () => ({ tag })
+  svg: () => ({ tag: 'svg' }),
+  circle: () => ({ tag: 'circle' }),
+  line: () => ({ tag: 'line' })
 }));
 
 import { minutesToXY, Clock } from './index';
@@ -9,7 +11,7 @@ describe('Clock', () => {
   it('should work for 0', () => {
     const [x, y] = minutesToXY(0);
     expect(x).toBeCloseTo(0);
-    expect(y).toBeCloseTo(1);
+    expect(y).toBeCloseTo(-1);
   });
 
   it('should work for 15', () => {
@@ -21,7 +23,7 @@ describe('Clock', () => {
   it('should work for 30', () => {
     const [x, y] = minutesToXY(30);
     expect(x).toBeCloseTo(0);
-    expect(y).toBeCloseTo(-1);
+    expect(y).toBeCloseTo(1);
   });
 
   it('should work for 45', () => {
