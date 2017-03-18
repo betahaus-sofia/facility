@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack -p",
-    "deploy": "npm run build && firebase deploy",
+    "deploy": "firebase deploy",
     "start": "webpack-dev-server --port 3000",
     "test": "jest",
     "jest": "jest --watch"
