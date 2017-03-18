@@ -15,6 +15,9 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - npm install firebase-tools@3.5.0 -g
-  - npm run build
-  - firebase deploy --token $FIREBASE_TOKEN
+
+deploy:
+  provider: script
+  script: deploy.sh
+  on:
+    branch: master
