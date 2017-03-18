@@ -1,12 +1,11 @@
 import './style.scss';
 
 import { div } from 'compote/html';
-import groupBy = require('lodash/groupBy');
-import keys = require('lodash/keys');
 
 import { flex } from '../flex';
 import { Room, selectRoom } from '../room';
 import store from '../store';
+import { groupBy, keys } from '../utils';
 
 export const isSelected = (room: Room): boolean => {
   const { selectedRoom } = store.getState();
@@ -37,8 +36,10 @@ export const RoomsByGroup = (groupedRooms: Record<string, Room[]>) => (group: st
   ])
 );
 
+const groupByGroup = groupBy<Room>('group');
+
 export const RoomList = (rooms: Room[]) => {
-  const roomsByGroup = groupBy(rooms, 'group');
+  const roomsByGroup = groupByGroup(rooms);
   const groups = keys(roomsByGroup);
 
   return div({ className: 'room-list' },
