@@ -1,4 +1,8 @@
 import 'jest';
+jest.mock('compote/html', (value: any) => ({
+  tag: (tag: string) => () => ({ tag })
+}));
+
 import { minutesToXY, Clock } from './index';
 
 describe('Clock', () => {
