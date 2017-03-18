@@ -5,12 +5,16 @@ declare var require: (moduleName: string) => any;
 import { div, h4 } from 'compote/html';
 const timeago = require('timeago.js');
 
+import { Clock } from '../clock';
 import { Room } from '../room';
 import { Supply, requestSupply } from '../supply';
 
 export const SupplyRequestedDate = (requested: Date) => (
-  div({ title: `Last requested on ${requested.toLocaleString()}` }, [
-    div({ className: 'fa fa-fw fa-clock-o' }),
+  div({
+    className: 'flex-row justify-content-center align-items-center',
+    title: `Last requested on ${requested.toLocaleString()}`
+  }, [
+    Clock(requested),
     // TODO: Cache instance & automatically update `timeago`
     new timeago().format(requested)
   ])

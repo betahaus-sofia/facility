@@ -155,14 +155,6 @@
       }
       <% }); %>
     </style>
-
-    <% // FontAwesome %>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    >
   </head>
 
   <body>
@@ -172,7 +164,7 @@
     <div id="spinner-view">
       <svg class="spinner" viewBox="0, 0, <%= spinnerSize %>, <%= spinnerSize %>">
         <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
-        <circle class="from-center" cx="150" cy="150"></circle>
+        <circle class="from-center" cx="<%= spinnerSize / 2 %>" cy="<%= spinnerSize / 2 %>"></circle>
         <% } %>
 
         <path
