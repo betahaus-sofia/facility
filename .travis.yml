@@ -13,7 +13,12 @@ cache:
 script:
   - npm test
   - npm run build
-  - npm run deploy -- --token $FIREBASE_TOKEN
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: firebase
+  token: $FIREBASE_TOKEN
+  on:
+    branch: master
