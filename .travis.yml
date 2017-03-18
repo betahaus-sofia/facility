@@ -12,13 +12,12 @@ cache:
 
 script:
   - npm test
-  - npm run build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - npm install firebase-tools@3.5.0 -g
+  - npm run build
 
 deploy:
-  provider: script
-  script: deploy.sh
-  on:
-    branch: master
+  provider: firebase
+  token: $FIREBASE_TOKEN
