@@ -21,11 +21,10 @@
 
 .room-list-item {
   @include user-select(none);
-  @include transition(
-    border-color $animation-duration $animation-easing,
-    background $animation-duration $animation-easing,
-    color $animation-duration $animation-easing
-  );
+
+  transition: border-color $animation-duration $animation-easing,
+              background $animation-duration $animation-easing,
+              color $animation-duration $animation-easing;
 
   margin-right: 3px;
   border: 3px solid transparent;

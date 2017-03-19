@@ -113,8 +113,9 @@ linters:
     enabled: true
   TrailingZero:
     enabled: true
+  # Transitioning all properties is useful for scale animations
   TransitionAll:
-    enabled: true
+    enabled: false
   UnnecessaryMantissa:
     enabled: true
   UnnecessaryParentReference:

@@ -1,5 +1,7 @@
+@import 'style/variables';
+
 .fade-in-animation {
-  animation: fade-in 0.4s;
+  animation: fade-in $animation-duration $animation-easing;
 }
 
 @keyframes fade-in {
@@ -8,7 +10,7 @@
 }
 
 .fade-out-animation {
-  animation: fade-out 0.4s;
+  animation: fade-out $animation-duration $animation-easing;
 }
 
 @keyframes fade-out {

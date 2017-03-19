@@ -1,7 +1,5 @@
 import './style.scss';
 
-declare var require: (moduleName: string) => any;
-
 import { div, h4 } from 'compote/html';
 const timeago = require('timeago.js');
 
