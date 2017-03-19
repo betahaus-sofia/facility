@@ -1,5 +1,4 @@
 @import '../style/variables';
-@import '../style/mixins';
 
 .supply-list {
   margin: 10px;
@@ -30,9 +29,8 @@
   $size: 128px;
   $shadow-size: 10px;
 
-  @include transition(all $animation-duration $animation-easing);
-
   display: inline-block;
+  transition: all $animation-duration $animation-easing;
   margin-bottom: 10px;
   border-radius: 50%;
   background: $neutral-light;
@@ -48,7 +46,7 @@
   height: $size;
 
   &:hover {
-    @include box-shadow(inset 0 0 0 $shadow-size $primary-dark);
+    box-shadow: inset 0 0 0 $shadow-size $primary-dark;
   }
 }
 
