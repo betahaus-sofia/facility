@@ -35,10 +35,6 @@
   border-radius: 50%;
   background: $neutral-light;
 
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: $size;
-
   cursor: pointer;
   padding: $size / 2 + $shadow-size; // fit square images without rounding them
 
