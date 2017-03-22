@@ -22,7 +22,7 @@ export const SupplyListItem = (room: Room) => (supply: Supply) => (
   div({ key: supply.id, className: 'supply-list-item fade-in-animation' }, [
     div({ className: 'supply-list-item-button' }, [
       div({ className: 'supply-list-item-container', onclick: () => requestSupply(room, supply) },
-        img({ src: supply.imageUrl || '/assets/icon.png' })
+        img({ src: supply.imageUrl || 'logo.png' })
       ),
       h4({ className: 'supply-list-item-name' }, supply.name),
       supply.requested ? SupplyRequestedDate(new Date(supply.requested)) : null

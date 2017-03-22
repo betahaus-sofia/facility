@@ -1,4 +1,4 @@
-import './assets/icon.png';
+import './assets/logo.png';
 import './manifest.json';
 import './style.scss';
 
@@ -12,11 +12,18 @@ import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
 const container = document.querySelector('#container');
-const spinnerView = <HTMLDivElement>document.querySelector('#spinner-view');
+const spinnerView = document.querySelector('#spinner-view');
 
-initializeApp();
+initialize();
 
-function initializeApp() {
+function initialize() {
+  initializeFirebase();
+  registerServiceWorker();
+  subscribeToStore();
+  getRooms();
+}
+
+function initializeFirebase() {
   firebase.initializeApp({
     apiKey: 'AIzaSyBJs9umNrD6Bg3iuyTqVVbOEMv7Xgsk0uY',
     authDomain: 'betahaus-sofia-office-manager.firebaseapp.com',
@@ -24,15 +31,21 @@ function initializeApp() {
     storageBucket: 'betahaus-sofia-office-manager.appspot.com',
     messagingSenderId: '54350089959'
   });
+}
 
+function registerServiceWorker() {
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('service-worker.js', { scope: './' });
+  }
+}
+
+function subscribeToStore() {
   store.subscribe(throttle(render, 10));
 
   const unsubscribeSpinnerView = store.subscribe(() => {
-    spinnerView.className += 'loaded';
+    spinnerView.classList.add('loaded');
     unsubscribeSpinnerView();
   });
-
-  getRooms();
 }
 
 function render() {

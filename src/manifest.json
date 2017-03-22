@@ -1,10 +1,12 @@
 {
   "short_name": "Facility",
   "name": "Betahaus Sofia Facility",
+  "background_color": "#2980b9",
+  "theme_color": "#2980b9",
   "icons": [
     {
-      "src": "icon.png",
-      "sizes": "96x96",
+      "src": "logo.png",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],
