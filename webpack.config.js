@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   context: process.cwd(),
   entry: {
-    facility: './src/facility.ts'
+    facility: './src/facility.ts',
+    'service-worker': './src/service-worker.ts'
   },
   output: {
     publicPath: '/',
@@ -32,7 +33,7 @@ module.exports = {
 
       // Assets
       {
-        test: /\.(jpe?g|ico|gif|png|svg|wav|mp3)$/,
+        test: /\.(jpe?g|ico|gif|png|svg|wav|mp3|json)$/,
         loader: 'file-loader?name=[name].[ext]'
       }
     ]
