@@ -8,10 +8,11 @@ import { Supply } from './supply';
 export type FacilityState = {
   rooms: Room[]
   selectedRoom: Room
-  selectedRoomSupplies: Supply[]
+  selectedRoomSupplies: Supply[],
+  showFeedbackForm: boolean
 };
 
-const facility = combineReducers<FacilityState>({ rooms, selectedRoom, selectedRoomSupplies });
+const facility = combineReducers<FacilityState>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm });
 export default createStore(
   facility,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
@@ -51,6 +52,15 @@ export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}):
     return state.map((supply) => (
       supply !== requestedSupply ? supply : new Supply(supply, { requested: action.requested })
     ));
+  default:
+    return state;
+  }
+}
+
+export function showFeedbackForm(state = false, action: Action = {}): Room {
+  switch (action.type) {
+  case Actions.SHOW_FEEDBACK_FORM:
+    return action.show;
   default:
     return state;
   }

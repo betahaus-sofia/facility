@@ -3,8 +3,11 @@ $foreground-dark: #161617;
 
 $neutral-light: #ffffff;
 
-$primary: #2980b9;
+$primary: #4285f4;
 $primary-dark: darken($primary, 10%);
+
+$danger: #db4437;
+$danger-dark: darken($danger, 10%);
 
 // Device sizes
 $xxl-min: 2000px;

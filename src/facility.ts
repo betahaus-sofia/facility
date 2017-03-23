@@ -8,6 +8,7 @@ import throttle = require('lodash/throttle');
 import { getRooms } from './room';
 import store from './store';
 
+import { ShowFeedbackFormButton, FeedbackForm } from './feedback';
 import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
@@ -49,9 +50,11 @@ function subscribeToStore() {
 }
 
 function render() {
-  const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
+  const { rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm } = store.getState();
   Compote.render(container, [
     RoomList(rooms),
-    SupplyList(selectedRoom, selectedRoomSupplies)
+    SupplyList(selectedRoom, selectedRoomSupplies),
+    ShowFeedbackFormButton(),
+    showFeedbackForm ? FeedbackForm(process.env.FEEDBACK_FORM_URL) : null
   ]);
 }
