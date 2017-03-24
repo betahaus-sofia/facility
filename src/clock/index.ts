@@ -12,8 +12,8 @@ export const timeToXY = (maxTime: number) => (time: number): [number, number] =>
   return [Math.sin(multiplier), -Math.cos(multiplier)];
 };
 
-export const hoursToXY = timeToXY(12);
-export const minutesToXY = timeToXY(60);
+const hoursToXY = timeToXY(12);
+const minutesToXY = timeToXY(60);
 
 export const Clock = (date: Date) => {
   const [hoursX, hoursY] = hoursToXY(date.getHours());

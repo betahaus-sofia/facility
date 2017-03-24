@@ -5,9 +5,11 @@ jest.mock('compote/html', (value: any) => ({
   line: () => ({ tag: 'line' })
 }));
 
-import { minutesToXY, Clock } from './index';
+import { timeToXY, Clock } from './index';
 
 describe('Clock', () => {
+  const minutesToXY = timeToXY(60);
+
   it('should work for 0', () => {
     const [x, y] = minutesToXY(0);
     expect(x).toBeCloseTo(0);
