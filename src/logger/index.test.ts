@@ -13,6 +13,6 @@ it(`should log the action & the next state`, () => {
   expect(console.log).toHaveBeenCalledWith('next state', store.getState());
 });
 
-it(`should return the result of 'next' function`, () => {
+it(`should return the result of next function`, () => {
   expect(logger(store)(() => result)(action)).toBe(result);
 });
