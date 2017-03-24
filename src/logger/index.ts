@@ -1,5 +1,5 @@
 import { Store } from 'redux';
-import { FacilityState, Action } from './store';
+import { FacilityState, Action } from '../store';
 
 export function logger(store: Store<FacilityState>) {
   return (next: (action: Action) => any) => {

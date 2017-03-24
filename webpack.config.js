@@ -1,4 +1,5 @@
 const path = require('path');
+const env = require('var');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -39,6 +40,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(env) }),
     new HtmlWebpackPlugin({ template: './src/index.ejs' })
   ]
 };
