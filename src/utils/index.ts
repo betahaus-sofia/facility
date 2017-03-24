@@ -22,3 +22,12 @@ export function groupBy<T>(propertyName: keyof T) {
 export function keys<T extends {}>(obj: T) {
   return Object.keys(obj);
 }
+
+// const uniqueIDs: Record<string, number> = {};
+// export function uniqueId(prefix = '') {
+//   if (uniqueIDs[prefix] == null) {
+//     uniqueIDs[prefix] = -1;
+//   }
+//   uniqueIDs[prefix]++;
+//   return prefix + uniqueIDs[prefix];
+// }
