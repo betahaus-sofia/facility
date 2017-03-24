@@ -12,7 +12,7 @@ export const FeedbackForm = (src: string) => (
     onbeforeremove: ({ dom }: ComponentNode) => {
       dom.classList.add('fade-out-animation');
       // TODO: Type
-      return new (<any>window).Promise((resolve: any) => setTimeout(resolve, 0.9 * getAnimationDuration(dom) * 1e3));
+      return new (<any>window).Promise((resolve: any) => setTimeout(resolve, 0.95 * getAnimationDuration(dom) * 1e3));
     }
   }, [
     iframe({

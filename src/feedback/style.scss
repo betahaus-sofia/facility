@@ -9,18 +9,22 @@
   background: $primary;
 }
 
-.feedback-form-back-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-
+.feedback-form-back-button,
+.show-feedback-form-button {
   transition: background $animation-duration $animation-easing;
   border-radius: 50%;
-  background: $primary;
   cursor: pointer;
-  width: 60px;
-  height: 60px;
   fill: $neutral-light;
+}
+
+.feedback-form-back-button {
+  position: absolute;
+  top: 12.5px;
+  left: 15px;
+
+  background: $primary;
+  width: 50px;
+  height: 50px;
 
   &:hover {
     background: $primary-dark;
@@ -32,14 +36,10 @@
   right: 20px;
   bottom: 20px;
 
-  transition: background $animation-duration $animation-easing;
-  border-radius: 50%;
   box-shadow: 0 0 5px 0 $danger-dark;
   background: $danger;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  fill: $neutral-light;
+  width: 75px;
+  height: 75px;
 
   &:hover {
     background: $danger-dark;

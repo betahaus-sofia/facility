@@ -4,7 +4,7 @@
 .room-list {
   margin-bottom: 30px;
   background: $primary-dark;
-  padding: 10px;
+  padding: 10px $flex-item-spacing;
 }
 
 .room-list-group,
