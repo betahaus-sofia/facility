@@ -16,7 +16,7 @@
     "lodash": "4.17.4",
     "mithril": "1.0.1",
     "redux": "3.6.0",
-    "timeago.js": "2.0.5"
+    "timeago.js": "3.0.0"
   },
   "devDependencies": {
     "@types/jest": "19.2.2",
