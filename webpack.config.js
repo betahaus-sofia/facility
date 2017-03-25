@@ -3,6 +3,8 @@ const env = require('var');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const packageJson = require('./package.json');
+
 module.exports = {
   context: process.cwd(),
   entry: {
@@ -12,7 +14,8 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.resolve('./build'),
-    filename: '[name].js'
+    filename: '[name].js',
+    sourceMapFilename: '[name].js.map'
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.scss']
@@ -40,7 +43,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env': JSON.stringify(env) }),
+    new webpack.DefinePlugin({
+      'process.VERSION': JSON.stringify(packageJson.version),
+      'process.env': JSON.stringify(env)
+    }),
     new HtmlWebpackPlugin({ template: './src/index.ejs' })
   ]
 };

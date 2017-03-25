@@ -6,6 +6,7 @@ type FirebaseSnapshot<T> = {
 };
 
 declare var process: {
+  VERSION: string
   env: Record<string, any>
 };
 

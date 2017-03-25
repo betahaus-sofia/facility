@@ -1,12 +1,16 @@
 @import '../style/variables';
 
 .feedback-form {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background: $primary;
+
+  iframe {
+    display: block; // iOS Chrome / Safari fix
+  }
 }
 
 .feedback-form-back-button,
