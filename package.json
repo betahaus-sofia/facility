@@ -11,30 +11,30 @@
     "deploy": "npm test && npm run build && firebase deploy"
   },
   "dependencies": {
+    "@types/lodash": "4.14.58",
+    "@types/mithril": "0.0.31",
     "bootstrap-sass": "3.3.7",
     "compote": "0.11.1",
     "lodash": "4.17.4",
     "mithril": "1.0.1",
     "redux": "3.6.0",
-    "timeago.js": "2.0.5"
+    "timeago.js": "betahaus-sofia/timeago.js"
   },
   "devDependencies": {
     "@types/jest": "19.2.2",
-    "@types/lodash": "4.14.55",
-    "@types/mithril": "0.0.31",
     "css-loader": "0.27.3",
     "file-loader": "0.10.1",
     "firebase-tools": "3.5.0",
     "html-webpack-plugin": "2.28.0",
     "jest": "19.0.2",
-    "node-sass": "4.5.0",
+    "node-sass": "4.5.1",
     "sass-loader": "6.0.3",
-    "style-loader": "0.14.1",
-    "ts-jest": "19.0.2",
-    "ts-loader": "2.0.2",
+    "style-loader": "0.16.0",
+    "ts-jest": "19.0.4",
+    "ts-loader": "2.0.3",
     "typescript": "2.2.1",
     "var": "0.2.0",
-    "webpack": "2.2.1",
+    "webpack": "2.3.2",
     "webpack-dev-server": "2.4.2"
   },
   "greenkeeper": {

@@ -1,7 +1,7 @@
 import './style.scss';
 
 import { div, img, h4 } from 'compote/html';
-const timeago = require('timeago.js');
+import timeago from 'timeago.js';
 
 import { Clock } from '../clock';
 import { Room } from '../room';
@@ -14,7 +14,7 @@ export const SupplyRequestedDate = (requested: Date) => (
   }, [
     Clock(requested),
     // TODO: Cache instance & automatically update `timeago`
-    new timeago().format(requested)
+    timeago().format(requested)
   ])
 );
 
