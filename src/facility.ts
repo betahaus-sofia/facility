@@ -6,7 +6,7 @@ import { Compote } from 'compote/html';
 import throttle = require('lodash/throttle');
 
 import { getRooms } from './room';
-import store from './store';
+import { store } from './store';
 
 import { ShowFeedbackFormButton, FeedbackForm } from './feedback';
 import { RoomList } from './room-list';

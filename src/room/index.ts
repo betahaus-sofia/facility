@@ -1,6 +1,6 @@
-import Actions from '../actions';
+import { Actions } from '../actions';
 import Model from '../model';
-import store from '../store';
+import { store } from '../store';
 import { unsubscribeFromSupplies, getSupplies } from '../supply';
 
 export class Room extends Model<Room> {

@@ -3,8 +3,8 @@ import './style.scss';
 import { ComponentNode, iframe, div, svg, path } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
-import Actions from '../actions';
-import store from '../store';
+import { Actions } from '../actions';
+import { store } from '../store';
 
 export const FeedbackForm = (src: string) => (
   div({

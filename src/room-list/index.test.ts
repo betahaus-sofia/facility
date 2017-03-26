@@ -2,7 +2,7 @@ import 'jest';
 
 jest.mock('compote/html', (value: any) => value);
 
-import store from '../store';
+import { store } from '../store';
 import { isSelected } from './index';
 
 describe(`without selected room`, () => {

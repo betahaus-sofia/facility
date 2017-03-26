@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-import Actions from './actions';
+import { Actions } from './actions';
 import { logger } from './logger';
 import { Room } from './room';
 import { Supply } from './supply';
@@ -13,7 +13,7 @@ export type FacilityState = {
 };
 
 const facility = combineReducers<FacilityState>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm });
-export default createStore(
+export const store = createStore(
   facility,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );

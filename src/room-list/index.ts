@@ -4,7 +4,7 @@ import { div } from 'compote/html';
 
 import { flex } from '../flex';
 import { Room, selectRoom } from '../room';
-import store from '../store';
+import { store } from '../store';
 import { groupBy, keys } from '../utils';
 
 export const isSelected = (room: Room): boolean => {
