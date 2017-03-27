@@ -1,7 +1,7 @@
 import { Store } from 'redux';
-import { FacilityState, Action } from '../store';
+import { State, Action } from '../store';
 
-export function logger(store: Store<FacilityState>) {
+export function logger(store: Store<State>) {
   return (next: (action: Action) => any) => {
     return (action: Action) => {
       console.log('dispatching', action); // tslint:disable-line no-console

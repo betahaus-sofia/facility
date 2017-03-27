@@ -9,7 +9,7 @@ const packageJson = require('./package.json');
 module.exports = {
   context: process.cwd(),
   entry: {
-    facility: './src/facility.ts',
+    app: './src/app.ts',
     'service-worker': './src/service-worker.ts'
   },
   output: {

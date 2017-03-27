@@ -5,16 +5,16 @@ import { logger } from './logger';
 import { Room } from './room';
 import { Supply } from './supply';
 
-export type FacilityState = {
+export type State = {
   rooms: Room[]
   selectedRoom: Room
   selectedRoomSupplies: Supply[],
   showFeedbackForm: boolean
 };
 
-const facility = combineReducers<FacilityState>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm });
+const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm });
 export const store = createStore(
-  facility,
+  reducers,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );
 
