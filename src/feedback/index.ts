@@ -8,17 +8,24 @@ import { store } from '../store';
 
 export const FeedbackForm = (src: string) => (
   div({
-    className: 'feedback-form fade-in-animation',
-    onbeforeremove: ({ dom }: ComponentNode) => {
+    className: 'feedback-form fixed stretch fade-in-animation',
+    oninit() {
+      document.body.classList.add('overflow-hidden');
+    },
+    onbeforeremove({ dom }: ComponentNode) {
       dom.classList.add('fade-out-animation');
       // TODO: Type
-      return new (<any>window).Promise((resolve: any) => setTimeout(resolve, 0.95 * getAnimationDuration(dom) * 1e3));
+      return new (<any>window).Promise((resolve: any) => {
+        setTimeout(resolve, 0.95 * getAnimationDuration(dom) * 1e3);
+      }).then(() => {
+        document.body.classList.remove('overflow-hidden');
+      });
     }
   }, [
     iframe({
       src,
       width: '100%',
-      height: '100%',
+      height: '1600px',
       style: {
         border: '0',
         frameborder: 0,

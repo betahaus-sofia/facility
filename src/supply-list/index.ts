@@ -20,7 +20,9 @@ export const SupplyRequestedDate = (requested: Date) => (
 );
 
 export const SupplyListItem = (room: Room) => (supply: Supply) => (
-  div({ key: supply.id, className: 'supply-list-item fade-in-animation', style: flex(1) }, [
+  // NOTE: `min-width` doesn't work correctly on iOS
+  // http://stackoverflow.com/questions/29986668/flex-wrap-not-working-as-expected-in-safari
+  div({ key: supply.id, className: 'supply-list-item fade-in-animation', style: flex('1 0 auto') }, [
     div({ className: 'supply-list-item-button' }, [
       div({ className: 'supply-list-item-container', onclick: () => requestSupply(room, supply) },
         img({ src: supply.imageUrl || 'logo.png' })

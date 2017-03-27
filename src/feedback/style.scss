@@ -1,15 +1,12 @@
 @import '../style/variables';
+@import '../style/mixins';
 
 .feedback-form {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  @include overflow(hidden, auto);
   background: $primary;
 
   iframe {
-    display: block; // iOS Chrome / Safari fix
+    display: block; // iOS
   }
 }
 
