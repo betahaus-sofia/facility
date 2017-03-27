@@ -16,7 +16,7 @@
     "bootstrap-sass": "3.3.7",
     "compote": "0.11.1",
     "lodash": "4.17.4",
-    "mithril": "1.0.1",
+    "mithril": "1.1.0",
     "redux": "3.6.0",
     "timeago.js": "betahaus-sofia/timeago.js"
   },
