@@ -5,20 +5,9 @@
 }
 
 .supply-list-item {
-  width: 25%;
+  min-width: 300px;
+  max-width: 400px;
   text-align: center;
-
-  @media (min-width: $md-min) and (max-width: $md-max) {
-    width: 33%;
-  }
-
-  @media (min-width: $sm-min) and (max-width: $sm-max) {
-    width: 50%;
-  }
-
-  @media (max-width: $xs-max) {
-    width: 100%;
-  }
 }
 
 .supply-list-item-button {
