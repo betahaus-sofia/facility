@@ -37,10 +37,10 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -150px;
-        margin-left: -150px;
+        margin-top: -<%= spinnerSize / 2 %>px;
+        margin-left: -<%= spinnerSize / 2 %>px;
 
-        transition: all 0.3s cubic-bezier(0.33, -0.69, .25, 1);
+        transition: all 0.33s cubic-bezier(0.33, -0.69, .25, 1);
       }
 
       #spinner-view.loaded {
@@ -56,101 +56,40 @@
         height: <%= spinnerSize %>px;
       }
 
-      .spinner .from-center,
-      .spinner .from-top,
-      .spinner .from-left {
+      .spinner .logo {
         stroke: white;
-      }
-
-      .spinner .from-center {
-        stroke-width: 5;
-        fill: <%= primary %>;
-
-        <%= prefixed('animation', `
-        animation: expand-from-center 2s linear infinite;
-        `) %>
-      }
-
-      <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
-      .spinner .from-center:nth-of-type(<%= index %>) {
-        <%= prefixed('animation', `
-        animation-delay: ${round(0.2 * index)}s;
-        `) %>
-      }
-      <% } %>
-
-      <% prefixes.keyframes.forEach((prefix) => { %>
-      @<%= prefix %>keyframes expand-from-center {
-        0% {
-          opacity: 0;
-          r: 40;
-        }
-        20%, 40% {
-          opacity: 0.2;
-        }
-        30% {
-          opacity: 0.4;
-        }
-        100% {
-          opacity: 0;
-          r: 150;
-        }
-      }
-      <% }); %>
-
-      .spinner .from-top,
-      .spinner .from-left {
-        stroke-width: 10;
         stroke-linejoin: round;
-        fill: none;
-      }
-
-      .spinner .from-top {
-        <%= prefixed('animation', `
-        animation: assemble-from-top 0.6s cubic-bezier(0, 0, 0, 1);
-        `) %>
+        stroke-linecap: round;
+        fill: white;
+        font-style: italic;
+        font-weight: bold;
 
         <%= prefixed('animation', `
-        animation-fill-mode: forwards;
+        animation: fadeInStroke 0.5s ease-in, fadeInOutFill 1.5s ease-in infinite;
         `) %>
       }
 
       <% prefixes.keyframes.forEach((prefix) => { %>
-      @<%= prefix %>keyframes assemble-from-top {
+      @<%= prefix %>keyframes fadeInStroke {
         0% {
-          opacity: 0;
-          stroke-dasharray: 0% 100%;
-          stroke-dashoffset: 0%;
+          stroke-opacity: 0;
         }
         100% {
-          opacity: 1;
-          stroke-dasharray: 30% 100%;
-          stroke-dashoffset: -64%;
+          stroke-opacity: 1;
         }
       }
       <% }); %>
 
-      .spinner .from-left {
-        <%= prefixed('animation', `
-        animation: assemble-from-left 0.6s cubic-bezier(0, 0, 0, 1);
-        `) %>
-
-        <%= prefixed('animation', `
-        animation-fill-mode: forwards;
-        `) %>
-      }
-
       <% prefixes.keyframes.forEach((prefix) => { %>
-      @<%= prefix %>keyframes assemble-from-left {
+      @<%= prefix %>keyframes fadeInOutFill {
         0% {
-          opacity: 0;
-          stroke-dasharray: 0% 100%;
-          stroke-dashoffset: 0%;
+          fill-opacity: 0;
+        }
+        50% {
+          fill-opacity: 1;
         }
         100% {
-          opacity: 1;
-          stroke-dasharray: 30% 100%;
-          stroke-dashoffset: -108.25%;
+          fill-opacity: 0;
         }
       }
       <% }); %>
@@ -162,31 +101,10 @@
 
     <% // Spinner displayed until the application loads %>
     <div id="spinner-view">
-      <svg class="spinner" viewBox="0, 0, <%= spinnerSize %>, <%= spinnerSize %>">
-        <% for (let index = 1; index <= numberOfConcentricCircles; index++) { %>
-        <circle class="from-center" cx="<%= spinnerSize / 2 %>" cy="<%= spinnerSize / 2 %>"></circle>
-        <% } %>
-
-        <path
-          class="from-top"
-          d="
-            M300,10
-            C300,10 160,30 150,110
-            L140,180
-          "
-        />
-
-        <path
-          class="from-left"
-          d="
-            M-150,300
-            C-150,300 0,140 140,176
-            c0,0 20,5 25,-15
-            c0,0 10,-40 -20,-15
-          "
-        />
-
-        Loading...
+      <svg class="spinner" width="<%= spinnerSize %>" height="<%= spinnerSize %>" viewBox="0, 0, <%= spinnerSize %>, <%= spinnerSize %>">
+        <text class="logo" x="<%= spinnerSize / 2 - 18 %>" y="<%= spinnerSize / 2 + 20 %>" font-size="72" font-family="Times New Roman">
+          b
+        </text>
       </svg>
     </div>
 
