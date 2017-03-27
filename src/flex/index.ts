@@ -1,5 +1,3 @@
-import './style.scss';
-
 export const flex = (value: number | string) => {
   value = (value == null ? '' : value).toString();
 
