@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@types/lodash": "4.14.58",
-    "@types/mithril": "0.0.31",
+    "@types/mithril": "1.1.0",
     "bootstrap-sass": "3.3.7",
     "compote": "0.11.1",
     "lodash": "4.17.4",
