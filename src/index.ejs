@@ -14,7 +14,6 @@
     <link rel="shortcut icon" href="logo.png">
     <link rel="manifest" href="manifest.json">
 
-    <% // Spinner %>
     <style>
       <%
         const primary = '#4285f4';
@@ -25,8 +24,6 @@
           transform: ['-webkit-', '-ms-', '']
         };
         const prefixed = (type, value, separator) => prefixes[type].map((prefix) => prefix + value.trim()).join(separator || ' ');
-        const round = (value) => Math.round(value * 100) / 100;
-        const numberOfConcentricCircles = 5;
       %>
 
       body {
@@ -51,12 +48,12 @@
         `) %>
       }
 
-      .spinner {
+      #spinner {
         width: <%= spinnerSize %>px;
         height: <%= spinnerSize %>px;
       }
 
-      .spinner .logo {
+      #logo {
         stroke: white;
         stroke-linejoin: round;
         stroke-linecap: round;
@@ -71,26 +68,16 @@
 
       <% prefixes.keyframes.forEach((prefix) => { %>
       @<%= prefix %>keyframes fadeInStroke {
-        0% {
-          stroke-opacity: 0;
-        }
-        100% {
-          stroke-opacity: 1;
-        }
+        0% { stroke-opacity: 0; }
+        100% { stroke-opacity: 1; }
       }
       <% }); %>
 
       <% prefixes.keyframes.forEach((prefix) => { %>
       @<%= prefix %>keyframes fadeInOutFill {
-        0% {
-          fill-opacity: 0;
-        }
-        50% {
-          fill-opacity: 1;
-        }
-        100% {
-          fill-opacity: 0;
-        }
+        0% { fill-opacity: 0; }
+        50% { fill-opacity: 1; }
+        100% { fill-opacity: 0; }
       }
       <% }); %>
     </style>
@@ -101,14 +88,14 @@
 
     <% // Spinner displayed until the application loads %>
     <div id="spinner-view">
-      <svg class="spinner" width="<%= spinnerSize %>" height="<%= spinnerSize %>" viewBox="0, 0, <%= spinnerSize %>, <%= spinnerSize %>">
-        <text class="logo" x="<%= spinnerSize / 2 - 18 %>" y="<%= spinnerSize / 2 + 20 %>" font-size="72" font-family="Times New Roman">
+      <svg id="spinner" viewBox="0, 0, 100, 100">
+        <text id="logo" x="32" y="70" font-size="72" font-family="Times New Roman">
           b
         </text>
       </svg>
     </div>
 
     <% // Firebase %>
-    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
   </body>
 </html>
