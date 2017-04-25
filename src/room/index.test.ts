@@ -2,8 +2,8 @@ import 'jest';
 
 import Model from '../model';
 import { Room, getRooms, addRoom, selectRoom } from './index';
-import Actions from '../actions';
-import store from '../store';
+import { Actions } from '../actions';
+import { store } from '../store';
 
 describe(`Room`, () => {
   it(`should extend Model class`, () => {

@@ -1,34 +1,34 @@
 @import '../style/variables';
+@import '../style/mixins';
 
 .feedback-form {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  @include overflow(hidden, auto);
   background: $primary;
 
   iframe {
-    display: block; // iOS Chrome / Safari fix
+    display: block; // iOS
   }
 }
 
 .feedback-form-back-button,
 .show-feedback-form-button {
   transition: background $animation-duration $animation-easing;
-  border-radius: 50%;
   cursor: pointer;
   fill: $neutral-light;
 }
 
 .feedback-form-back-button {
+  $size: 50px;
+
   position: absolute;
   top: 12.5px;
   left: 15px;
 
+  border-radius: $size / 2;
   background: $primary;
-  width: 50px;
-  height: 50px;
+  padding: 0 18px 0 6px;
+  height: $size;
+  font-size: 1.25em;
 
   &:hover {
     background: $primary-dark;
@@ -39,6 +39,7 @@
   position: fixed;
   right: 20px;
   bottom: 20px;
+  border-radius: 50%;
 
   box-shadow: 0 0 5px 0 $danger-dark;
   background: $danger;

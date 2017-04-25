@@ -1,9 +1,9 @@
 import './style.scss';
 
 import { div, img, h4 } from 'compote/html';
-import timeago from 'timeago.js';
+import { flex } from 'compote/components/flex';
+import { Timeago } from 'compote/components/timeago';
 
-import { Clock } from '../clock';
 import { Room } from '../room';
 import { Supply, requestSupply } from '../supply';
 
@@ -11,15 +11,13 @@ export const SupplyRequestedDate = (requested: Date) => (
   div({
     className: 'flex-row justify-content-center align-items-center',
     title: `Last requested on ${requested.toLocaleString()}`
-  }, [
-    Clock(requested),
-    // TODO: Cache instance & automatically update `timeago`
-    timeago().format(requested)
-  ])
+  }, Timeago(requested))
 );
 
 export const SupplyListItem = (room: Room) => (supply: Supply) => (
-  div({ key: supply.id, className: 'supply-list-item fade-in-animation' }, [
+  // NOTE: `min-width` doesn't work correctly on iOS
+  // http://stackoverflow.com/questions/29986668/flex-wrap-not-working-as-expected-in-safari
+  div({ key: supply.id, className: 'supply-list-item fade-in-animation', style: flex('1 0 auto') }, [
     div({ className: 'supply-list-item-button' }, [
       div({ className: 'supply-list-item-container', onclick: () => requestSupply(room, supply) },
         img({ src: supply.imageUrl || 'logo.png' })
@@ -31,7 +29,7 @@ export const SupplyListItem = (room: Room) => (supply: Supply) => (
 );
 
 export const SupplyList = (room: Room, supplies: Supply[]) => (
-  div({ className: 'supply-list flex-row flex-wrap justify-content-start align-items-stretch' },
+  div({ className: 'supply-list flex-row flex-wrap justify-content-stretch align-items-stretch' },
     supplies.map(SupplyListItem(room))
   )
 );

@@ -1,7 +1,7 @@
 import 'jest';
 
 import { logger } from './index';
-import store from '../store';
+import { store } from '../store';
 
 const result = { a: 0 };
 const action = { b: 1 };

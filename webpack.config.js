@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 const path = require('path');
 const env = require('var');
 const webpack = require('webpack');
@@ -8,7 +9,7 @@ const packageJson = require('./package.json');
 module.exports = {
   context: process.cwd(),
   entry: {
-    facility: './src/facility.ts',
+    app: './src/app.ts',
     'service-worker': './src/service-worker.ts'
   },
   output: {
@@ -31,6 +32,7 @@ module.exports = {
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
+          { loader: 'postcss-loader' },
           { loader: 'sass-loader' }
         ]
       },
@@ -46,6 +48,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.VERSION': JSON.stringify(packageJson.version),
       'process.env': JSON.stringify(env)
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: () => [
+          autoprefixer({ browsers: ['last 3 versions', '> 1%'] })
+        ]
+      }
     }),
     new HtmlWebpackPlugin({ template: './src/index.ejs' })
   ]

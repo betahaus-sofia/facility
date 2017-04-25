@@ -20,8 +20,6 @@
 }
 
 .room-list-item {
-  @include user-select(none);
-
   transition: border-color $animation-duration $animation-easing,
               background $animation-duration $animation-easing,
               color $animation-duration $animation-easing;
@@ -35,6 +33,7 @@
   padding: 10px;
   text-transform: capitalize;
   font-size: 1.1em;
+  user-select: none;
 
   &:hover,
   &.selected {

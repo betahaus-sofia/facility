@@ -1,7 +1,7 @@
-import Actions from '../actions';
+import { Actions } from '../actions';
 import Model from '../model';
 import { Room } from '../room';
-import store from '../store';
+import { store } from '../store';
 
 export class Supply extends Model<Supply> {
   id?: string;

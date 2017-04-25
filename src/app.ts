@@ -6,9 +6,10 @@ import { Compote } from 'compote/html';
 import throttle = require('lodash/throttle');
 
 import { getRooms } from './room';
-import store from './store';
+import { store } from './store';
 
 import { ShowFeedbackFormButton, FeedbackForm } from './feedback';
+import { initializeFirebase } from './firebase';
 import { RoomList } from './room-list';
 import { SupplyList } from './supply-list';
 
@@ -22,16 +23,6 @@ function initialize() {
   registerServiceWorker();
   subscribeToStore();
   getRooms();
-}
-
-function initializeFirebase() {
-  firebase.initializeApp({
-    apiKey: 'AIzaSyBJs9umNrD6Bg3iuyTqVVbOEMv7Xgsk0uY',
-    authDomain: 'betahaus-sofia-office-manager.firebaseapp.com',
-    databaseURL: 'https://betahaus-sofia-office-manager.firebaseio.com',
-    storageBucket: 'betahaus-sofia-office-manager.appspot.com',
-    messagingSenderId: '54350089959'
-  });
 }
 
 function registerServiceWorker() {
