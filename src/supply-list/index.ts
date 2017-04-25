@@ -1,10 +1,9 @@
 import './style.scss';
 
 import { div, img, h4 } from 'compote/html';
-import timeago from 'timeago.js';
+import { flex } from 'compote/components/flex';
+import { Timeago } from 'compote/components/timeago';
 
-import { Clock } from '../clock';
-import { flex } from '../flex';
 import { Room } from '../room';
 import { Supply, requestSupply } from '../supply';
 
@@ -12,11 +11,7 @@ export const SupplyRequestedDate = (requested: Date) => (
   div({
     className: 'flex-row justify-content-center align-items-center',
     title: `Last requested on ${requested.toLocaleString()}`
-  }, [
-    Clock(requested),
-    // TODO: Cache instance & automatically update `timeago`
-    timeago().format(requested)
-  ])
+  }, Timeago(requested))
 );
 
 export const SupplyListItem = (room: Room) => (supply: Supply) => (

@@ -2,7 +2,7 @@ import './style.scss';
 
 import { div } from 'compote/html';
 
-import { flex } from '../flex';
+import { flex } from 'compote/components/flex';
 import { Room, selectRoom } from '../room';
 import { store } from '../store';
 import { groupBy, keys } from '../utils';
