@@ -1,5 +1,4 @@
 @import '../style/variables';
-@import '../style/mixins';
 
 .room-list {
   margin-bottom: 30px;
@@ -20,9 +19,7 @@
 }
 
 .room-list-item {
-  transition: border-color $animation-duration $animation-easing,
-              background $animation-duration $animation-easing,
-              color $animation-duration $animation-easing;
+  transition: border-color $animation-duration $animation-easing, background $animation-duration $animation-easing, color $animation-duration $animation-easing;
 
   margin-right: 3px;
   border: 3px solid transparent;

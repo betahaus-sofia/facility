@@ -2,27 +2,19 @@ import './assets/logo.png';
 import './manifest.json';
 import './style.scss';
 
-import { Compote } from 'compote/html';
-import throttle = require('lodash/throttle');
+import { redraw } from 'mithril';
 
-import { getRooms } from './room';
-import { store } from './store';
-
-import { ShowFeedbackFormButton, FeedbackForm } from './feedback';
 import { initializeFirebase } from './firebase';
-import { RoomList } from './room-list';
-import { SupplyList } from './supply-list';
-
-const container = document.querySelector('#container');
-const spinnerView = document.querySelector('#spinner-view');
+import { initializeRouter } from './router';
+import { store } from './store';
 
 initialize();
 
 function initialize() {
   initializeFirebase();
   registerServiceWorker();
+  initializeRouter();
   subscribeToStore();
-  getRooms();
 }
 
 function registerServiceWorker() {
@@ -32,20 +24,15 @@ function registerServiceWorker() {
 }
 
 function subscribeToStore() {
-  store.subscribe(throttle(render, 10));
+  store.subscribe(redraw);
 
-  const unsubscribeSpinnerView = store.subscribe(() => {
+  const unsubscribeContainers = store.subscribe(() => {
+    const container = document.querySelector('#container');
+    container.classList.add('loaded');
+
+    const spinnerView = document.querySelector('#spinner-view');
     spinnerView.classList.add('loaded');
-    unsubscribeSpinnerView();
-  });
-}
 
-function render() {
-  const { rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm } = store.getState();
-  Compote.render(container, [
-    RoomList(rooms),
-    SupplyList(selectedRoom, selectedRoomSupplies),
-    ShowFeedbackFormButton(),
-    showFeedbackForm ? FeedbackForm(process.env.FEEDBACK_FORM_URL) : null
-  ]);
+    unsubscribeContainers();
+  });
 }

@@ -11,6 +11,7 @@ body {
   color: $neutral-light;
 }
 
+// Headings
 h1 { font-size: $h1-font-size; }
 h2 { font-size: $h2-font-size; }
 h3 { font-size: $h3-font-size; }
@@ -18,6 +19,7 @@ h4 { font-size: $h4-font-size; }
 h5 { font-size: $h5-font-size; }
 h6 { font-size: $h6-font-size; }
 
+// Positioning
 .relative {
   position: relative;
 }
@@ -37,6 +39,22 @@ h6 { font-size: $h6-font-size; }
   left: 0;
 }
 
+// Background colors
+@include bg-variant('.bg-neutral-light', $neutral-light);
+
+@include bg-variant('.bg-primary', $primary);
+@include bg-variant('.bg-primary-dark', $primary-dark);
+@include bg-variant('.bg-primary-light', $primary-light);
+
+@include bg-variant('.bg-danger', $danger);
+@include bg-variant('.bg-danger-dark', $danger-dark);
+@include bg-variant('.bg-danger-light', $danger-light);
+
+@include bg-variant('.bg-success', $success);
+@include bg-variant('.bg-success-dark', $success-dark);
+@include bg-variant('.bg-success-light', $success-light);
+
+// Overflow
 .overflow-hidden {
   @include overflow(hidden, hidden);
 }

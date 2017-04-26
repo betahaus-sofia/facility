@@ -5,9 +5,15 @@ $neutral-light: #ffffff;
 
 $primary: #4285f4;
 $primary-dark: darken($primary, 10%);
+$primary-light: lighten($primary, 5%);
 
 $danger: #db4437;
 $danger-dark: darken($danger, 10%);
+$danger-light: lighten($danger, 5%);
+
+$success: #2ecc71;
+$success-dark: darken($success, 10%);
+$success-light: lighten($success, 5%);
 
 // Device sizes
 $xxl-min: 2000px;
