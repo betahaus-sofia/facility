@@ -48,8 +48,13 @@ export function requestSupply(room: Room, supply: Supply) {
   });
 
   supplyRequested(supply, Date.now());
+  showRequestedSupply(supply);
 }
 
 export function supplyRequested(supply: Supply, requested: number) {
   store.dispatch({ type: Actions.SUPPLY_REQUESTED, supply, requested });
+}
+
+export function showRequestedSupply(supply: Supply) {
+  store.dispatch({ type: Actions.SHOW_REQUESTED_SUPPLY, supply });
 }

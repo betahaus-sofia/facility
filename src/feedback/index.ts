@@ -9,13 +9,12 @@ import { store } from '../store';
 export const FeedbackForm = (src: string) => (
   div({
     className: 'feedback-form fixed stretch fade-in-animation',
-    oninit() {
+    oncreate() {
       document.body.classList.add('overflow-hidden');
     },
-    onbeforeremove({ dom }: ComponentNode) {
+    onbeforeremove({ dom }) {
       dom.classList.add('fade-out-animation');
-      // TODO: Type
-      return new (<any>window).Promise((resolve: any) => {
+      return new Promise((resolve) => {
         setTimeout(resolve, 0.95 * getAnimationDuration(dom) * 1e3);
       }).then(() => {
         document.body.classList.remove('overflow-hidden');

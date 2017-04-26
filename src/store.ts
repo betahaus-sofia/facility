@@ -9,10 +9,11 @@ export type State = {
   rooms: Room[]
   selectedRoom: Room
   selectedRoomSupplies: Supply[],
-  showFeedbackForm: boolean
+  showFeedbackForm: boolean,
+  requestedSupply: Supply
 };
 
-const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm });
+const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply });
 export const store = createStore(
   reducers,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
@@ -57,10 +58,21 @@ export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}):
   }
 }
 
-export function showFeedbackForm(state = false, action: Action = {}): Room {
+export function showFeedbackForm(state = false, action: Action = {}): boolean {
   switch (action.type) {
   case Actions.SHOW_FEEDBACK_FORM:
     return action.show;
+  default:
+    return state;
+  }
+}
+
+export function requestedSupply(state: Supply = null, action: Action = {}): Supply {
+  switch (action.type) {
+  case Actions.SHOW_REQUESTED_SUPPLY:
+    return action.supply;
+  case Actions.HIDE_REQUESTED_SUPPLY:
+    return null;
   default:
     return state;
   }

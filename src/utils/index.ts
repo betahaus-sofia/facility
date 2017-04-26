@@ -23,6 +23,10 @@ export function keys<T extends {}>(obj: T) {
   return Object.keys(obj);
 }
 
+export function last<T>(array: T[]): T {
+  return array ? array[array.length - 1] : undefined;
+}
+
 // const uniqueIDs: Record<string, number> = {};
 // export function uniqueId(prefix = '') {
 //   if (uniqueIDs[prefix] == null) {

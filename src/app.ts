@@ -27,8 +27,12 @@ function subscribeToStore() {
   store.subscribe(redraw);
 
   const unsubscribeContainers = store.subscribe(() => {
+    const container = document.querySelector('#container');
+    container.classList.add('loaded');
+
     const spinnerView = document.querySelector('#spinner-view');
     spinnerView.classList.add('loaded');
+
     unsubscribeContainers();
   });
 }

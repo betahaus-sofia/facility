@@ -11,6 +11,7 @@
     "deploy": "npm test && npm run build && firebase deploy"
   },
   "dependencies": {
+    "@types/es6-promise": "0.0.32",
     "@types/mithril": "1.1.1",
     "bootstrap-sass": "3.3.7",
     "compote": "0.12.1",
