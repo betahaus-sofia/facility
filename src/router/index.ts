@@ -7,7 +7,7 @@ import { ShowFeedbackFormButton, FeedbackForm } from '../feedback';
 import { RoomList } from '../room-list';
 import { SupplyList } from '../supply-list';
 
-const HomePage = () => {
+export const HomePage = () => {
   const { rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm } = store.getState();
   return [
     RoomList(rooms),

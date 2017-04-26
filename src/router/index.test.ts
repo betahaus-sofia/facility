@@ -9,12 +9,16 @@ const route: MockRoute = <any>jest.fn();
 route.prefix = jest.fn();
 
 jest.mock('mithril', () => ({ route }));
-jest.mock('compote/html', (value: any) => value);
+jest.mock('compote/html', (value: any) => ({
+  div: jest.fn(),
+  path: jest.fn(),
+  svg: jest.fn()
+}));
 jest.mock('compote/css', (value: any) => value);
 jest.mock('compote/components/flex', (value: any) => value);
 jest.mock('compote/components/timeago', (value: any) => value);
 
-import { initializeRouter } from './index';
+import { initializeRouter, HomePage } from './index';
 
 describe(`initializeRouter`, () => {
   beforeEach(() => {
@@ -32,5 +36,11 @@ describe(`initializeRouter`, () => {
     expect(lastRouteCall[2]['/']).toBeTruthy();
     expect(typeof lastRouteCall[2]['/'].onmatch).toEqual('function');
     expect(typeof lastRouteCall[2]['/'].render).toEqual('function');
+  });
+});
+
+describe(`HomePage`, () => {
+  it(`should return an array`, () => {
+    expect(HomePage()).toHaveProperty('length');
   });
 });
