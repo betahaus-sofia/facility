@@ -31,7 +31,20 @@
   height: $size;
 
   &:hover {
-    box-shadow: inset 0 0 0 $shadow-size $primary-dark;
+    box-shadow: inset 0 0 0 $shadow-size $primary-dark, inset 0 0 0 $size + 50 $primary;
+
+    &::after {
+      $after-font-size: 24px;
+
+      position: relative;
+      top: -($size + $after-font-size) / 2;
+      font-size: $after-font-size;
+      content: 'Request';
+    }
+
+    & > .supply-list-item-image {
+      opacity: 0;
+    }
   }
 }
 
