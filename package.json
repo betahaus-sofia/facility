@@ -14,7 +14,7 @@
     "@types/es6-promise": "0.0.32",
     "@types/mithril": "1.1.1",
     "bootstrap-sass": "3.3.7",
-    "compote": "0.13.0",
+    "compote": "0.14.0",
     "mithril": "1.1.1",
     "redux": "3.6.0"
   },
