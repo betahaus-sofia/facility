@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@betahaus-sofia/facility",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "license": "MIT",
   "scripts": {
     "build": "webpack -p --display-modules",
@@ -14,7 +14,7 @@
     "@types/es6-promise": "0.0.32",
     "@types/mithril": "1.1.1",
     "bootstrap-sass": "3.3.7",
-    "compote": "0.12.1",
+    "compote": "0.14.0",
     "mithril": "1.1.1",
     "redux": "3.6.0"
   },
