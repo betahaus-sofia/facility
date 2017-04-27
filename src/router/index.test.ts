@@ -1,19 +1,19 @@
 import 'jest';
 
 import { Route } from 'mithril';
-import { last } from 'compote/components/utils';
-
-interface MockRoute extends jest.Mock<Route>, Route {
-}
-
+interface MockRoute extends jest.Mock<Route>, Route {}
 const route: MockRoute = <any>jest.fn();
 route.prefix = jest.fn();
 
 jest.mock('mithril', () => ({ route }));
-jest.mock('compote/html', (value: any) => ({ div: jest.fn(), path: jest.fn(), svg: jest.fn() }));
-jest.mock('compote/css', (value: any) => value);
-jest.mock('compote/components/flex', (value: any) => value);
-jest.mock('compote/components/timeago', (value: any) => value);
+jest.mock('compote/html', () => ({ div: jest.fn(), path: jest.fn(), svg: jest.fn() }));
+jest.mock('compote/css', jest.fn());
+jest.mock('compote/components/clock', () => require('compote/components/clock/index.common.js'));
+jest.mock('compote/components/flex', () => require('compote/components/flex/index.common.js'));
+jest.mock('compote/components/timeago', () => require('compote/components/timeago/index.common.js'));
+jest.mock('compote/components/utils', () => require('compote/components/utils/index.common.js'));
+
+import { last } from 'compote/components/utils';
 
 import { initializeRouter, HomePage } from './index';
 import { getRooms } from '../room';

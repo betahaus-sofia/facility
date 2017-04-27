@@ -7,6 +7,7 @@ import { groupBy, keys } from 'compote/components/utils';
 import { Room, selectRoom } from '../room';
 import { store } from '../store';
 
+// NOTE: This function reaches into the store and is thus not stateless!
 export const isSelected = (room: Room): boolean => {
   const { selectedRoom } = store.getState();
   return selectedRoom != null && selectedRoom.id === room.id;

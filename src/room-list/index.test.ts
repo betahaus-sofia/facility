@@ -1,7 +1,8 @@
 import 'jest';
 
-jest.mock('compote/html', (value: any) => value);
-jest.mock('compote/components/flex', (value: any) => value);
+jest.mock('compote/html', jest.fn());
+jest.mock('compote/components/flex', () => require('compote/components/flex/index.common.js'));
+jest.mock('compote/components/utils', () => require('compote/components/utils/index.common.js'));
 
 import { isSelected } from './index';
 import { store } from '../store';
