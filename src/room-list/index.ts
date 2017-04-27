@@ -2,10 +2,10 @@ import './style.scss';
 
 import { div } from 'compote/html';
 import { flex } from 'compote/components/flex';
+import { groupBy, keys } from 'compote/components/utils';
 
 import { Room, selectRoom } from '../room';
 import { store } from '../store';
-import { groupBy, keys } from '../utils';
 
 export const isSelected = (room: Room): boolean => {
   const { selectedRoom } = store.getState();

@@ -1,7 +1,7 @@
 import 'jest';
 
 import { Route } from 'mithril';
-import { last } from '../utils';
+import { last } from 'compote/components/utils';
 
 interface MockRoute extends jest.Mock<Route>, Route {
 }
