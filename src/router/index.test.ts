@@ -15,7 +15,8 @@ jest.mock('compote/components/utils', () => require('compote/components/utils/in
 
 import { last } from 'compote/components/utils';
 
-import { initializeRouter, HomePage } from './index';
+import { initializeRouter } from './index';
+import { HomePage } from '../home-page';
 import { getRooms } from '../room';
 
 describe(`initializeRouter`, () => {
@@ -37,11 +38,5 @@ describe(`initializeRouter`, () => {
 
   it(`should define home route`, () => {
     expect(last(route.mock.calls)[2]['/']).toMatchObject({ onmatch: getRooms, render: HomePage });
-  });
-});
-
-describe(`HomePage`, () => {
-  it(`should return an array`, () => {
-    expect(HomePage()).toHaveProperty('length');
   });
 });
