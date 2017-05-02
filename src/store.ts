@@ -8,11 +8,10 @@ import { Supply } from './supply';
 export type State = {
   rooms: Room[]
   selectedRoom: Room
-  selectedRoomSupplies: Supply[],
-  requestedSupply: Supply
+  selectedRoomSupplies: Supply[]
 };
 
-const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, requestedSupply });
+const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies });
 export const store = createStore(
   reducers,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
@@ -52,17 +51,6 @@ export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}):
     return state.map((supply) => (
       supply !== requestedSupply ? supply : new Supply(supply, { requested: action.requested })
     ));
-  default:
-    return state;
-  }
-}
-
-export function requestedSupply(state: Supply = null, action: Action = {}): Supply {
-  switch (action.type) {
-  case Actions.SHOW_REQUESTED_SUPPLY:
-    return action.supply;
-  case Actions.HIDE_REQUESTED_SUPPLY:
-    return null;
   default:
     return state;
   }

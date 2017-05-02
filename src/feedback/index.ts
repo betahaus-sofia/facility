@@ -4,7 +4,7 @@ import { ComponentNode, iframe, div, svg, path } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
 import { Actions } from '../actions';
-import { toggleFeedbackForm } from '../home-page';
+import { setShowFeedbackForm } from '../home-page';
 import { store } from '../store';
 
 export const FeedbackForm = (src: string) => (
@@ -38,7 +38,7 @@ export const FeedbackForm = (src: string) => (
 
     div({
       className: 'feedback-form-back-button flex-row justify-content-center align-items-center',
-      onclick: () => toggleFeedbackForm(false)
+      onclick: () => setShowFeedbackForm(false)
     }, [
       svg({ width: 36, height: 24, viewBox: '0 0 24 24' },
         path(<any>{ // TODO: Type
@@ -54,7 +54,7 @@ export const ShowFeedbackFormButton = () => (
   div({
     className: 'show-feedback-form-button flex-row justify-content-center align-items-center',
     title: 'Feedback',
-    onclick: () => toggleFeedbackForm(true)
+    onclick: () => setShowFeedbackForm(true)
   },
     svg({ width: 24, height: 24, viewBox: '0 0 24 24' },
       path(<any>{ // TODO: Type

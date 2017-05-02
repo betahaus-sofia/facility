@@ -1,7 +1,9 @@
+import { redraw } from 'mithril';
 import { div, h1 } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
 import { Actions } from '../actions';
+import { setRequestedSupply } from '../home-page';
 import { store } from '../store';
 import { Supply } from '../supply';
 
@@ -11,7 +13,10 @@ export const RequestedSupply = (supply: Supply) => (
     oncreate({ dom }) {
       dom.classList.add('fade-in-animation');
       dom.children[0].classList.add('scale-in-animation');
-      setTimeout(() => store.dispatch({ type: Actions.HIDE_REQUESTED_SUPPLY }), 1e3);
+      setTimeout(() => {
+        setRequestedSupply(null);
+        redraw();
+      }, 1e3);
     },
     onbeforeremove({ dom }) {
       dom.classList.remove('fade-in-animation');
