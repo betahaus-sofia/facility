@@ -4,7 +4,7 @@ import { ComponentNode, iframe, div, svg, path } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
 import { Actions } from '../actions';
-import { setShowFeedbackForm } from '../home-page';
+import { setShowFeedbackForm } from '../home-page/data';
 import { store } from '../store';
 
 export const FeedbackForm = (src: string) => (

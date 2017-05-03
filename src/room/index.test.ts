@@ -1,7 +1,7 @@
 import 'jest';
 
-import Model from '../model';
 import { Room, getRooms, addRoom, selectRoom } from './index';
+import Model from '../model';
 import { Actions } from '../actions';
 import { store } from '../store';
 

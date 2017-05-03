@@ -3,7 +3,7 @@ import { div, h1 } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
 import { Actions } from '../actions';
-import { setRequestedSupply } from '../home-page';
+import { setRequestedSupply } from '../home-page/data';
 import { store } from '../store';
 import { Supply } from '../supply';
 

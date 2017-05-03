@@ -1,5 +1,5 @@
 import { Actions } from '../actions';
-import { setRequestedSupply } from '../home-page';
+import { setRequestedSupply } from '../home-page/data';
 import Model from '../model';
 import { Room } from '../room';
 import { store } from '../store';
