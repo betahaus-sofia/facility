@@ -16,7 +16,7 @@
     "bootstrap-sass": "3.3.7",
     "compote": "0.14.0",
     "mithril": "1.1.1",
-    "redux": "3.6.0"
+    "redux": "3.7.0"
   },
   "devDependencies": {
     "@types/jest": "19.2.2",
