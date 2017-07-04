@@ -8,7 +8,7 @@ import { Actions, store } from '../store';
 
 export const FeedbackForm = (src: string) => (
   div({
-    className: 'feedback-form fixed stretch fade-in-animation',
+    class: 'feedback-form fixed stretch fade-in-animation',
     oncreate() {
       document.body.classList.add('overflow-hidden');
     },
@@ -36,7 +36,7 @@ export const FeedbackForm = (src: string) => (
     ),
 
     div({
-      className: 'feedback-form-back-button flex-row justify-content-center align-items-center',
+      class: 'feedback-form-back-button flex-row justify-content-center align-items-center',
       onclick: () => setShowFeedbackForm(false)
     }, [
       svg(<any>{ width: 36, height: 24, viewBox: '0 0 24 24' }, [ // TODO: Type
@@ -51,7 +51,7 @@ export const FeedbackForm = (src: string) => (
 
 export const ShowFeedbackFormButton = () => (
   div({
-    className: 'show-feedback-form-button flex-row justify-content-center align-items-center',
+    class: 'show-feedback-form-button flex-row justify-content-center align-items-center',
     title: 'Feedback',
     onclick: () => setShowFeedbackForm(true)
   },

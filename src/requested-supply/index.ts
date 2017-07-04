@@ -8,7 +8,7 @@ import { Supply } from '../supply';
 
 export const RequestedSupply = (supply: Supply) => (
   div({
-    className: 'fixed stretch bg-success flex-row justify-content-center align-items-center',
+    class: 'fixed stretch bg-success flex-row justify-content-center align-items-center',
     oncreate({ dom }) {
       dom.classList.add('fade-in-animation');
       dom.children[0].classList.add('scale-in-animation');
@@ -32,6 +32,6 @@ export const RequestedSupply = (supply: Supply) => (
       });
     }
   },
-    h1(`${supply.name} requested!`)
+    h1({ class: 'text-center' }, `${supply.name} requested!`)
   )
 );
