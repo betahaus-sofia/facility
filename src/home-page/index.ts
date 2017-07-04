@@ -1,15 +1,13 @@
-import { getShowFeedbackForm, getRequestedSupply } from './data';
 import { store } from '../store';
 
 import { ShowFeedbackFormButton, FeedbackForm } from '../feedback';
 import { RoomList } from '../room-list';
-import { SupplyList } from '../supply-list';
 import { RequestedSupply } from '../requested-supply';
+import { Supply } from '../supply';
+import { SupplyList } from '../supply-list';
 
 export const HomePage = () => {
-  const { rooms, selectedRoom, selectedRoomSupplies } = store.getState();
-  const showFeedbackForm = getShowFeedbackForm();
-  const requestedSupply = getRequestedSupply();
+  const { rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply } = store.getState();
   return [
     RoomList(rooms),
     SupplyList(selectedRoom, selectedRoomSupplies),

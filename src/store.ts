@@ -4,20 +4,26 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Room } from './room';
 import { Supply } from './supply';
 
-export type State = {
-  rooms: Room[]
-  selectedRoom: Room
-  selectedRoomSupplies: Supply[]
-};
+export interface State {
+  rooms: Room[];
+  selectedRoom: Room;
+  selectedRoomSupplies: Supply[];
+  showFeedbackForm: boolean;
+  requestedSupply: Supply;
+}
 
 export enum Actions {
   ADD_ROOM = 'ADD_ROOM',
   SELECT_ROOM = 'SELECT_ROOM',
   ADD_SUPPLY = 'ADD_SUPPLY',
-  SUPPLY_REQUESTED = 'SUPPLY_REQUESTED'
+
+  SUPPLY_REQUESTED = 'SUPPLY_REQUESTED',
+  SET_REQUESTED_SUPPLY = 'SET_REQUESTED_SUPPLY',
+
+  SHOW_FEEDBACK_FORM = 'SHOW_FEEDBACK_FORM'
 }
 
-const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies });
+const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply });
 export const store = createStore(
   reducers,
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
@@ -64,3 +70,27 @@ export function selectedRoomSupplies(state: Supply[] = [], action: SupplyAction 
 const updateSupplyRequestedTime = (requestedSupply: Supply, requested: number) => (supply: Supply) => (
   supply !== requestedSupply ? supply : new Supply(supply, { requested })
 );
+
+// Show Feedback Form
+type ShowFeedbackFormAction = Action<Actions> & { show?: boolean };
+
+export function showFeedbackForm(state: boolean = null, action: ShowFeedbackFormAction = {}): boolean {
+  switch (action.type) {
+  case Actions.SHOW_FEEDBACK_FORM:
+    return action.show;
+  default:
+    return state;
+  }
+}
+
+// Requested Supply
+type RequestedSupplyAction = Action<Actions> & { supply?: Supply };
+
+export function requestedSupply(state: Supply = null, action: RequestedSupplyAction = {}): Supply {
+  switch (action.type) {
+  case Actions.SET_REQUESTED_SUPPLY:
+    return action.supply;
+  default:
+    return state;
+  }
+}

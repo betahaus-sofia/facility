@@ -5,8 +5,8 @@ interface Process {
   env: Record<string, any>;
 }
 
-type Action<ActionType> = {
-  type?: ActionType
-};
+interface Action<ActionType> {
+  type?: ActionType;
+}
 
 declare var process: Process;

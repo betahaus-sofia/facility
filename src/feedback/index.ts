@@ -3,7 +3,6 @@ import './style.scss';
 import { ComponentNode, iframe, div, svg, path } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
-import { setShowFeedbackForm } from '../home-page/data';
 import { Actions, store } from '../store';
 
 export const FeedbackForm = (src: string) => (
@@ -37,7 +36,7 @@ export const FeedbackForm = (src: string) => (
 
     div({
       class: 'feedback-form-back-button flex-row justify-content-center align-items-center',
-      onclick: () => setShowFeedbackForm(false)
+      onclick: hideFeedbackForm
     }, [
       svg(<any>{ width: 36, height: 24, viewBox: '0 0 24 24' }, [ // TODO: Type
         path({
@@ -53,7 +52,7 @@ export const ShowFeedbackFormButton = () => (
   div({
     class: 'show-feedback-form-button flex-row justify-content-center align-items-center',
     title: 'Feedback',
-    onclick: () => setShowFeedbackForm(true)
+    onclick: showFeedbackForm
   },
     svg(<any>{ width: 24, height: 24, viewBox: '0 0 24 24' }, [ // TODO: Type
       path({
@@ -62,3 +61,7 @@ export const ShowFeedbackFormButton = () => (
     ])
   )
 );
+
+const toggleFeedbackForm = (show: boolean) => () => store.dispatch({ type: Actions.SHOW_FEEDBACK_FORM, show });
+const showFeedbackForm = toggleFeedbackForm(true);
+const hideFeedbackForm = toggleFeedbackForm(false);
