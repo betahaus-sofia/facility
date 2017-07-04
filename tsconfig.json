@@ -5,9 +5,11 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    "sourceMap": true,
     "suppressImplicitAnyIndexErrors": false,
 
     "baseUrl": "src",
+    "lib": ["dom", "es2015.promise", "es5"],
     "module": "commonjs",
     "target": "es5"
   },

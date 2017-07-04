@@ -1,6 +1,8 @@
-import { Actions } from '../actions';
-import Model from '../model';
-import { store } from '../store';
+import { Model } from 'compote/components/model';
+import * as firebase from 'firebase/app';
+
+import { DataSnapshot } from '../firebase';
+import { Actions, store } from '../store';
 import { unsubscribeFromSupplies, getSupplies } from '../supply';
 
 export class Room extends Model<Room> {
@@ -15,7 +17,7 @@ export function getRooms() {
   roomsRef.on('child_added', addRoom);
 }
 
-export function addRoom(roomChildSnapshot: FirebaseSnapshot<Room>) {
+export function addRoom(roomChildSnapshot: DataSnapshot<Room>) {
   const room = new Room({ id: roomChildSnapshot.key }, roomChildSnapshot.val());
   store.dispatch({ type: Actions.ADD_ROOM, room });
   const { selectedRoom } = store.getState();

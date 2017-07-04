@@ -1,8 +1,10 @@
-import { Actions } from '../actions';
+import { Model } from 'compote/components/model';
+import * as firebase from 'firebase/app';
+
+import { DataSnapshot } from '../firebase';
 import { setRequestedSupply } from '../home-page/data';
-import Model from '../model';
 import { Room } from '../room';
-import { store } from '../store';
+import { Actions, store } from '../store';
 
 export class Supply extends Model<Supply> {
   id?: string;
@@ -22,12 +24,12 @@ export function unsubscribeFromSupplies(room: Room, supplies: Supply[]) {
 
 export function getSupplies(room: Room) {
   const suppliesRef = firebase.database().ref(`rooms/${room.id}/supplies`);
-  suppliesRef.on('child_added', (roomSupplyChildSnapshot: FirebaseSnapshot<any>) => {
-    firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot: FirebaseSnapshot<Supply>) => {
+  suppliesRef.on('child_added', (roomSupplyChildSnapshot: DataSnapshot<any>) => {
+    firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot: DataSnapshot<Supply>) => {
       const supply = new Supply({ id: supplySnapshot.key }, supplySnapshot.val());
       addSupply(supply);
 
-      firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: FirebaseSnapshot<number>) => {
+      firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: DataSnapshot<number>) => {
         const requested = requestedSnapshot.val();
         if (requested) {
           supplyRequested(supply, Math.min(requested, Date.now()));

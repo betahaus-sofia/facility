@@ -1,5 +1,8 @@
 import 'jest';
 
+jest.mock('compote/components/logger', () => require('compote/components/logger/index.common.js'));
+jest.mock('compote/components/model', () => require('compote/components/model/index.common.js'));
+
 import { getShowFeedbackForm, setShowFeedbackForm, getRequestedSupply, setRequestedSupply } from './data';
 import { Supply } from '../supply';
 

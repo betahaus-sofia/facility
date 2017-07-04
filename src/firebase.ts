@@ -1,3 +1,10 @@
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+
+export interface DataSnapshot<T> extends firebase.database.DataSnapshot {
+  val(): T;
+}
+
 export function initializeFirebase() {
   firebase.initializeApp({
     apiKey: process.env.FIREBASE_API_KEY,

@@ -1,7 +1,7 @@
 import { route } from 'mithril';
 
-import { HomePage } from '../home-page';
-import { getRooms } from '../room';
+import { HomePage } from './home-page';
+import { getRooms } from './room';
 
 export function initializeRouter() {
   route.prefix('');

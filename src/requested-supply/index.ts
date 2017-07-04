@@ -2,9 +2,8 @@ import { redraw } from 'mithril';
 import { div, h1 } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
-import { Actions } from '../actions';
 import { setRequestedSupply } from '../home-page/data';
-import { store } from '../store';
+import { Actions, store } from '../store';
 import { Supply } from '../supply';
 
 export const RequestedSupply = (supply: Supply) => (
