@@ -15,7 +15,7 @@ export const isSelected = (room: Room): boolean => {
 
 export const RoomListItem = (room: Room) => (
   div({
-    className: `room-list-item ${isSelected(room) ? 'selected' : ''}`,
+    class: `room-list-item ${isSelected(room) ? 'selected' : ''}`,
     onclick() {
       if (!isSelected(room)) {
         selectRoom(room);
@@ -27,10 +27,10 @@ export const RoomListItem = (room: Room) => (
 );
 
 export const RoomsByGroup = (groupedRooms: Record<string, Room[]>) => (group: string) => (
-  div({ className: 'flex-item', style: flex(1) }, [
-    div({ className: 'room-list-group' }, group),
-    div({ className: 'room-list-items' },
-      div({ className: 'flex-row justify-content-start align-items-stretch' },
+  div({ class: 'flex-item', style: flex(1) }, [
+    div({ class: 'room-list-group' }, group),
+    div({ class: 'room-list-items' },
+      div({ class: 'flex-row justify-content-start align-items-stretch' },
         groupedRooms[group].map(RoomListItem)
       )
     )
@@ -43,8 +43,8 @@ export const RoomList = (rooms: Room[]) => {
   const roomsByGroup = groupByGroup(rooms);
   const groups = keys(roomsByGroup);
 
-  return div({ className: 'room-list' },
-    div({ className: 'flex-row-md justify-content-start align-items-stretch' },
+  return div({ class: 'room-list' },
+    div({ class: 'flex-row-md justify-content-start align-items-stretch' },
       groups.map(RoomsByGroup(roomsByGroup))
     )
   );

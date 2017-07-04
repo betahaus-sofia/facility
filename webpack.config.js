@@ -1,12 +1,12 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const env = require('var');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const packageJson = require('./package.json');
-
-module.exports = {
+module.exports = (options = {}) => ({
+  devtool: options.production ? false : 'inline-source-map',
   context: process.cwd(),
   entry: {
     app: './src/app.ts',
@@ -15,7 +15,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: path.resolve('./build'),
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     sourceMapFilename: '[name].js.map'
   },
   resolve: {
@@ -26,9 +26,9 @@ module.exports = {
       // TypeScript
       { test: /\.tsx?$/, loader: 'ts-loader' },
 
-      // SASS
+      // Styles
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
           { loader: 'css-loader' },
@@ -45,8 +45,8 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
-      'process.VERSION': JSON.stringify(packageJson.version),
       'process.env': JSON.stringify(env)
     }),
     new webpack.LoaderOptionsPlugin({
@@ -58,4 +58,4 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({ template: './src/index.ejs' })
   ]
-};
+});

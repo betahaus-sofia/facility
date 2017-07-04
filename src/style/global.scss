@@ -58,3 +58,8 @@ h6 { font-size: $h6-font-size; }
 .overflow-hidden {
   @include overflow(hidden, hidden);
 }
+
+// Text
+.text-center {
+  text-align: center;
+}

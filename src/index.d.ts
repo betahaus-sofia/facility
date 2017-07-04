@@ -1,13 +1,12 @@
-declare var firebase: any;
+/// <reference path="../node_modules/compote/components/index.d.ts" />
 
-type FirebaseSnapshot<T> = {
-  key: string
-  val(): T;
-};
+interface Process {
+  VERSION: string;
+  env: Record<string, any>;
+}
 
-declare var process: {
-  VERSION: string
-  env: Record<string, any>
-};
+interface Action<ActionType> {
+  type?: ActionType;
+}
 
-declare var require: (moduleName: string) => any;
+declare var process: Process;

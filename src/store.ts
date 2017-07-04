@@ -1,17 +1,27 @@
+import { logger } from 'compote/components/logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
-import { Actions } from './actions';
-import { logger } from './logger';
 import { Room } from './room';
 import { Supply } from './supply';
 
-export type State = {
-  rooms: Room[]
-  selectedRoom: Room
-  selectedRoomSupplies: Supply[],
-  showFeedbackForm: boolean,
-  requestedSupply: Supply
-};
+export interface State {
+  rooms: Room[];
+  selectedRoom: Room;
+  selectedRoomSupplies: Supply[];
+  showFeedbackForm: boolean;
+  requestedSupply: Supply;
+}
+
+export enum Actions {
+  ADD_ROOM = 'ADD_ROOM',
+  SELECT_ROOM = 'SELECT_ROOM',
+  ADD_SUPPLY = 'ADD_SUPPLY',
+
+  SUPPLY_REQUESTED = 'SUPPLY_REQUESTED',
+  SET_REQUESTED_SUPPLY = 'SET_REQUESTED_SUPPLY',
+
+  SHOW_FEEDBACK_FORM = 'SHOW_FEEDBACK_FORM'
+}
 
 const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply });
 export const store = createStore(
@@ -19,12 +29,10 @@ export const store = createStore(
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );
 
-export type Action = {
-  [key: string]: any;
-  type?: Actions
-};
+// Rooms
+type RoomAction = Action<Actions> & { room?: Room };
 
-export function rooms(state: Room[] = [], action: Action = {}): Room[] {
+export function rooms(state: Room[] = [], action: RoomAction = {}): Room[] {
   switch (action.type) {
   case Actions.ADD_ROOM:
     return [...state, action.room];
@@ -33,7 +41,8 @@ export function rooms(state: Room[] = [], action: Action = {}): Room[] {
   }
 }
 
-export function selectedRoom(state: Room = null, action: Action = {}): Room {
+// Selected Room
+export function selectedRoom(state: Room = null, action: RoomAction = {}): Room {
   switch (action.type) {
   case Actions.SELECT_ROOM:
     return action.room;
@@ -42,23 +51,30 @@ export function selectedRoom(state: Room = null, action: Action = {}): Room {
   }
 }
 
-export function selectedRoomSupplies(state: Supply[] = [], action: Action = {}): Supply[] {
+// Selected Room Supplies
+type SupplyAction = Action<Actions> & { supply?: Supply, requested?: number };
+
+export function selectedRoomSupplies(state: Supply[] = [], action: SupplyAction = {}): Supply[] {
   switch (action.type) {
   case Actions.SELECT_ROOM:
     return [];
   case Actions.ADD_SUPPLY:
     return [...state, action.supply];
   case Actions.SUPPLY_REQUESTED:
-    const requestedSupply = action.supply;
-    return state.map((supply) => (
-      supply !== requestedSupply ? supply : new Supply(supply, { requested: action.requested })
-    ));
+    return state.map(updateSupplyRequestedTime(action.supply, action.requested));
   default:
     return state;
   }
 }
 
-export function showFeedbackForm(state = false, action: Action = {}): boolean {
+const updateSupplyRequestedTime = (requestedSupply: Supply, requested: number) => (supply: Supply) => (
+  supply !== requestedSupply ? supply : new Supply(supply, { requested })
+);
+
+// Show Feedback Form
+type ShowFeedbackFormAction = Action<Actions> & { show?: boolean };
+
+export function showFeedbackForm(state: boolean = null, action: ShowFeedbackFormAction = {}): boolean {
   switch (action.type) {
   case Actions.SHOW_FEEDBACK_FORM:
     return action.show;
@@ -67,12 +83,13 @@ export function showFeedbackForm(state = false, action: Action = {}): boolean {
   }
 }
 
-export function requestedSupply(state: Supply = null, action: Action = {}): Supply {
+// Requested Supply
+type RequestedSupplyAction = Action<Actions> & { supply?: Supply };
+
+export function requestedSupply(state: Supply = null, action: RequestedSupplyAction = {}): Supply {
   switch (action.type) {
-  case Actions.SHOW_REQUESTED_SUPPLY:
+  case Actions.SET_REQUESTED_SUPPLY:
     return action.supply;
-  case Actions.HIDE_REQUESTED_SUPPLY:
-    return null;
   default:
     return state;
   }

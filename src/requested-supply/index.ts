@@ -1,17 +1,20 @@
+import { redraw } from 'mithril';
 import { div, h1 } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
-import { Actions } from '../actions';
-import { store } from '../store';
+import { Actions, store } from '../store';
 import { Supply } from '../supply';
 
 export const RequestedSupply = (supply: Supply) => (
   div({
-    className: 'fixed stretch bg-success flex-row justify-content-center align-items-center',
+    class: 'fixed stretch bg-success flex-row justify-content-center align-items-center',
     oncreate({ dom }) {
       dom.classList.add('fade-in-animation');
       dom.children[0].classList.add('scale-in-animation');
-      setTimeout(() => store.dispatch({ type: Actions.HIDE_REQUESTED_SUPPLY }), 1e3);
+      setTimeout(() => {
+        setRequestedSupply(null);
+        redraw();
+      }, 1e3);
     },
     onbeforeremove({ dom }) {
       dom.classList.remove('fade-in-animation');
@@ -28,6 +31,10 @@ export const RequestedSupply = (supply: Supply) => (
       });
     }
   },
-    h1(`${supply.name} requested!`)
+    h1({ class: 'text-center' }, `${supply.name} requested!`)
   )
 );
+
+const setRequestedSupply = (supply: Supply) => {
+  store.dispatch({ type: Actions.SET_REQUESTED_SUPPLY, supply });
+};

@@ -1,12 +1,10 @@
-import { route } from 'mithril';
-
-import { getRooms } from '../room';
 import { store } from '../store';
 
 import { ShowFeedbackFormButton, FeedbackForm } from '../feedback';
 import { RoomList } from '../room-list';
-import { SupplyList } from '../supply-list';
 import { RequestedSupply } from '../requested-supply';
+import { Supply } from '../supply';
+import { SupplyList } from '../supply-list';
 
 export const HomePage = () => {
   const { rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply } = store.getState();
@@ -18,12 +16,3 @@ export const HomePage = () => {
     requestedSupply ? RequestedSupply(requestedSupply) : null
   ];
 };
-
-export function initializeRouter() {
-  route.prefix('');
-
-  const container = document.querySelector('#container');
-  route(container, '/', {
-    '/': { onmatch: getRooms, render: HomePage }
-  });
-}

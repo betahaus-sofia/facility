@@ -1,7 +1,9 @@
-import { Actions } from '../actions';
-import Model from '../model';
+import { Model } from 'compote/components/model';
+import * as firebase from 'firebase/app';
+
+import { DataSnapshot } from '../firebase';
 import { Room } from '../room';
-import { store } from '../store';
+import { Actions, store } from '../store';
 
 export class Supply extends Model<Supply> {
   id?: string;
@@ -10,23 +12,22 @@ export class Supply extends Model<Supply> {
   requested?: number;
 }
 
-export function unsubscribeFromSupplies(room: Room, supplies: Supply[]) {
+export const unsubscribeFromSupplies = (room: Room, supplies: Supply[]) => {
   if (room) {
     firebase.database().ref(`rooms/${room.id}/supplies`).off('child_added');
     supplies.forEach((supply) => {
       firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).off('value');
     });
   }
-}
+};
 
-export function getSupplies(room: Room) {
-  const suppliesRef = firebase.database().ref(`rooms/${room.id}/supplies`);
-  suppliesRef.on('child_added', (roomSupplyChildSnapshot: FirebaseSnapshot<any>) => {
-    firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot: FirebaseSnapshot<Supply>) => {
+export const getSupplies = (room: Room) => {
+  firebase.database().ref(`rooms/${room.id}/supplies`).on('child_added', (roomSupplyChildSnapshot: DataSnapshot<any>) => {
+    firebase.database().ref(`supplies/${roomSupplyChildSnapshot.key}`).once('value', (supplySnapshot: DataSnapshot<Supply>) => {
       const supply = new Supply({ id: supplySnapshot.key }, supplySnapshot.val());
       addSupply(supply);
 
-      firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: FirebaseSnapshot<number>) => {
+      firebase.database().ref(`roomSupplies/${room.id}_${supply.id}/requested`).on('value', (requestedSnapshot: DataSnapshot<number>) => {
         const requested = requestedSnapshot.val();
         if (requested) {
           supplyRequested(supply, Math.min(requested, Date.now()));
@@ -34,13 +35,13 @@ export function getSupplies(room: Room) {
       });
     });
   });
-}
+};
 
-export function addSupply(supply: Supply) {
+const addSupply = (supply: Supply) => {
   store.dispatch({ type: Actions.ADD_SUPPLY, supply });
-}
+};
 
-export function requestSupply(room: Room, supply: Supply) {
+export const requestSupply = (room: Room, supply: Supply) => {
   firebase.database().ref(`roomSupplies/${room.id}_${supply.id}`).update({
     room: room.id,
     supply: supply.id,
@@ -48,13 +49,13 @@ export function requestSupply(room: Room, supply: Supply) {
   });
 
   supplyRequested(supply, Date.now());
-  showRequestedSupply(supply);
-}
+  setRequestedSupply(supply);
+};
 
-export function supplyRequested(supply: Supply, requested: number) {
+const supplyRequested = (supply: Supply, requested: number) => {
   store.dispatch({ type: Actions.SUPPLY_REQUESTED, supply, requested });
-}
+};
 
-export function showRequestedSupply(supply: Supply) {
-  store.dispatch({ type: Actions.SHOW_REQUESTED_SUPPLY, supply });
-}
+const setRequestedSupply = (supply: Supply) => {
+  store.dispatch({ type: Actions.SET_REQUESTED_SUPPLY, supply });
+};
