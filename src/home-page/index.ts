@@ -3,7 +3,6 @@ import { store } from '../store';
 import { ShowFeedbackFormButton, FeedbackForm } from '../feedback';
 import { RoomList } from '../room-list';
 import { RequestedSupply } from '../requested-supply';
-import { Supply } from '../supply';
 import { SupplyList } from '../supply-list';
 
 export const HomePage = () => {

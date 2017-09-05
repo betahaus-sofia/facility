@@ -5,7 +5,7 @@ export interface DataSnapshot<T> extends firebase.database.DataSnapshot {
   val(): T;
 }
 
-export function initializeFirebase() {
+export function initializeFirebaseApp() {
   firebase.initializeApp({
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,

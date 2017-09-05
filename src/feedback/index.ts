@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { ComponentNode, iframe, div, svg, path } from 'compote/html';
+import { iframe, div, svg, path } from 'compote/html';
 import { getAnimationDuration } from 'compote/css';
 
 import { Actions, store } from '../store';

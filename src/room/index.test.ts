@@ -12,9 +12,9 @@ jest.mock('firebase/app', () => ({
     }))
   })
 }));
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 
-import { Room, getRooms, addRoom, selectRoom } from './index';
+import { Room, /*getRooms,*/ addRoom, selectRoom } from './index';
 import { Actions, store } from '../store';
 
 describe(`Room`, () => {

@@ -2,16 +2,18 @@ import './assets/logo.png';
 import './manifest.json';
 import './style.scss';
 
-import { redraw } from 'mithril';
+import { setHyperscriptFunction } from 'compote';
+import * as m from 'mithril';
 
-import { initializeFirebase } from './firebase';
+import { initializeFirebaseApp } from './firebase';
 import { initializeRouter } from './router';
 import { store } from './store';
 
-initialize();
+setHyperscriptFunction(m);
+initializeApp();
 
-function initialize() {
-  initializeFirebase();
+function initializeApp() {
+  initializeFirebaseApp();
   registerServiceWorker();
   initializeRouter();
   subscribeToStore();
@@ -24,15 +26,14 @@ function registerServiceWorker() {
 }
 
 function subscribeToStore() {
-  store.subscribe(redraw);
+  store.subscribe(m.redraw);
 
-  const unsubscribeContainers = store.subscribe(() => {
-    const container = document.querySelector('#container');
+  const container = document.querySelector('#container');
+  const spinnerView = document.querySelector('#spinner-view');
+  const unsubscribe = store.subscribe(() => {
     container.classList.add('loaded');
-
-    const spinnerView = document.querySelector('#spinner-view');
     spinnerView.classList.add('loaded');
 
-    unsubscribeContainers();
+    unsubscribe();
   });
 }
