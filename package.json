@@ -41,7 +41,7 @@
     "webpack": "3.5.5",
     "webpack-dev-server": "2.7.1",
     "webpack-null-plugin": "0.0.2",
-    "workbox-webpack-plugin": "2.0.0"
+    "workbox-webpack-plugin": "2.0.1"
   },
   "greenkeeper": {
     "ignore": [
