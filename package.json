@@ -36,7 +36,7 @@
     "style-loader": "0.18.2",
     "ts-jest": "20.0.14",
     "ts-loader": "2.3.4",
-    "typescript": "2.5.2",
+    "typescript": "2.5.3",
     "var": "0.3.1",
     "webpack": "3.5.5",
     "webpack-dev-server": "2.7.1",
