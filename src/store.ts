@@ -23,9 +23,8 @@ export enum Actions {
   SHOW_FEEDBACK_FORM = 'SHOW_FEEDBACK_FORM'
 }
 
-const reducers = combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply });
 export const store = createStore(
-  reducers,
+  combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply }),
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );
 
@@ -36,9 +35,8 @@ export function rooms(state: Room[] = [], action: RoomAction = {}): Room[] {
   switch (action.type) {
   case Actions.ADD_ROOM:
     return [...state, action.room];
-  default:
-    return state;
   }
+  return state;
 }
 
 // Selected Room
@@ -46,9 +44,8 @@ export function selectedRoom(state: Room = null, action: RoomAction = {}): Room 
   switch (action.type) {
   case Actions.SELECT_ROOM:
     return action.room;
-  default:
-    return state;
   }
+  return state;
 }
 
 // Selected Room Supplies
@@ -62,9 +59,8 @@ export function selectedRoomSupplies(state: Supply[] = [], action: SupplyAction 
     return [...state, action.supply];
   case Actions.SUPPLY_REQUESTED:
     return state.map(updateSupplyRequestedTime(action.supply, action.requested));
-  default:
-    return state;
   }
+  return state;
 }
 
 const updateSupplyRequestedTime = (requestedSupply: Supply, requested: number) => (supply: Supply) => (
@@ -78,9 +74,8 @@ export function showFeedbackForm(state: boolean = null, action: ShowFeedbackForm
   switch (action.type) {
   case Actions.SHOW_FEEDBACK_FORM:
     return action.show;
-  default:
-    return state;
   }
+  return state;
 }
 
 // Requested Supply
@@ -90,7 +85,6 @@ export function requestedSupply(state: Supply = null, action: RequestedSupplyAct
   switch (action.type) {
   case Actions.SET_REQUESTED_SUPPLY:
     return action.supply;
-  default:
-    return state;
   }
+  return state;
 }

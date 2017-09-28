@@ -1,0 +1,46 @@
+path / {
+  read() { true }
+}
+
+// Room Supplies
+path /roomSupplies/{roomSupplyId} is RoomSupply;
+
+type RoomSupply {
+  room: RoomSupplyRoom
+  supply: RoomSupplySupply
+  requested: RoomSupplyRequested
+  notified: CurrentTimestamp
+}
+
+type RoomSupplyRoom extends String {
+  write() { true }
+}
+
+type RoomSupplySupply extends String {
+  write() { true }
+}
+
+type RoomSupplyRequested extends CurrentTimestamp {
+  write() { true }
+}
+
+// Rooms
+path /rooms/{roomId} is Room;
+
+type Room {
+  group: String
+  name: String
+}
+
+// Supplies
+path /supplies/{supplyId} is Supply;
+
+type Supply {
+  name: String
+  imageUrl: String
+}
+
+// Types
+type CurrentTimestamp extends Number {
+  validate() { this == now }
+}
