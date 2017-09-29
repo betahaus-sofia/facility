@@ -8,7 +8,6 @@ export interface State {
   rooms: Room[];
   selectedRoom: Room;
   selectedRoomSupplies: Supply[];
-  showFeedbackForm: boolean;
   requestedSupply: Supply;
 }
 
@@ -18,13 +17,11 @@ export enum Actions {
   ADD_SUPPLY = 'ADD_SUPPLY',
 
   SUPPLY_REQUESTED = 'SUPPLY_REQUESTED',
-  SET_REQUESTED_SUPPLY = 'SET_REQUESTED_SUPPLY',
-
-  SHOW_FEEDBACK_FORM = 'SHOW_FEEDBACK_FORM'
+  SET_REQUESTED_SUPPLY = 'SET_REQUESTED_SUPPLY'
 }
 
 export const store = createStore(
-  combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, showFeedbackForm, requestedSupply }),
+  combineReducers<State>({ rooms, selectedRoom, selectedRoomSupplies, requestedSupply }),
   process.env.NODE_ENV === 'production' ? undefined : applyMiddleware(logger)
 );
 
@@ -66,17 +63,6 @@ export function selectedRoomSupplies(state: Supply[] = [], action: SupplyAction 
 const updateSupplyRequestedTime = (requestedSupply: Supply, requested: number) => (supply: Supply) => (
   supply !== requestedSupply ? supply : new Supply(supply, { requested })
 );
-
-// Show Feedback Form
-type ShowFeedbackFormAction = Action<Actions> & { show?: boolean };
-
-export function showFeedbackForm(state: boolean = null, action: ShowFeedbackFormAction = {}): boolean {
-  switch (action.type) {
-  case Actions.SHOW_FEEDBACK_FORM:
-    return action.show;
-  }
-  return state;
-}
 
 // Requested Supply
 type RequestedSupplyAction = Action<Actions> & { supply?: Supply };
