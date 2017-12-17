@@ -1,6 +1,6 @@
 import 'jest';
 
-jest.mock('compote/html', () => ({ div: jest.fn(), path: jest.fn(), svg: jest.fn() }));
+jest.mock('compote/html', () => ({ div: jest.fn(), iframe: jest.fn() }));
 jest.mock('compote/css', () => jest.fn());
 jest.mock('compote/components/clock', () => require('compote/components/clock/index.common.js'));
 jest.mock('compote/components/flex', () => require('compote/components/flex/index.common.js'));
