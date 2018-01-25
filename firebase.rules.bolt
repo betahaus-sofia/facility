@@ -9,7 +9,7 @@ type RoomSupply {
   room: RoomSupplyRoom
   supply: RoomSupplySupply
   requested: RoomSupplyRequested
-  notified: CurrentTimestamp
+  notified: CurrentTimestamp | Null
 }
 
 type RoomSupplyRoom extends String {
